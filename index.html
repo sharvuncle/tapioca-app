@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Tapioca</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root { --apple-blue: #007aff; --apple-green: #34c759; --apple-gray: #8e8e93; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        html, body {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background: #1c1c1e; font-family: -apple-system, sans-serif;
+            overflow: hidden; position: fixed;
+        }
+
+        /* ── LOGIN SCREEN ── */
+        #login-screen {
+            position: fixed; inset: 0; z-index: 9999;
+            background: #f2f2f7;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 32px 24px;
+        }
+        #login-screen.hidden { display: none; }
+
+        .login-logo {
+            font-size: 36px; font-weight: 800; color: #000;
+            letter-spacing: -0.5px; margin-bottom: 6px;
+        }
+        .login-tagline {
+            font-size: 14px; color: var(--apple-gray); margin-bottom: 40px;
+        }
+        .login-card {
+            width: 100%; max-width: 360px;
+            background: #fff; border-radius: 20px;
+            padding: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        .login-tabs {
+            display: flex; background: #f2f2f7; border-radius: 10px;
+            padding: 3px; gap: 2px; margin-bottom: 20px;
+        }
+        .login-tab {
+            flex: 1; padding: 8px; border-radius: 8px; border: none;
+            font-size: 14px; font-weight: 600; cursor: pointer;
+            background: transparent; color: var(--apple-gray);
+            font-family: -apple-system, sans-serif;
+        }
+        .login-tab.active { background: #fff; color: #000; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+
+        .login-input {
+            width: 100%; padding: 13px 14px; border-radius: 12px;
+            border: 1px solid #e0e0e0; font-size: 15px; margin-bottom: 10px;
+            font-family: -apple-system, sans-serif; outline: none;
+            transition: border-color 0.2s;
+        }
+        .login-input:focus { border-color: var(--apple-blue); }
+
+        .login-btn {
+            width: 100%; padding: 15px; border-radius: 14px; border: none;
+            background: var(--apple-blue); color: #fff;
+            font-size: 16px; font-weight: 700; cursor: pointer;
+            font-family: -apple-system, sans-serif; margin-top: 4px;
+        }
+        .login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .login-msg {
+            margin-top: 12px; font-size: 13px; text-align: center;
+            min-height: 18px; color: #ff3b30;
+        }
+        .login-msg.ok { color: var(--apple-green); }
+
+        /* ── MAP ── */
+        #map { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+
+        .blue-dot {
+            width: 14px; height: 14px; background: var(--apple-blue);
+            border: 2px solid white; border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(0,122,255,0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%   { box-shadow: 0 0 0 0px rgba(0,122,255,0.7); }
+            70%  { box-shadow: 0 0 0 10px rgba(0,122,255,0); }
+            100% { box-shadow: 0 0 0 0px rgba(0,122,255,0); }
+        }
+        .real-dot {
+            width: 14px; height: 14px; background: #8e8e93;
+            border: 2px solid white; border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(142,142,147,0.3);
+        }
+
+        /* ── TOP BAR ── */
+        .top-bar {
+            position: fixed; top: 44px; left: 0; width: 100%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000; padding: 0 16px;
+        }
+        .mode-toggle {
+            display: flex; background: rgba(255,255,255,0.9); padding: 3px;
+            border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+        .mode-btn {
+            padding: 8px 20px; border-radius: 9px; border: none; font-weight: 600;
+            background: transparent; color: var(--apple-gray); font-size: 14px; cursor: pointer;
+        }
+        .mode-btn.active { background: #fff; color: #000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+        /* ── SAVED PANEL ── */
+        .saved-panel {
+            position: fixed; top: 44px; right: 16px;
+            width: auto;
+            background: transparent;
+            border-radius: 16px;
+            box-shadow: none;
+            backdrop-filter: none; -webkit-backdrop-filter: none;
+            z-index: 1001;
+            overflow: hidden;
+            transition: box-shadow 0.25s, background 0.25s;
+        }
+        .saved-panel.open {
+            width: 270px;
+            background: rgba(255,255,255,0.97);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        }
+
+        .saved-header {
+            width: fit-content; border: none;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 3px 10px;
+            display: flex; align-items: center; gap: 4px;
+            cursor: pointer; font-family: -apple-system, sans-serif;
+            white-space: nowrap; margin-left: auto;
+            height: 38px;
+            transition: border-radius 0.25s, box-shadow 0.25s;
+        }
+        .saved-panel.open .saved-header {
+            width: 100%;
+            border-radius: 0;
+            box-shadow: none;
+            backdrop-filter: none; -webkit-backdrop-filter: none;
+            background: transparent;
+        }
+        .saved-header-left {
+            display: flex; align-items: center; gap: 4px;
+            font-size: 13px; font-weight: 700; color: #000;
+        }
+        .saved-header-arrow {
+            font-size: 10px; color: var(--apple-gray);
+            transition: transform 0.25s;
+        }
+        .saved-header-arrow.open { transform: rotate(180deg); }
+
+        .saved-body {
+            max-height: 0; overflow: hidden; width: 270px;
+            transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .saved-body.open { max-height: 420px; }
+
+        .saved-divider { height: 1px; background: #f0f0f0; }
+        .saved-tabs { display: flex; border-bottom: 1px solid #f0f0f0; }
+        .saved-tab {
+            flex: 1; padding: 9px; border: none; background: transparent;
+            font-size: 13px; font-weight: 600; color: var(--apple-gray);
+            cursor: pointer; font-family: -apple-system, sans-serif;
+            border-bottom: 2px solid transparent;
+        }
+        .saved-tab.active { color: var(--apple-blue); border-bottom: 2px solid var(--apple-blue); }
+
+        .saved-list { max-height: 240px; overflow-y: auto; }
+        .saved-item {
+            display: flex; align-items: center;
+            padding: 10px 14px; gap: 10px;
+            border-bottom: 1px solid #f7f7f7; cursor: pointer;
+        }
+        .saved-item:last-child { border-bottom: none; }
+        .saved-item:active { background: #f5f5f5; }
+        .saved-item-info { flex: 1; min-width: 0; }
+        .saved-item-name {
+            font-size: 13px; font-weight: 600; color: #000;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .saved-item-sub { font-size: 11px; color: var(--apple-gray); margin-top: 1px; }
+        .saved-item-actions { display: flex; gap: 4px; flex-shrink: 0; }
+        .icon-btn {
+            width: 28px; height: 28px; border-radius: 7px; border: none;
+            background: #f0f0f5; font-size: 13px; cursor: pointer; color: #3a3a3c;
+            display: flex; align-items: center; justify-content: center;
+            font-family: -apple-system, sans-serif; font-weight: 600;
+        }
+        .icon-btn.del { background: #f5f0f0; color: #ff3b30; }
+
+        .saved-empty {
+            padding: 20px 16px; text-align: center;
+            font-size: 13px; color: var(--apple-gray);
+        }
+        .saved-add-btn {
+            width: calc(100% - 24px); margin: 10px 12px;
+            padding: 10px; border-radius: 11px; border: none;
+            background: var(--apple-blue); color: white;
+            font-size: 13px; font-weight: 600; cursor: pointer;
+            font-family: -apple-system, sans-serif;
+        }
+
+        /* ── CONFIRM OVERLAY ── */
+        .confirm-overlay {
+            position: fixed; bottom: 140px; left: 20px; right: 20px;
+            background: rgba(255,255,255,0.97); padding: 16px; border-radius: 20px;
+            z-index: 1002; box-shadow: 0 8px 32px rgba(0,0,0,0.15); display: none;
+        }
+        .confirm-overlay.open { display: block; }
+        .confirm-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .confirm-sub   { font-size: 12px; color: var(--apple-gray); margin-bottom: 12px; }
+        .confirm-btns  { display: flex; gap: 8px; }
+        .confirm-btns button {
+            flex: 1; padding: 12px; border-radius: 12px; border: none;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+            font-family: -apple-system, sans-serif;
+        }
+        .confirm-yes { background: var(--apple-blue); color: white; }
+        .confirm-no  { background: #e5e5ea; color: #000; }
+
+        /* ── EDIT MODAL ── */
+        .modal-bg {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+            z-index: 2000; display: none; align-items: center; justify-content: center;
+        }
+        .modal-bg.open { display: flex; }
+        .modal {
+            background: #fff; border-radius: 20px; padding: 20px;
+            width: calc(100% - 48px); max-width: 340px;
+        }
+        .modal h3 { font-size: 17px; font-weight: 700; margin: 0 0 14px; }
+        .modal input, .modal select {
+            width: 100%; padding: 11px 12px; border-radius: 10px;
+            border: 1px solid #e0e0e0; font-size: 14px; margin-bottom: 10px;
+            font-family: -apple-system, sans-serif; outline: none;
+        }
+        .modal-btns { display: flex; gap: 8px; margin-top: 4px; }
+        .modal-btns button {
+            flex: 1; padding: 13px; border-radius: 12px; border: none;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+            font-family: -apple-system, sans-serif;
+        }
+        .modal-save   { background: var(--apple-blue); color: white; }
+        .modal-cancel { background: #e5e5ea; color: #000; }
+
+        /* ── CONTROLS ── */
+        .controls {
+            position: fixed; bottom: 30px; left: 20px; right: 20px;
+            background: rgba(255,255,255,0.95); padding: 20px; border-radius: 24px;
+            z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        }
+        .speed-picker {
+            display: flex; background: #e3e3e8; border-radius: 12px; padding: 3px; margin-bottom: 15px;
+            transition: opacity 0.2s;
+        }
+        .speed-opt {
+            flex: 1; border: none; background: transparent; padding: 10px;
+            border-radius: 10px; font-size: 13px; font-weight: 600;
+            display: flex; flex-direction: column; align-items: center; cursor: pointer;
+        }
+        .speed-opt.active { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+        .btn-group { display: flex; gap: 10px; }
+        .btn {
+            flex: 1; padding: 18px; border-radius: 16px; border: none;
+            font-weight: 700; font-size: 17px; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            font-family: -apple-system, sans-serif;
+        }
+        #go-btn     { background: var(--apple-blue); color: white; }
+        #go-btn.success { background: var(--apple-green); }
+        #pause-btn  { background: #ff9500; color: white; display: none; }
+        #cancel-btn { background: #3a3a3c; color: white; }
+        #cancel-btn.success { background: #ff3b30; }
+
+        /* logout button */
+        .logout-btn {
+            position: fixed; bottom: 30px; right: 20px;
+            z-index: 1003;
+            background: none; border: none;
+            font-size: 11px; color: var(--apple-gray);
+            cursor: pointer; font-family: -apple-system, sans-serif;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── LOGIN SCREEN ── -->
+<div id="login-screen">
+    <div class="login-logo">tapioca</div>
+    <div class="login-tagline">GPS simulation for iPhone</div>
+    <div class="login-card">
+        <div class="login-tabs">
+            <button class="login-tab active" id="lt-signin" onclick="switchLoginTab('signin')">Sign In</button>
+            <button class="login-tab"        id="lt-signup" onclick="switchLoginTab('signup')">Sign Up</button>
+        </div>
+        <input class="login-input" type="email"    id="login-email"    placeholder="Email" />
+        <input class="login-input" type="password" id="login-password"  placeholder="Password" />
+        <button class="login-btn" id="login-btn" onclick="handleAuth()">Sign In</button>
+        <div class="login-msg" id="login-msg"></div>
+    </div>
+</div>
+
+<!-- ── APP ── -->
+<div id="map"></div>
+
+<div class="top-bar">
+    <div class="mode-toggle">
+        <button id="t-teleport" class="mode-btn active" onclick="setMode('teleport')">Teleport</button>
+        <button id="t-route"    class="mode-btn"        onclick="setMode('route')">Route</button>
+    </div>
+</div>
+
+<div class="saved-panel" id="saved-panel">
+    <button class="saved-header" onclick="toggleSavedPanel()">
+        <span class="saved-header-left">Saved</span>
+        <span class="saved-header-arrow" id="saved-arrow">&#9660;</span>
+    </button>
+    <div class="saved-body" id="saved-body">
+        <div class="saved-divider"></div>
+        <div class="saved-tabs">
+            <button class="saved-tab active" id="tab-locations" onclick="switchTab('locations')">Locations</button>
+            <button class="saved-tab"        id="tab-routes"    onclick="switchTab('routes')">Routes</button>
+        </div>
+        <div class="saved-list" id="saved-list"></div>
+        <button class="saved-add-btn" id="saved-add-btn" onclick="handleAddSaved()">+ Save Current</button>
+    </div>
+</div>
+
+<div class="confirm-overlay" id="confirm-overlay">
+    <div class="confirm-title" id="confirm-title">Load this location?</div>
+    <div class="confirm-sub"   id="confirm-sub"></div>
+    <div class="confirm-btns">
+        <button class="confirm-yes" onclick="confirmLoad()">Confirm</button>
+        <button class="confirm-no"  onclick="cancelConfirm()">Cancel</button>
+    </div>
+</div>
+
+<div class="modal-bg" id="modal-bg">
+    <div class="modal">
+        <h3 id="modal-title">Save</h3>
+        <input type="text" id="modal-name" placeholder="Name" />
+        <select id="modal-speed" style="display:none;">
+            <option value="3">Walk — 3 mph</option>
+            <option value="18">Bike — 18 mph</option>
+            <option value="50">Drive — 50 mph</option>
+        </select>
+        <div class="modal-btns">
+            <button class="modal-save"   onclick="saveModal()">Save</button>
+            <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="controls">
+    <div id="route-settings" style="display:none;">
+        <div class="speed-picker" id="speed-picker">
+            <button id="s-3"  class="speed-opt active" onclick="setSpeed(3)"> <span>🚶</span>3 mph</button>
+            <button id="s-18" class="speed-opt"         onclick="setSpeed(18)"><span>🚴</span>18 mph</button>
+            <button id="s-50" class="speed-opt"         onclick="setSpeed(50)"><span>🚗</span>50 mph</button>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button id="go-btn"     class="btn" onclick="handleGo()">Confirm</button>
+        <button id="pause-btn"  class="btn" onclick="handlePause()">Pause</button>
+        <button id="cancel-btn" class="btn" onclick="handleCancel()">Cancel</button>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    const AUTH_URL = 'https://tapioca-auth.onrender.com';
+
+    // ── auth state ──
+    let authToken = localStorage.getItem('tapioca_token') || null;
+    let loginMode = 'signin';
+
+    // ── check token on load ──
+    async function checkAuth() {
+        if (!authToken) { showLogin(); return; }
+        try {
+            const res = await fetch(`${AUTH_URL}/verify`, {
+                headers: { 'Authorization': `Bearer ${authToken}` }
+            });
+            if (res.ok) {
+                showApp();
+            } else {
+                localStorage.removeItem('tapioca_token');
+                authToken = null;
+                showLogin();
+            }
+        } catch(e) {
+            // if auth server unreachable, still show login
+            showLogin();
+        }
+    }
+
+    function showLogin() {
+        document.getElementById('login-screen').classList.remove('hidden');
+    }
+
+    function showApp() {
+        document.getElementById('login-screen').classList.add('hidden');
+        initMap();
+    }
+
+    function switchLoginTab(tab) {
+        loginMode = tab;
+        document.getElementById('lt-signin').classList.toggle('active', tab === 'signin');
+        document.getElementById('lt-signup').classList.toggle('active', tab === 'signup');
+        document.getElementById('login-btn').textContent = tab === 'signin' ? 'Sign In' : 'Create Account';
+        document.getElementById('login-msg').textContent = '';
+        document.getElementById('login-msg').className = 'login-msg';
+    }
+
+    async function handleAuth() {
+        const email    = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value;
+        const btn      = document.getElementById('login-btn');
+        const msg      = document.getElementById('login-msg');
+
+        if (!email || !password) { msg.textContent = 'Please fill in all fields.'; return; }
+
+        btn.disabled = true;
+        btn.textContent = loginMode === 'signin' ? 'Signing in...' : 'Creating account...';
+        msg.textContent = '';
+        msg.className = 'login-msg';
+
+        try {
+            const endpoint = loginMode === 'signin' ? '/login' : '/register';
+            const res  = await fetch(`${AUTH_URL}${endpoint}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                if (loginMode === 'signin') {
+                    authToken = data.token;
+                    localStorage.setItem('tapioca_token', authToken);
+                    showApp();
+                } else {
+                    msg.textContent = 'Account created! Waiting for activation. We\'ll be in touch.';
+                    msg.classList.add('ok');
+                    btn.textContent = 'Create Account';
+                }
+            } else {
+                msg.textContent = data.detail || 'Something went wrong.';
+                btn.textContent = loginMode === 'signin' ? 'Sign In' : 'Create Account';
+            }
+        } catch(e) {
+            msg.textContent = 'Could not reach auth server. Try again.';
+            btn.textContent = loginMode === 'signin' ? 'Sign In' : 'Create Account';
+        }
+        btn.disabled = false;
+    }
+
+    // allow Enter key to submit
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !document.getElementById('login-screen').classList.contains('hidden')) {
+            handleAuth();
+        }
+    });
+
+    // ── app state ──
+    let map, mapInitialized = false;
+    let mode = 'teleport', speed = 3;
+    let markers = [], routeLine = null, routeCoords = [];
+    let simMarker = null, realMarker = null;
+    let savedTab = 'locations';
+    let pendingLoad = null;
+    let editingItem = null;
+
+    function initMap() {
+        if (mapInitialized) return;
+        mapInitialized = true;
+
+        map = L.map('map', { zoomControl: false, attributionControl: false })
+            .setView([37.7022, -121.9358], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+
+        map.on('click', (e) => {
+            if (mode === 'teleport') {
+                if (markers[0]) map.removeLayer(markers[0]);
+                markers[0] = createMarker(e.latlng, icons.teleport);
+            } else {
+                if (markers.length >= 2) return;
+                const icon = markers.length === 0 ? icons.start : icons.end;
+                markers.push(createMarker(e.latlng, icon));
+                if (markers.length === 2) fetchRoute();
+            }
+        });
+
+        showRealLocation();
+        setInterval(fetchStatus, 1000);
+    }
+
+    // ── icons ──
+    const blueDotIcon = L.divIcon({ className: 'blue-dot', iconSize: [14,14], iconAnchor: [7,7] });
+    const realDotIcon = L.divIcon({ className: 'real-dot', iconSize: [14,14], iconAnchor: [7,7] });
+
+    function makePin(fill) {
+        return L.divIcon({
+            className: '',
+            html: `<svg width="22" height="38" viewBox="0 0 22 38" style="overflow:visible">
+                     <path d="M11 2 C5.5 2 2 6.5 2 11 C2 18 11 30 11 30 C11 30 20 18 20 11 C20 6.5 16.5 2 11 2 Z"
+                           fill="${fill}" stroke="white" stroke-width="2"/>
+                     <circle cx="11" cy="11" r="4" fill="white"/>
+                   </svg>`,
+            iconSize: [22,30], iconAnchor: [11,30]
+        });
+    }
+    const icons = {
+        teleport: makePin('#007aff'),
+        start:    makePin('#34c759'),
+        end:      makePin('#ff3b30')
+    };
+
+    function showRealLocation() {
+        if (!navigator.geolocation) return;
+        navigator.geolocation.getCurrentPosition(pos => {
+            const latlng = [pos.coords.latitude, pos.coords.longitude];
+            if (realMarker) map.removeLayer(realMarker);
+            realMarker = L.marker(latlng, { icon: realDotIcon }).addTo(map);
+            realMarker.bindTooltip('Your real location', { permanent: false, direction: 'top' });
+            map.setView(latlng, 15);
+        }, () => {});
+    }
+
+    // ── localStorage helpers ──
+    function getSaved(type) { return JSON.parse(localStorage.getItem('tapioca_' + type) || '[]'); }
+    function setSaved(type, arr) { localStorage.setItem('tapioca_' + type, JSON.stringify(arr)); }
+    function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+
+    // ── saved panel ──
+    function toggleSavedPanel() {
+        const panel = document.getElementById('saved-panel');
+        const body  = document.getElementById('saved-body');
+        const arrow = document.getElementById('saved-arrow');
+        const isOpen = body.classList.toggle('open');
+        arrow.classList.toggle('open', isOpen);
+        panel.classList.toggle('open', isOpen);
+        if (isOpen) renderSavedList();
+    }
+
+    function switchTab(tab) {
+        savedTab = tab;
+        document.getElementById('tab-locations').classList.toggle('active', tab === 'locations');
+        document.getElementById('tab-routes').classList.toggle('active',    tab === 'routes');
+        renderSavedList();
+    }
+
+    function renderSavedList() {
+        const list   = document.getElementById('saved-list');
+        const addBtn = document.getElementById('saved-add-btn');
+        const items  = getSaved(savedTab);
+        addBtn.textContent = savedTab === 'locations' ? '+ Save Current Location' : '+ Save Current Route';
+        if (items.length === 0) {
+            list.innerHTML = `<div class="saved-empty">No saved ${savedTab} yet.</div>`;
+            return;
+        }
+        list.innerHTML = items.map(item => {
+            const sub = savedTab === 'locations'
+                ? `${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}`
+                : `${item.coords.length} pts · ${item.speed} mph`;
+            return `<div class="saved-item" onclick="previewSaved('${item.id}')">
+                <div class="saved-item-info">
+                    <div class="saved-item-name">${item.name}</div>
+                    <div class="saved-item-sub">${sub}</div>
+                </div>
+                <div class="saved-item-actions" onclick="event.stopPropagation()">
+                    <button class="icon-btn" onclick="editSaved('${item.id}')" title="Edit">&#9998;</button>
+                    <button class="icon-btn del" onclick="deleteSaved('${item.id}')" title="Delete">&#10005;</button>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function handleAddSaved() {
+        if (savedTab === 'locations') {
+            let lat, lon;
+            if (markers[0]) { const ll = markers[0].getLatLng(); lat = ll.lat; lon = ll.lng; }
+            else if (simMarker) { const ll = simMarker.getLatLng(); lat = ll.lat; lon = ll.lng; }
+            else { alert('Place a pin on the map first.'); return; }
+            openModal({ isNew: true, type: 'locations', data: { lat, lon } });
+        } else {
+            if (!routeCoords.length) { alert('Set a route on the map first.'); return; }
+            openModal({ isNew: true, type: 'routes', data: { coords: routeCoords, speed } });
+        }
+    }
+
+    function previewSaved(id) {
+        const items = getSaved(savedTab);
+        const item  = items.find(i => i.id === id);
+        if (!item) return;
+        document.getElementById('saved-panel').classList.remove('open');
+        document.getElementById('saved-body').classList.remove('open');
+        document.getElementById('saved-arrow').classList.remove('open');
+        markers.forEach(m => m && map.removeLayer(m)); markers = [];
+        if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+        if (savedTab === 'locations') {
+            markers[0] = createMarker([item.lat, item.lon], icons.teleport);
+            map.setView([item.lat, item.lon], 15);
+            pendingLoad = { type: 'location', item };
+            document.getElementById('confirm-title').textContent = `Load "${item.name}"?`;
+            document.getElementById('confirm-sub').textContent = `${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}`;
+        } else {
+            routeCoords = item.coords; speed = item.speed;
+            [3,18,50].forEach(v => document.getElementById(`s-${v}`).classList.toggle('active', v === item.speed));
+            const latlngs = item.coords.map(c => [c[1], c[0]]);
+            routeLine = L.polyline(latlngs, { color: '#007aff', weight: 6 }).addTo(map);
+            map.fitBounds(routeLine.getBounds(), { padding: [40,40] });
+            markers[0] = createMarker(latlngs[0], icons.start);
+            markers[1] = createMarker(latlngs[latlngs.length - 1], icons.end);
+            pendingLoad = { type: 'route', item };
+            document.getElementById('confirm-title').textContent = `Start route "${item.name}"?`;
+            document.getElementById('confirm-sub').textContent = `${item.coords.length} points · ${item.speed} mph`;
+        }
+        document.getElementById('confirm-overlay').classList.add('open');
+    }
+
+    function confirmLoad() {
+        document.getElementById('confirm-overlay').classList.remove('open');
+        if (!pendingLoad) return;
+        if (pendingLoad.type === 'location') {
+            fetch(`/set-location?lat=${pendingLoad.item.lat}&lon=${pendingLoad.item.lon}`);
+        } else {
+            fetch('/start-route', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ coords: pendingLoad.item.coords, speed: pendingLoad.item.speed })
+            });
+            document.getElementById('go-btn').style.display = 'none';
+            document.getElementById('pause-btn').style.display = 'block';
+            document.getElementById('speed-picker').style.opacity = '0.35';
+            document.getElementById('speed-picker').style.pointerEvents = 'none';
+        }
+        pendingLoad = null;
+    }
+
+    function cancelConfirm() {
+        document.getElementById('confirm-overlay').classList.remove('open');
+        pendingLoad = null;
+        markers.forEach(m => m && map.removeLayer(m)); markers = [];
+        if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+        routeCoords = [];
+    }
+
+    function openModal(opts) {
+        editingItem = opts;
+        document.getElementById('modal-title').textContent =
+            opts.isNew
+                ? (opts.type === 'locations' ? 'Save Location' : 'Save Route')
+                : (opts.type === 'locations' ? 'Edit Location' : 'Edit Route');
+        const speedSel = document.getElementById('modal-speed');
+        speedSel.style.display = opts.type === 'routes' ? 'block' : 'none';
+        if (opts.type === 'routes') speedSel.value = opts.isNew ? (opts.data.speed || 3) : opts.currentSpeed;
+        document.getElementById('modal-name').value = opts.currentName || '';
+        document.getElementById('modal-bg').classList.add('open');
+        setTimeout(() => document.getElementById('modal-name').focus(), 100);
+    }
+
+    function saveModal() {
+        if (!editingItem) return;
+        const name = document.getElementById('modal-name').value.trim();
+        if (!name) { alert('Please enter a name.'); return; }
+        const items = getSaved(editingItem.type);
+        if (editingItem.isNew) {
+            const entry = { id: genId(), name, ...editingItem.data };
+            if (editingItem.type === 'routes') entry.speed = parseInt(document.getElementById('modal-speed').value);
+            items.push(entry);
+        } else {
+            const idx = items.findIndex(i => i.id === editingItem.id);
+            if (idx !== -1) {
+                items[idx].name = name;
+                if (editingItem.type === 'routes') items[idx].speed = parseInt(document.getElementById('modal-speed').value);
+            }
+        }
+        setSaved(editingItem.type, items);
+        closeModal();
+        renderSavedList();
+    }
+
+    function editSaved(id) {
+        const items = getSaved(savedTab);
+        const item  = items.find(i => i.id === id);
+        if (!item) return;
+        openModal({ isNew: false, type: savedTab, id, currentName: item.name, currentSpeed: item.speed });
+    }
+
+    function deleteSaved(id) {
+        if (!confirm('Delete this saved item?')) return;
+        setSaved(savedTab, getSaved(savedTab).filter(i => i.id !== id));
+        renderSavedList();
+    }
+
+    function closeModal() {
+        document.getElementById('modal-bg').classList.remove('open');
+        editingItem = null;
+    }
+
+    function createMarker(latlng, icon) {
+        const m = L.marker(latlng, { icon, draggable: true }).addTo(map);
+        m.on('dragend', () => { if (mode === 'route' && markers.length === 2) fetchRoute(); });
+        return m;
+    }
+
+    async function fetchStatus() {
+        try {
+            const data = await fetch('/status').then(r => r.json());
+            if (data.active_pos) {
+                const pos = [data.active_pos.lat, data.active_pos.lon];
+                if (realMarker) realMarker.setOpacity(0);
+                if (!simMarker) simMarker = L.marker(pos, { icon: blueDotIcon }).addTo(map);
+                else simMarker.setLatLng(pos);
+            } else {
+                if (simMarker) { map.removeLayer(simMarker); simMarker = null; }
+                if (realMarker) realMarker.setOpacity(1);
+            }
+        } catch(e) {}
+    }
+
+    function setMode(m) {
+        mode = m;
+        document.getElementById('t-teleport').classList.toggle('active', m === 'teleport');
+        document.getElementById('t-route').classList.toggle('active',    m === 'route');
+        document.getElementById('route-settings').style.display = m === 'route' ? 'block' : 'none';
+        handleCancel();
+    }
+
+    function setSpeed(s) {
+        if (document.getElementById('pause-btn').style.display === 'block') return;
+        speed = s;
+        [3,18,50].forEach(v => document.getElementById(`s-${v}`).classList.toggle('active', v === s));
+    }
+
+    async function fetchRoute() {
+        const s = markers[0].getLatLng(), e = markers[1].getLatLng();
+        try {
+            const res  = await fetch(`https://router.project-osrm.org/route/v1/driving/${s.lng},${s.lat};${e.lng},${e.lat}?overview=full&geometries=geojson`);
+            const data = await res.json();
+            routeCoords = data.routes[0].geometry.coordinates;
+            if (routeLine) map.removeLayer(routeLine);
+            routeLine = L.geoJSON(data.routes[0].geometry, { style: { color: '#007aff', weight: 6 } }).addTo(map);
+        } catch {
+            routeCoords = [[s.lng, s.lat], [e.lng, e.lat]];
+            if (routeLine) map.removeLayer(routeLine);
+            routeLine = L.polyline([s, e], { color: '#ff3b30', dashArray: '10,10' }).addTo(map);
+        }
+    }
+
+    async function handleGo() {
+        const btn = document.getElementById('go-btn');
+        if (mode === 'teleport') {
+            if (!markers[0]) return;
+            const { lat, lng } = markers[0].getLatLng();
+            await fetch(`/set-location?lat=${lat}&lon=${lng}`);
+            btn.innerText = 'Location Updated!';
+            btn.classList.add('success');
+            setTimeout(() => { btn.innerText = 'Confirm'; btn.classList.remove('success'); }, 2000);
+        } else {
+            if (!routeCoords.length) return;
+            await fetch('/start-route', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ coords: routeCoords, speed })
+            });
+            btn.style.display = 'none';
+            document.getElementById('pause-btn').style.display = 'block';
+            document.getElementById('speed-picker').style.opacity = '0.35';
+            document.getElementById('speed-picker').style.pointerEvents = 'none';
+        }
+    }
+
+    async function handlePause() {
+        const data = await fetch('/pause-route').then(r => r.json());
+        document.getElementById('pause-btn').innerText = data.paused ? 'Resume' : 'Pause';
+    }
+
+    async function handleCancel() {
+        const btn = document.getElementById('cancel-btn');
+        await fetch('/reset-location');
+        btn.innerText = 'GPS Reset!';
+        btn.classList.add('success');
+        setTimeout(() => { btn.innerText = 'Cancel'; btn.classList.remove('success'); }, 2000);
+        markers.forEach(m => m && map.removeLayer(m)); markers = [];
+        if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+        routeCoords = [];
+        if (simMarker) { map.removeLayer(simMarker); simMarker = null; }
+        if (realMarker) realMarker.setOpacity(1);
+        document.getElementById('go-btn').style.display = 'block';
+        document.getElementById('go-btn').innerText = 'Confirm';
+        document.getElementById('go-btn').classList.remove('success');
+        document.getElementById('pause-btn').style.display = 'none';
+        document.getElementById('pause-btn').innerText = 'Pause';
+        document.getElementById('speed-picker').style.opacity = '1';
+        document.getElementById('speed-picker').style.pointerEvents = 'auto';
+    }
+
+    document.addEventListener('click', (e) => {
+        const panel = document.getElementById('saved-panel');
+        if (!panel.contains(e.target)) {
+            panel.classList.remove('open');
+            document.getElementById('saved-body').classList.remove('open');
+            document.getElementById('saved-arrow').classList.remove('open');
+        }
+    });
+
+    // ── start ──
+    checkAuth();
+</script>
+</body>
+</html>
