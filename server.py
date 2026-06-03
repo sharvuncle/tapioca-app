@@ -17,7 +17,7 @@ async def lifespan(app: FastAPI):
     try:
         devices = await get_tunneld_devices(TUNNELD_DEFAULT_ADDRESS)
         if not devices:
-            print("[!] No devices found via tunneld. Is 'python -m pymobiledevice3 remote tunneld' running?")
+            print("[!] No devices found via tunneld. Is tunneld running?")
         else:
             rsd = devices[0]
             print(f"[✓] Connected to device via tunneld: {rsd.udid}")
