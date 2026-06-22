@@ -110,7 +110,7 @@
 
         /* ── SAVED PANEL ── */
         .saved-panel {
-            position: fixed; top: 44px; right: 16px;
+            position: fixed; top: 44px; left: 16px;
             width: auto;
             background: transparent;
             border-radius: 16px;
@@ -136,7 +136,7 @@
             padding: 3px 10px;
             display: flex; align-items: center; gap: 4px;
             cursor: pointer; font-family: -apple-system, sans-serif;
-            white-space: nowrap; margin-left: auto;
+            white-space: nowrap; margin-right: auto;
             height: 38px;
             transition: border-radius 0.25s, box-shadow 0.25s;
         }
@@ -283,14 +283,15 @@
 
         /* ── LOGOUT BUTTON ── */
         .logout-btn {
-            position: fixed; top: 44px; left: 16px;
-            z-index: 1003;
+            position: fixed; top: 44px; right: 16px;
+            z-index: 1001;
             background: rgba(255,255,255,0.9); border: none;
-            padding: 8px 14px; border-radius: 12px;
+            padding: 3px 10px; border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            font-size: 12px; font-weight: 600; color: var(--apple-gray);
+            font-size: 13px; font-weight: 700; color: #000;
             cursor: pointer; font-family: -apple-system, sans-serif;
+            height: 38px;
             display: none;
         }
         .logout-btn:active { background: #f5f5f5; }
