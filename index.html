@@ -5,8 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>Tapioca</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --apple-blue: #007aff; --apple-green: #34c759; --apple-gray: #8e8e93; }
+        :root {
+            --bg:      #F5F0FF;
+            --nav-bg:  #EDE7F6;
+            --purple:  #3D3558;
+            --mid:     #9575CD;
+            --accent:  #B39DDB;
+            --deep:    #7E57C2;
+            --light:   #D1C4E9;
+            --blue:    #90CAF9;
+            --white:   #FFFFFF;
+            --muted:   #8B7DA8;
+        }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         html, body {
@@ -18,7 +30,7 @@
         /* ── LOGIN SCREEN ── */
         #login-screen {
             position: fixed; inset: 0; z-index: 9999;
-            background: #f2f2f7;
+            background: var(--bg);
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             padding: 32px 24px;
@@ -26,69 +38,76 @@
         #login-screen.hidden { display: none; }
 
         .login-logo {
-            font-size: 36px; font-weight: 800; color: #000;
-            letter-spacing: -0.5px; margin-bottom: 6px;
+            font-family: 'Comfortaa', 'Arial Rounded MT Bold', sans-serif;
+            font-size: 38px; font-weight: 700; color: var(--purple);
+            margin-bottom: 4px;
         }
         .login-tagline {
-            font-size: 14px; color: var(--apple-gray); margin-bottom: 40px;
+            font-size: 14px; color: var(--mid); margin-bottom: 40px;
+            font-style: italic;
         }
         .login-card {
             width: 100%; max-width: 360px;
-            background: #fff; border-radius: 20px;
-            padding: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            background: var(--white); border-radius: 20px;
+            padding: 24px; box-shadow: 0 4px 24px rgba(61,53,88,0.1);
+            border: 1px solid var(--light);
         }
         .login-tabs {
-            display: flex; background: #f2f2f7; border-radius: 10px;
+            display: flex; background: var(--bg); border-radius: 10px;
             padding: 3px; gap: 2px; margin-bottom: 20px;
         }
         .login-tab {
             flex: 1; padding: 8px; border-radius: 8px; border: none;
             font-size: 14px; font-weight: 600; cursor: pointer;
-            background: transparent; color: var(--apple-gray);
+            background: transparent; color: var(--muted);
             font-family: -apple-system, sans-serif;
         }
-        .login-tab.active { background: #fff; color: #000; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+        .login-tab.active { background: var(--white); color: var(--purple); box-shadow: 0 1px 4px rgba(61,53,88,0.12); }
 
         .login-input {
             width: 100%; padding: 13px 14px; border-radius: 12px;
-            border: 1px solid #e0e0e0; font-size: 15px; margin-bottom: 10px;
+            border: 1px solid var(--light); font-size: 15px; margin-bottom: 10px;
             font-family: -apple-system, sans-serif; outline: none;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s; background: var(--bg);
+            color: var(--purple);
         }
-        .login-input:focus { border-color: var(--apple-blue); }
+        .login-input:focus { border-color: var(--accent); background: var(--white); }
+        .login-input::placeholder { color: var(--muted); }
 
         .login-btn {
             width: 100%; padding: 15px; border-radius: 14px; border: none;
-            background: var(--apple-blue); color: #fff;
+            background: var(--accent); color: var(--white);
             font-size: 16px; font-weight: 700; cursor: pointer;
             font-family: -apple-system, sans-serif; margin-top: 4px;
+            transition: background 0.2s;
         }
+        .login-btn:hover { background: var(--deep); }
         .login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
         .login-msg {
             margin-top: 12px; font-size: 13px; text-align: center;
             min-height: 18px; color: #ff3b30;
         }
-        .login-msg.ok { color: var(--apple-green); }
+        .login-msg.ok { color: #34c759; }
 
         /* ── MAP ── */
         #map { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
         .blue-dot {
-            width: 14px; height: 14px; background: var(--apple-blue);
+            width: 14px; height: 14px; background: var(--blue);
             border: 2px solid white; border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(0,122,255,0.4);
+            box-shadow: 0 0 0 4px rgba(144,202,249,0.4);
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0%   { box-shadow: 0 0 0 0px rgba(0,122,255,0.7); }
-            70%  { box-shadow: 0 0 0 10px rgba(0,122,255,0); }
-            100% { box-shadow: 0 0 0 0px rgba(0,122,255,0); }
+            0%   { box-shadow: 0 0 0 0px rgba(144,202,249,0.7); }
+            70%  { box-shadow: 0 0 0 10px rgba(144,202,249,0); }
+            100% { box-shadow: 0 0 0 0px rgba(144,202,249,0); }
         }
         .real-dot {
-            width: 14px; height: 14px; background: #8e8e93;
+            width: 14px; height: 14px; background: var(--muted);
             border: 2px solid white; border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(142,142,147,0.3);
+            box-shadow: 0 0 0 4px rgba(139,125,168,0.3);
         }
 
         /* ── TOP BAR ── */
@@ -98,15 +117,16 @@
             z-index: 1000; padding: 0 16px;
         }
         .mode-toggle {
-            display: flex; background: rgba(255,255,255,0.9); padding: 3px;
-            border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex; background: rgba(237,231,246,0.95); padding: 3px;
+            border-radius: 12px; box-shadow: 0 4px 15px rgba(61,53,88,0.15);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
         .mode-btn {
             padding: 8px 20px; border-radius: 9px; border: none; font-weight: 600;
-            background: transparent; color: var(--apple-gray); font-size: 14px; cursor: pointer;
+            background: transparent; color: var(--muted); font-size: 14px; cursor: pointer;
+            font-family: -apple-system, sans-serif;
         }
-        .mode-btn.active { background: #fff; color: #000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .mode-btn.active { background: var(--white); color: var(--purple); box-shadow: 0 2px 5px rgba(61,53,88,0.12); }
 
         /* ── SAVED PANEL ── */
         .saved-panel {
@@ -122,15 +142,15 @@
         }
         .saved-panel.open {
             width: 270px;
-            background: rgba(255,255,255,0.97);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            background: rgba(245,240,255,0.98);
+            box-shadow: 0 8px 32px rgba(61,53,88,0.15);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         }
 
         .saved-header {
             width: fit-content; border: none;
-            background: rgba(255,255,255,0.9);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: rgba(237,231,246,0.95);
+            box-shadow: 0 4px 15px rgba(61,53,88,0.15);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-radius: 12px;
             padding: 3px 10px;
@@ -149,10 +169,10 @@
         }
         .saved-header-left {
             display: flex; align-items: center; gap: 4px;
-            font-size: 13px; font-weight: 700; color: #000;
+            font-size: 13px; font-weight: 700; color: var(--purple);
         }
         .saved-header-arrow {
-            font-size: 10px; color: var(--apple-gray);
+            font-size: 10px; color: var(--muted);
             transition: transform 0.25s;
         }
         .saved-header-arrow.open { transform: rotate(180deg); }
@@ -163,110 +183,121 @@
         }
         .saved-body.open { max-height: 420px; }
 
-        .saved-divider { height: 1px; background: #f0f0f0; }
-        .saved-tabs { display: flex; border-bottom: 1px solid #f0f0f0; }
+        .saved-divider { height: 1px; background: var(--light); }
+        .saved-tabs { display: flex; border-bottom: 1px solid var(--light); }
         .saved-tab {
             flex: 1; padding: 9px; border: none; background: transparent;
-            font-size: 13px; font-weight: 600; color: var(--apple-gray);
+            font-size: 13px; font-weight: 600; color: var(--muted);
             cursor: pointer; font-family: -apple-system, sans-serif;
             border-bottom: 2px solid transparent;
         }
-        .saved-tab.active { color: var(--apple-blue); border-bottom: 2px solid var(--apple-blue); }
+        .saved-tab.active { color: var(--deep); border-bottom: 2px solid var(--deep); }
 
         .saved-list { max-height: 240px; overflow-y: auto; }
         .saved-item {
             display: flex; align-items: center;
             padding: 10px 14px; gap: 10px;
-            border-bottom: 1px solid #f7f7f7; cursor: pointer;
+            border-bottom: 1px solid var(--bg); cursor: pointer;
         }
         .saved-item:last-child { border-bottom: none; }
-        .saved-item:active { background: #f5f5f5; }
+        .saved-item:active { background: var(--bg); }
         .saved-item-info { flex: 1; min-width: 0; }
         .saved-item-name {
-            font-size: 13px; font-weight: 600; color: #000;
+            font-size: 13px; font-weight: 600; color: var(--purple);
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        .saved-item-sub { font-size: 11px; color: var(--apple-gray); margin-top: 1px; }
+        .saved-item-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
         .saved-item-actions { display: flex; gap: 4px; flex-shrink: 0; }
         .icon-btn {
             width: 28px; height: 28px; border-radius: 7px; border: none;
-            background: #f0f0f5; font-size: 13px; cursor: pointer; color: #3a3a3c;
+            background: var(--bg); font-size: 13px; cursor: pointer; color: var(--purple);
             display: flex; align-items: center; justify-content: center;
             font-family: -apple-system, sans-serif; font-weight: 600;
         }
-        .icon-btn.del { background: #f5f0f0; color: #ff3b30; }
+        .icon-btn.del { background: #fdf0f0; color: #ff3b30; }
 
         .saved-empty {
             padding: 20px 16px; text-align: center;
-            font-size: 13px; color: var(--apple-gray);
+            font-size: 13px; color: var(--muted);
         }
         .saved-add-btn {
             width: calc(100% - 24px); margin: 10px 12px;
             padding: 10px; border-radius: 11px; border: none;
-            background: var(--apple-blue); color: white;
+            background: var(--accent); color: var(--white);
             font-size: 13px; font-weight: 600; cursor: pointer;
             font-family: -apple-system, sans-serif;
+            transition: background 0.2s;
         }
+        .saved-add-btn:hover { background: var(--deep); }
 
         /* ── CONFIRM OVERLAY ── */
         .confirm-overlay {
             position: fixed; bottom: 140px; left: 20px; right: 20px;
-            background: rgba(255,255,255,0.97); padding: 16px; border-radius: 20px;
-            z-index: 1002; box-shadow: 0 8px 32px rgba(0,0,0,0.15); display: none;
+            background: rgba(245,240,255,0.98); padding: 16px; border-radius: 20px;
+            z-index: 1002; box-shadow: 0 8px 32px rgba(61,53,88,0.15); display: none;
+            border: 1px solid var(--light);
         }
         .confirm-overlay.open { display: block; }
-        .confirm-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-        .confirm-sub   { font-size: 12px; color: var(--apple-gray); margin-bottom: 12px; }
+        .confirm-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; color: var(--purple); }
+        .confirm-sub   { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
         .confirm-btns  { display: flex; gap: 8px; }
         .confirm-btns button {
             flex: 1; padding: 12px; border-radius: 12px; border: none;
             font-size: 15px; font-weight: 600; cursor: pointer;
             font-family: -apple-system, sans-serif;
         }
-        .confirm-yes { background: var(--apple-blue); color: white; }
-        .confirm-no  { background: #e5e5ea; color: #000; }
+        .confirm-yes { background: var(--accent); color: var(--white); }
+        .confirm-yes:hover { background: var(--deep); }
+        .confirm-no  { background: var(--light); color: var(--purple); }
 
         /* ── EDIT MODAL ── */
         .modal-bg {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+            position: fixed; inset: 0; background: rgba(61,53,88,0.4);
             z-index: 2000; display: none; align-items: center; justify-content: center;
         }
         .modal-bg.open { display: flex; }
         .modal {
-            background: #fff; border-radius: 20px; padding: 20px;
+            background: var(--white); border-radius: 20px; padding: 20px;
             width: calc(100% - 48px); max-width: 340px;
+            border: 1px solid var(--light);
         }
-        .modal h3 { font-size: 17px; font-weight: 700; margin: 0 0 14px; }
+        .modal h3 { font-size: 17px; font-weight: 700; margin: 0 0 14px; color: var(--purple); }
         .modal input, .modal select {
             width: 100%; padding: 11px 12px; border-radius: 10px;
-            border: 1px solid #e0e0e0; font-size: 14px; margin-bottom: 10px;
+            border: 1px solid var(--light); font-size: 14px; margin-bottom: 10px;
             font-family: -apple-system, sans-serif; outline: none;
+            background: var(--bg); color: var(--purple);
         }
+        .modal input:focus, .modal select:focus { border-color: var(--accent); }
         .modal-btns { display: flex; gap: 8px; margin-top: 4px; }
         .modal-btns button {
             flex: 1; padding: 13px; border-radius: 12px; border: none;
             font-size: 15px; font-weight: 600; cursor: pointer;
             font-family: -apple-system, sans-serif;
         }
-        .modal-save   { background: var(--apple-blue); color: white; }
-        .modal-cancel { background: #e5e5ea; color: #000; }
+        .modal-save   { background: var(--accent); color: var(--white); }
+        .modal-save:hover { background: var(--deep); }
+        .modal-cancel { background: var(--light); color: var(--purple); }
 
         /* ── CONTROLS ── */
         .controls {
             position: fixed; bottom: 30px; left: 20px; right: 20px;
-            background: rgba(255,255,255,0.95); padding: 20px; border-radius: 24px;
+            background: rgba(245,240,255,0.97); padding: 20px; border-radius: 24px;
             z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--light);
+            box-shadow: 0 8px 32px rgba(61,53,88,0.12);
         }
         .speed-picker {
-            display: flex; background: #e3e3e8; border-radius: 12px; padding: 3px; margin-bottom: 15px;
+            display: flex; background: var(--light); border-radius: 12px; padding: 3px; margin-bottom: 15px;
             transition: opacity 0.2s;
         }
         .speed-opt {
             flex: 1; border: none; background: transparent; padding: 10px;
             border-radius: 10px; font-size: 13px; font-weight: 600;
             display: flex; flex-direction: column; align-items: center; cursor: pointer;
+            color: var(--muted); font-family: -apple-system, sans-serif;
         }
-        .speed-opt.active { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .speed-opt.active { background: var(--white); color: var(--purple); box-shadow: 0 2px 5px rgba(61,53,88,0.1); }
 
         .btn-group { display: flex; gap: 10px; }
         .btn {
@@ -275,26 +306,28 @@
             transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
             font-family: -apple-system, sans-serif;
         }
-        #go-btn     { background: var(--apple-blue); color: white; }
-        #go-btn.success { background: var(--apple-green); }
-        #pause-btn  { background: #ff9500; color: white; display: none; }
-        #cancel-btn { background: #3a3a3c; color: white; }
+        #go-btn         { background: var(--accent); color: var(--white); }
+        #go-btn:hover   { background: var(--deep); }
+        #go-btn.success { background: #34c759; }
+        #pause-btn      { background: #ff9500; color: white; display: none; }
+        #cancel-btn     { background: var(--purple); color: var(--white); }
+        #cancel-btn:hover   { background: #2a1f45; }
         #cancel-btn.success { background: #ff3b30; }
 
         /* ── LOGOUT BUTTON ── */
         .logout-btn {
             position: fixed; top: 44px; right: 16px;
             z-index: 1001;
-            background: rgba(255,255,255,0.9); border: none;
+            background: rgba(237,231,246,0.95); border: none;
             padding: 3px 10px; border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(61,53,88,0.15);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            font-size: 13px; font-weight: 700; color: #000;
+            font-size: 13px; font-weight: 700; color: var(--purple);
             cursor: pointer; font-family: -apple-system, sans-serif;
             height: 38px;
             display: none;
         }
-        .logout-btn:active { background: #f5f5f5; }
+        .logout-btn:active { background: var(--light); }
     </style>
 </head>
 <body>
@@ -302,14 +335,14 @@
 <!-- ── LOGIN SCREEN ── -->
 <div id="login-screen">
     <div class="login-logo">tapioca</div>
-    <div class="login-tagline">GPS simulation for iPhone</div>
+    <div class="login-tagline">anywhere but here.</div>
     <div class="login-card">
         <div class="login-tabs">
             <button class="login-tab active" id="lt-signin" onclick="switchLoginTab('signin')">Sign In</button>
             <button class="login-tab"        id="lt-signup" onclick="switchLoginTab('signup')">Sign Up</button>
         </div>
         <input class="login-input" type="email"    id="login-email"    placeholder="Email" />
-        <input class="login-input" type="password" id="login-password"  placeholder="Password" />
+        <input class="login-input" type="password" id="login-password" placeholder="Password" />
         <button class="login-btn" id="login-btn" onclick="handleAuth()">Sign In</button>
         <div class="login-msg" id="login-msg"></div>
     </div>
@@ -369,7 +402,7 @@
 <div class="controls">
     <div id="route-settings" style="display:none;">
         <div class="speed-picker" id="speed-picker">
-            <button id="s-3"  class="speed-opt active" onclick="setSpeed(3)"> <span>🚶</span>3 mph</button>
+            <button id="s-3"  class="speed-opt active" onclick="setSpeed(3)"><span>🚶</span>3 mph</button>
             <button id="s-18" class="speed-opt"         onclick="setSpeed(18)"><span>🚴</span>18 mph</button>
             <button id="s-50" class="speed-opt"         onclick="setSpeed(50)"><span>🚗</span>50 mph</button>
         </div>
@@ -387,11 +420,9 @@
 <script>
     const AUTH_URL = 'https://tapioca-auth.onrender.com';
 
-    // ── auth state ──
     let authToken = localStorage.getItem('tapioca_token') || null;
     let loginMode = 'signin';
 
-    // ── check token on load ──
     async function checkAuth() {
         if (!authToken) { showLogin(); return; }
         try {
@@ -469,7 +500,7 @@
                     localStorage.setItem('tapioca_token', authToken);
                     showApp();
                 } else {
-                    msg.textContent = 'Account created! Waiting for activation. We\'ll be in touch.';
+                    msg.textContent = "Account created! We'll be in touch when you're approved.";
                     msg.classList.add('ok');
                     btn.textContent = 'Create Account';
                 }
@@ -523,7 +554,6 @@
         setInterval(fetchStatus, 1000);
     }
 
-    // ── icons ──
     const blueDotIcon = L.divIcon({ className: 'blue-dot', iconSize: [14,14], iconAnchor: [7,7] });
     const realDotIcon = L.divIcon({ className: 'real-dot', iconSize: [14,14], iconAnchor: [7,7] });
 
@@ -539,7 +569,7 @@
         });
     }
     const icons = {
-        teleport: makePin('#007aff'),
+        teleport: makePin('#B39DDB'),
         start:    makePin('#34c759'),
         end:      makePin('#ff3b30')
     };
@@ -555,12 +585,10 @@
         }, () => {});
     }
 
-    // ── localStorage helpers ──
     function getSaved(type) { return JSON.parse(localStorage.getItem('tapioca_' + type) || '[]'); }
     function setSaved(type, arr) { localStorage.setItem('tapioca_' + type, JSON.stringify(arr)); }
     function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
 
-    // ── saved panel ──
     function toggleSavedPanel() {
         const panel = document.getElementById('saved-panel');
         const body  = document.getElementById('saved-body');
@@ -636,7 +664,7 @@
             routeCoords = item.coords; speed = item.speed;
             [3,18,50].forEach(v => document.getElementById(`s-${v}`).classList.toggle('active', v === item.speed));
             const latlngs = item.coords.map(c => [c[1], c[0]]);
-            routeLine = L.polyline(latlngs, { color: '#007aff', weight: 6 }).addTo(map);
+            routeLine = L.polyline(latlngs, { color: '#B39DDB', weight: 6 }).addTo(map);
             map.fitBounds(routeLine.getBounds(), { padding: [40,40] });
             markers[0] = createMarker(latlngs[0], icons.start);
             markers[1] = createMarker(latlngs[latlngs.length - 1], icons.end);
@@ -768,7 +796,7 @@
             const data = await res.json();
             routeCoords = data.routes[0].geometry.coordinates;
             if (routeLine) map.removeLayer(routeLine);
-            routeLine = L.geoJSON(data.routes[0].geometry, { style: { color: '#007aff', weight: 6 } }).addTo(map);
+            routeLine = L.geoJSON(data.routes[0].geometry, { style: { color: '#B39DDB', weight: 6 } }).addTo(map);
         } catch {
             routeCoords = [[s.lng, s.lat], [e.lng, e.lat]];
             if (routeLine) map.removeLayer(routeLine);
@@ -832,7 +860,6 @@
         }
     });
 
-    // ── start ──
     checkAuth();
 </script>
 </body>
