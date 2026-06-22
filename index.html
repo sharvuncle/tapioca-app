@@ -281,15 +281,19 @@
         #cancel-btn { background: #3a3a3c; color: white; }
         #cancel-btn.success { background: #ff3b30; }
 
-        /* logout button */
+        /* ── LOGOUT BUTTON ── */
         .logout-btn {
-            position: fixed; bottom: 30px; right: 20px;
+            position: fixed; top: 44px; left: 16px;
             z-index: 1003;
-            background: none; border: none;
-            font-size: 11px; color: var(--apple-gray);
+            background: rgba(255,255,255,0.9); border: none;
+            padding: 8px 14px; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            font-size: 12px; font-weight: 600; color: var(--apple-gray);
             cursor: pointer; font-family: -apple-system, sans-serif;
             display: none;
         }
+        .logout-btn:active { background: #f5f5f5; }
     </style>
 </head>
 <body>
@@ -376,6 +380,8 @@
     </div>
 </div>
 
+<button class="logout-btn" id="logout-btn" onclick="handleLogout()">Sign Out</button>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     const AUTH_URL = 'https://tapioca-auth.onrender.com';
@@ -399,18 +405,30 @@
                 showLogin();
             }
         } catch(e) {
-            // if auth server unreachable, still show login
             showLogin();
         }
     }
 
     function showLogin() {
         document.getElementById('login-screen').classList.remove('hidden');
+        document.getElementById('logout-btn').style.display = 'none';
     }
 
     function showApp() {
         document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('logout-btn').style.display = 'block';
         initMap();
+    }
+
+    function handleLogout() {
+        if (!confirm('Sign out of Tapioca?')) return;
+        localStorage.removeItem('tapioca_token');
+        authToken = null;
+        document.getElementById('login-email').value = '';
+        document.getElementById('login-password').value = '';
+        document.getElementById('login-msg').textContent = '';
+        document.getElementById('login-msg').className = 'login-msg';
+        showLogin();
     }
 
     function switchLoginTab(tab) {
@@ -465,7 +483,6 @@
         btn.disabled = false;
     }
 
-    // allow Enter key to submit
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !document.getElementById('login-screen').classList.contains('hidden')) {
             handleAuth();
