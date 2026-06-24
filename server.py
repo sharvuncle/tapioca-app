@@ -120,7 +120,12 @@ route_mgr = RouteManager()
 
 
 @app.get("/")
-async def index(): return FileResponse('index.html')
+async def index():
+    return FileResponse('index.html', headers={
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    })
 
 @app.get("/status")
 async def get_status():
