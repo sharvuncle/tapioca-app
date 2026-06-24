@@ -213,7 +213,7 @@
 
         .top-bar { position: fixed; top: 44px; left: 0; width: 100%; display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 0 16px; }
         .mode-toggle { display: flex; background: rgba(237,231,246,0.95); padding: 3px; border-radius: 12px; box-shadow: 0 4px 15px rgba(61,53,88,0.15); backdrop-filter: blur(10px); }
-        .mode-btn { padding: 8px 20px; border-radius: 9px; border: none; font-weight: 600; background: transparent; color: var(--muted); font-size: 14px; cursor: pointer; }
+        .mode-btn { padding: 8px 20px; border-radius: 9px; border: none; font-weight: 600; background: transparent; color: var(--muted); font-size: 14px; cursor: pointer; transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease; }
         .mode-btn.active { background: var(--white); color: var(--purple); box-shadow: 0 2px 5px rgba(61,53,88,0.12); }
 
         .saved-panel { position: fixed; top: 44px; left: 16px; width: auto; background: transparent; border-radius: 16px; box-shadow: none; z-index: 1001; overflow: hidden; transition: box-shadow 0.25s, background 0.25s; }
@@ -224,12 +224,12 @@
         .saved-header-left { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; color: var(--purple); }
         .saved-header-arrow { font-size: 10px; color: var(--muted); transition: transform 0.25s; }
         .saved-header-arrow.open { transform: rotate(180deg); }
-        .saved-body { max-height: 0; overflow: hidden; width: 270px; transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1); }
-        .saved-body.open { max-height: 420px; }
+        .saved-body { max-height: 0; overflow: hidden; width: 270px; transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; opacity: 0; }
+        .saved-body.open { max-height: 420px; opacity: 1; }
         .saved-divider { height: 1px; background: var(--light); }
-        .saved-tabs { display: flex; border-bottom: 1px solid var(--light); }
-        .saved-tab { flex: 1; padding: 9px; border: none; background: transparent; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; font-family: -apple-system,sans-serif; border-bottom: 2px solid transparent; }
-        .saved-tab.active { color: var(--deep); border-bottom: 2px solid var(--deep); }
+        .saved-tabs { display: flex; background: var(--bg); padding: 4px; gap: 3px; margin: 10px 10px 0; border-radius: 10px; }
+        .saved-tab { flex: 1; padding: 7px; border-radius: 8px; border: none; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; font-family: -apple-system,sans-serif; background: transparent; transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease; }
+        .saved-tab.active { background: var(--white); color: var(--purple); box-shadow: 0 1px 4px rgba(61,53,88,0.12); }
         .saved-list { max-height: 240px; overflow-y: auto; }
         .saved-item { display: flex; align-items: center; padding: 10px 14px; gap: 10px; border-bottom: 1px solid var(--bg); cursor: pointer; }
         .saved-item:last-child { border-bottom: none; }
@@ -269,7 +269,7 @@
 
         .controls { position: fixed; bottom: 30px; left: 20px; right: 20px; background: rgba(245,240,255,0.97); padding: 20px; border-radius: 24px; z-index: 1000; backdrop-filter: blur(20px); border: 1px solid var(--light); box-shadow: 0 8px 32px rgba(61,53,88,0.12); }
         .speed-picker { display: flex; background: var(--light); border-radius: 12px; padding: 3px; margin-bottom: 15px; transition: opacity 0.2s; }
-        .speed-opt { flex: 1; border: none; background: transparent; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; cursor: pointer; color: var(--muted); font-family: -apple-system,sans-serif; }
+        .speed-opt { flex: 1; border: none; background: transparent; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; cursor: pointer; color: var(--muted); font-family: -apple-system,sans-serif; transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease; }
         .speed-opt.active { background: var(--white); color: var(--purple); box-shadow: 0 2px 5px rgba(61,53,88,0.1); }
         #route-settings { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; }
         #route-settings.visible { max-height: 80px; opacity: 1; }
