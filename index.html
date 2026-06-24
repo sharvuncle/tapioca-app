@@ -51,7 +51,7 @@
 
         /* ── GLOBAL BUBBLE ── */
         #global-bubble {
-            position: fixed; bottom: 160px; right: 20px; z-index: 10001;
+            position: fixed; bottom: 28px; right: 24px; z-index: 10001;
             background: var(--accent); color: var(--white);
             border-radius: 50px; padding: 12px 20px 12px 14px;
             box-shadow: 0 8px 28px rgba(179,157,219,0.6);
@@ -59,8 +59,9 @@
             font-size: 14px; font-weight: 700; font-family: -apple-system,sans-serif;
             animation: float 3s ease-in-out infinite;
             border: 2px solid rgba(255,255,255,0.4);
-            transition: background 0.2s, transform 0.15s;
+            transition: background 0.2s, transform 0.15s, bottom 0s;
         }
+        #global-bubble.in-app { bottom: 160px; }
         #global-bubble:hover { background: var(--deep); transform: scale(1.05) translateY(0px) !important; }
         #global-bubble.visible { display: flex; }
         .bubble-dot { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
@@ -149,7 +150,8 @@
             padding: 20px;
         }
         #sub-modal.open { display: flex; }
-        .sub-sheet { background: var(--bg); border-radius: 28px; padding: 28px 24px 32px; width: 100%; max-width: 500px; max-height: 88vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(61,53,88,0.3); }
+        .sub-sheet { background: var(--bg); border-radius: 28px; padding: 28px 24px 32px; width: 100%; max-width: 500px; max-height: 88vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(61,53,88,0.3); scrollbar-width: none; -ms-overflow-style: none; }
+        .sub-sheet::-webkit-scrollbar { display: none; }
         .sub-handle { width: 36px; height: 4px; background: var(--light); border-radius: 2px; margin: 0 auto 24px; }
         .sub-title { font-family: 'Comfortaa','Arial Rounded MT Bold',sans-serif; font-size: 22px; font-weight: 700; color: var(--purple); margin-bottom: 18px; }
         .sub-current { background: var(--white); border-radius: 18px; padding: 20px; border: 1px solid var(--light); margin-bottom: 22px; }
@@ -453,14 +455,17 @@ function showScreen(name) {
 
     const bubble = document.getElementById('global-bubble');
     if (name === 'login') {
+        bubble.classList.remove('in-app');
         bubble.classList.add('visible');
         document.getElementById('bubble-text').textContent = '3-day free trial';
         bubble.style.animation = 'float 3s ease-in-out infinite';
     } else if (name === 'app') {
+        bubble.classList.add('in-app');
         setInSession();
         initMap();
         // bubble managed by updateBubbleForApp()
     } else {
+        bubble.classList.remove('in-app');
         bubble.classList.remove('visible');
     }
 
