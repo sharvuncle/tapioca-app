@@ -26,216 +26,171 @@
             overflow: hidden; position: fixed;
         }
 
-        /* ── SCREENS ── */
         .screen { position: fixed; inset: 0; z-index: 9999; display: none; }
         .screen.active { display: flex; }
 
-        /* ── LOGIN SCREEN ── */
+        /* ── LOGIN ── */
         #login-screen {
             background: var(--bg);
-            flex-direction: column; align-items: center; justify-content: center;
-            padding: 32px 24px;
+            flex-direction: column; align-items: center; justify-content: center; padding: 32px 24px;
         }
-        .login-logo {
-            font-family: 'Comfortaa', 'Arial Rounded MT Bold', sans-serif;
-            font-size: 38px; font-weight: 700; color: var(--purple); margin-bottom: 4px;
-        }
+        .login-logo { font-family: 'Comfortaa','Arial Rounded MT Bold',sans-serif; font-size: 38px; font-weight: 700; color: var(--purple); margin-bottom: 4px; }
         .login-tagline { font-size: 14px; color: var(--mid); margin-bottom: 32px; font-style: italic; }
-        .login-card {
-            width: 100%; max-width: 360px; background: var(--white);
-            border-radius: 20px; padding: 24px;
-            box-shadow: 0 4px 24px rgba(61,53,88,0.1); border: 1px solid var(--light);
-        }
-        .login-tabs {
-            display: flex; background: var(--bg); border-radius: 10px;
-            padding: 3px; gap: 2px; margin-bottom: 20px;
-        }
-        .login-tab {
-            flex: 1; padding: 8px; border-radius: 8px; border: none;
-            font-size: 14px; font-weight: 600; cursor: pointer;
-            background: transparent; color: var(--muted); font-family: -apple-system, sans-serif;
-        }
+        .login-card { width: 100%; max-width: 360px; background: var(--white); border-radius: 20px; padding: 24px; box-shadow: 0 4px 24px rgba(61,53,88,0.1); border: 1px solid var(--light); }
+        .login-tabs { display: flex; background: var(--bg); border-radius: 10px; padding: 3px; gap: 2px; margin-bottom: 20px; }
+        .login-tab { flex: 1; padding: 8px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; background: transparent; color: var(--muted); font-family: -apple-system,sans-serif; }
         .login-tab.active { background: var(--white); color: var(--purple); box-shadow: 0 1px 4px rgba(61,53,88,0.12); }
-        .login-input {
-            width: 100%; padding: 13px 14px; border-radius: 12px;
-            border: 1px solid var(--light); font-size: 15px; margin-bottom: 10px;
-            font-family: -apple-system, sans-serif; outline: none;
-            transition: border-color 0.2s; background: var(--bg); color: var(--purple);
-        }
+        .login-input { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid var(--light); font-size: 15px; margin-bottom: 10px; font-family: -apple-system,sans-serif; outline: none; transition: border-color 0.2s; background: var(--bg); color: var(--purple); }
         .login-input:focus { border-color: var(--accent); background: var(--white); }
         .login-input::placeholder { color: var(--muted); }
-        .login-btn {
-            width: 100%; padding: 15px; border-radius: 14px; border: none;
-            background: var(--accent); color: var(--white);
-            font-size: 16px; font-weight: 700; cursor: pointer;
-            font-family: -apple-system, sans-serif; margin-top: 4px; transition: background 0.2s;
-        }
+        .login-btn { width: 100%; padding: 15px; border-radius: 14px; border: none; background: var(--accent); color: var(--white); font-size: 16px; font-weight: 700; cursor: pointer; font-family: -apple-system,sans-serif; margin-top: 4px; transition: background 0.2s; }
         .login-btn:hover { background: var(--deep); }
         .login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
         .login-msg { margin-top: 12px; font-size: 13px; text-align: center; min-height: 18px; color: #ff3b30; }
         .login-msg.ok { color: #34c759; }
 
-        /* ── TRIAL BUBBLE ── */
-        .trial-bubble {
-            position: fixed; bottom: 28px; right: 24px; z-index: 10000;
+        /* ── GLOBAL BUBBLE ── */
+        #global-bubble {
+            position: fixed; bottom: 28px; right: 24px; z-index: 10001;
             background: var(--accent); color: var(--white);
             border-radius: 50px; padding: 10px 16px 10px 12px;
-            box-shadow: 0 6px 24px rgba(179,157,219,0.5);
-            cursor: pointer; display: flex; align-items: center; gap: 8px;
-            font-size: 13px; font-weight: 700; font-family: -apple-system, sans-serif;
+            box-shadow: 0 6px 24px rgba(179,157,219,0.55);
+            cursor: pointer; display: none; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 700; font-family: -apple-system,sans-serif;
             animation: float 3s ease-in-out infinite;
             border: 2px solid rgba(255,255,255,0.4);
+            transition: background 0.2s, transform 0.15s;
         }
-        .trial-bubble:hover { background: var(--deep); transform: scale(1.05); }
-        .trial-bubble-dot {
-            width: 28px; height: 28px; border-radius: 50%;
-            background: rgba(255,255,255,0.25);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; flex-shrink: 0;
+        #global-bubble:hover { background: var(--deep); transform: scale(1.04) translateY(0px) !important; }
+        #global-bubble.visible { display: flex; }
+        .bubble-dot { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+        @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
+
+        /* ── PRICING PREVIEW MODAL (login page) ── */
+        #pricing-preview-modal {
+            position: fixed; inset: 0; background: rgba(61,53,88,0.5);
+            z-index: 10002; display: none; align-items: flex-end; justify-content: center;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50%       { transform: translateY(-6px); }
+        #pricing-preview-modal.open { display: flex; }
+        .preview-sheet {
+            background: var(--bg); border-radius: 24px 24px 0 0;
+            padding: 24px 20px 36px; width: 100%; max-width: 480px;
         }
+        .preview-handle { width: 36px; height: 4px; background: var(--light); border-radius: 2px; margin: 0 auto 20px; }
+        .preview-title { font-family: 'Comfortaa','Arial Rounded MT Bold',sans-serif; font-size: 20px; font-weight: 700; color: var(--purple); margin-bottom: 4px; text-align: center; }
+        .preview-sub { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 20px; }
 
         /* ── PRICING SCREEN ── */
         #pricing-screen {
             background: var(--bg);
-            flex-direction: column; align-items: center; justify-content: center;
-            padding: 32px 24px; overflow-y: auto;
+            flex-direction: column; align-items: center; justify-content: flex-start;
+            padding: 40px 20px 32px; overflow-y: auto;
         }
-        .pricing-logo {
-            font-family: 'Comfortaa', 'Arial Rounded MT Bold', sans-serif;
-            font-size: 28px; font-weight: 700; color: var(--purple); margin-bottom: 4px;
-        }
-        .pricing-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
-        .pricing-card {
-            width: 100%; max-width: 380px; background: var(--white);
-            border-radius: 20px; padding: 20px;
-            box-shadow: 0 4px 24px rgba(61,53,88,0.1); border: 1px solid var(--light);
-            margin-bottom: 12px;
-        }
+        .pricing-logo { font-family: 'Comfortaa','Arial Rounded MT Bold',sans-serif; font-size: 26px; font-weight: 700; color: var(--purple); margin-bottom: 4px; }
+        .pricing-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
 
         /* trial card */
         .trial-card {
-            width: 100%; max-width: 380px; background: var(--accent);
+            width: 100%; max-width: 400px; background: var(--accent);
             border-radius: 20px; padding: 22px 20px; margin-bottom: 16px;
             box-shadow: 0 8px 28px rgba(179,157,219,0.45);
             text-align: center; cursor: pointer; transition: background 0.2s, transform 0.15s;
         }
         .trial-card:hover { background: var(--deep); transform: translateY(-2px); }
-        .trial-card-badge {
-            display: inline-block; background: rgba(255,255,255,0.25);
-            color: white; font-size: 11px; font-weight: 700;
-            padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; letter-spacing: 0.05em;
-        }
+        .trial-card-badge { display: inline-block; background: rgba(255,255,255,0.25); color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
         .trial-card-title { font-size: 22px; font-weight: 800; color: white; margin-bottom: 4px; }
         .trial-card-sub { font-size: 13px; color: rgba(255,255,255,0.85); margin-bottom: 14px; }
-        .trial-card-btn {
-            background: white; color: var(--deep); border: none;
-            padding: 12px 32px; border-radius: 12px;
-            font-size: 15px; font-weight: 700; cursor: pointer;
-            font-family: -apple-system, sans-serif;
-        }
+        .trial-card-btn { background: white; color: var(--deep); border: none; padding: 12px 32px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: -apple-system,sans-serif; }
 
-        .plan-row {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 14px 0; border-bottom: 1px solid var(--bg);
-            cursor: pointer; transition: opacity 0.15s;
-        }
+        /* stacked plans (when trial available) */
+        .plans-stacked { width: 100%; max-width: 400px; background: var(--white); border-radius: 20px; padding: 4px 16px; box-shadow: 0 4px 20px rgba(61,53,88,0.08); border: 1px solid var(--light); margin-bottom: 12px; }
+        .plan-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--bg); cursor: pointer; transition: opacity 0.15s; }
         .plan-row:last-child { border-bottom: none; }
-        .plan-row:hover { opacity: 0.75; }
+        .plan-row:hover { opacity: 0.7; }
         .plan-label { font-size: 15px; font-weight: 600; color: var(--purple); }
         .plan-period { font-size: 12px; color: var(--muted); margin-top: 2px; }
         .plan-price { font-size: 17px; font-weight: 800; color: var(--deep); }
         .plan-arrow { font-size: 16px; color: var(--muted); margin-left: 8px; }
+        .best-tag { background: var(--accent); color: white; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; margin-left: 6px; vertical-align: middle; }
 
-        .pricing-divider { width: 100%; max-width: 380px; text-align: center;
-            font-size: 12px; color: var(--muted); margin: 4px 0 12px; }
+        /* side-by-side plans (when trial used) */
+        .plans-grid { width: 100%; max-width: 400px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+        .plan-card { background: var(--white); border-radius: 16px; padding: 16px 12px; text-align: center; cursor: pointer; border: 2px solid var(--light); transition: border-color 0.2s, transform 0.15s; }
+        .plan-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .plan-card.featured { border-color: var(--accent); background: linear-gradient(135deg, #F5F0FF, #EDE7F6); }
+        .plan-card-name { font-size: 13px; font-weight: 700; color: var(--purple); margin-bottom: 4px; }
+        .plan-card-price { font-size: 22px; font-weight: 800; color: var(--deep); }
+        .plan-card-period { font-size: 11px; color: var(--muted); margin-bottom: 12px; }
+        .plan-card-btn { background: var(--accent); color: white; border: none; padding: 8px 0; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; width: 100%; font-family: -apple-system,sans-serif; transition: background 0.2s; }
+        .plan-card-btn:hover { background: var(--deep); }
+        .plan-card-annual { width: 100%; max-width: 400px; background: var(--accent); border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; border: none; transition: background 0.2s, transform 0.15s; margin-bottom: 10px; }
+        .plan-card-annual:hover { background: var(--deep); transform: translateY(-2px); }
+        .plan-card-annual-left { text-align: left; }
+        .plan-card-annual-name { font-size: 15px; font-weight: 700; color: white; }
+        .plan-card-annual-period { font-size: 12px; color: rgba(255,255,255,0.8); }
+        .plan-card-annual-price { font-size: 26px; font-weight: 800; color: white; }
+        .plan-card-annual-badge { background: rgba(255,255,255,0.25); color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 8px; display: inline-block; margin-top: 4px; }
 
+        .pricing-divider { width: 100%; max-width: 400px; text-align: center; font-size: 12px; color: var(--muted); margin: 4px 0 14px; }
         .pricing-note { font-size: 11px; color: var(--muted); margin-top: 8px; text-align: center; max-width: 380px; }
+        .pricing-signout { margin-top: 16px; background: none; border: none; color: var(--muted); font-size: 13px; cursor: pointer; font-family: -apple-system,sans-serif; }
 
-        /* ── PAYWALL SCREEN ── */
+        /* ── SUBSCRIPTION MANAGEMENT MODAL ── */
+        #sub-modal {
+            position: fixed; inset: 0; background: rgba(61,53,88,0.5);
+            z-index: 10002; display: none; align-items: flex-end; justify-content: center;
+        }
+        #sub-modal.open { display: flex; }
+        .sub-sheet { background: var(--bg); border-radius: 24px 24px 0 0; padding: 24px 20px 40px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
+        .sub-handle { width: 36px; height: 4px; background: var(--light); border-radius: 2px; margin: 0 auto 20px; }
+        .sub-title { font-family: 'Comfortaa','Arial Rounded MT Bold',sans-serif; font-size: 18px; font-weight: 700; color: var(--purple); margin-bottom: 16px; }
+        .sub-current { background: var(--white); border-radius: 16px; padding: 16px; border: 1px solid var(--light); margin-bottom: 20px; }
+        .sub-current-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+        .sub-current-plan { font-size: 20px; font-weight: 800; color: var(--purple); }
+        .sub-current-expires { font-size: 13px; color: var(--muted); margin-top: 2px; }
+        .sub-section-label { font-size: 13px; font-weight: 700; color: var(--purple); margin-bottom: 10px; }
+        .sub-plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+        .sub-plan-card { background: var(--white); border-radius: 14px; padding: 14px 10px; text-align: center; cursor: pointer; border: 2px solid var(--light); transition: border-color 0.2s, transform 0.15s; }
+        .sub-plan-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+        .sub-plan-card.current-plan { border-color: var(--accent); opacity: 0.6; pointer-events: none; }
+        .sub-plan-name { font-size: 13px; font-weight: 700; color: var(--purple); }
+        .sub-plan-price { font-size: 18px; font-weight: 800; color: var(--deep); }
+        .sub-plan-period { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+        .sub-plan-btn { background: var(--accent); color: white; border: none; padding: 7px 0; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; width: 100%; font-family: -apple-system,sans-serif; }
+        .sub-annual-btn { width: 100%; background: var(--accent); color: white; border: none; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 16px; transition: background 0.2s; }
+        .sub-annual-btn:hover { background: var(--deep); }
+        .sub-annual-btn.current-plan { opacity: 0.6; pointer-events: none; }
+        .sub-cancel-btn { width: 100%; background: none; border: 1px solid var(--light); border-radius: 12px; padding: 12px; color: #ff3b30; font-size: 14px; font-weight: 600; cursor: pointer; font-family: -apple-system,sans-serif; margin-top: 8px; }
+        .sub-close-btn { width: 100%; background: var(--light); border: none; border-radius: 12px; padding: 13px; color: var(--purple); font-size: 15px; font-weight: 700; cursor: pointer; font-family: -apple-system,sans-serif; margin-top: 12px; }
+        .sub-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+        /* ── PAYWALL ── */
         #paywall-screen {
             background: var(--bg);
-            flex-direction: column; align-items: center; justify-content: center;
-            padding: 32px 24px;
+            flex-direction: column; align-items: center; justify-content: center; padding: 32px 24px;
         }
         .paywall-icon { font-size: 48px; margin-bottom: 12px; }
         .paywall-title { font-size: 24px; font-weight: 800; color: var(--purple); margin-bottom: 6px; text-align: center; }
         .paywall-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; text-align: center; max-width: 300px; }
-        .paywall-btn {
-            width: 100%; max-width: 320px; padding: 16px; border-radius: 14px; border: none;
-            background: var(--accent); color: white; font-size: 16px; font-weight: 700;
-            cursor: pointer; font-family: -apple-system, sans-serif; margin-bottom: 10px;
-            transition: background 0.2s;
-        }
+        .paywall-btn { width: 100%; max-width: 320px; padding: 16px; border-radius: 14px; border: none; background: var(--accent); color: white; font-size: 16px; font-weight: 700; cursor: pointer; font-family: -apple-system,sans-serif; margin-bottom: 10px; transition: background 0.2s; }
         .paywall-btn:hover { background: var(--deep); }
-        .paywall-signout { background: none; border: none; color: var(--muted);
-            font-size: 13px; cursor: pointer; font-family: -apple-system, sans-serif; margin-top: 4px; }
+        .paywall-signout { background: none; border: none; color: var(--muted); font-size: 13px; cursor: pointer; font-family: -apple-system,sans-serif; margin-top: 4px; }
 
         /* ── MAP ── */
         #map { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        .blue-dot {
-            width: 14px; height: 14px; background: var(--blue);
-            border: 2px solid white; border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(144,202,249,0.4); animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%   { box-shadow: 0 0 0 0px rgba(144,202,249,0.7); }
-            70%  { box-shadow: 0 0 0 10px rgba(144,202,249,0); }
-            100% { box-shadow: 0 0 0 0px rgba(144,202,249,0); }
-        }
-        .real-dot {
-            width: 14px; height: 14px; background: var(--muted);
-            border: 2px solid white; border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(139,125,168,0.3);
-        }
+        .blue-dot { width: 14px; height: 14px; background: var(--blue); border: 2px solid white; border-radius: 50%; box-shadow: 0 0 0 4px rgba(144,202,249,0.4); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0px rgba(144,202,249,0.7); } 70% { box-shadow: 0 0 0 10px rgba(144,202,249,0); } 100% { box-shadow: 0 0 0 0px rgba(144,202,249,0); } }
+        .real-dot { width: 14px; height: 14px; background: var(--muted); border: 2px solid white; border-radius: 50%; box-shadow: 0 0 0 4px rgba(139,125,168,0.3); }
 
-        /* ── TOP BAR ── */
-        .top-bar {
-            position: fixed; top: 44px; left: 0; width: 100%;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1000; padding: 0 16px;
-        }
-        .mode-toggle {
-            display: flex; background: rgba(237,231,246,0.95); padding: 3px;
-            border-radius: 12px; box-shadow: 0 4px 15px rgba(61,53,88,0.15);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        }
-        .mode-btn {
-            padding: 8px 20px; border-radius: 9px; border: none; font-weight: 600;
-            background: transparent; color: var(--muted); font-size: 14px; cursor: pointer;
-        }
+        .top-bar { position: fixed; top: 44px; left: 0; width: 100%; display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 0 16px; }
+        .mode-toggle { display: flex; background: rgba(237,231,246,0.95); padding: 3px; border-radius: 12px; box-shadow: 0 4px 15px rgba(61,53,88,0.15); backdrop-filter: blur(10px); }
+        .mode-btn { padding: 8px 20px; border-radius: 9px; border: none; font-weight: 600; background: transparent; color: var(--muted); font-size: 14px; cursor: pointer; }
         .mode-btn.active { background: var(--white); color: var(--purple); box-shadow: 0 2px 5px rgba(61,53,88,0.12); }
 
-        /* ── SAVED PANEL ── */
-        .saved-panel {
-            position: fixed; top: 44px; left: 16px; width: auto;
-            background: transparent; border-radius: 16px;
-            box-shadow: none; z-index: 1001; overflow: hidden;
-            transition: box-shadow 0.25s, background 0.25s;
-        }
-        .saved-panel.open {
-            width: 270px; background: rgba(245,240,255,0.98);
-            box-shadow: 0 8px 32px rgba(61,53,88,0.15);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-        }
-        .saved-header {
-            width: fit-content; border: none;
-            background: rgba(237,231,246,0.95);
-            box-shadow: 0 4px 15px rgba(61,53,88,0.15);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px; padding: 3px 10px;
-            display: flex; align-items: center; gap: 4px;
-            cursor: pointer; font-family: -apple-system, sans-serif;
-            white-space: nowrap; margin-right: auto; height: 38px;
-            transition: border-radius 0.25s, box-shadow 0.25s;
-        }
-        .saved-panel.open .saved-header {
-            width: 100%; border-radius: 0; box-shadow: none;
-            backdrop-filter: none; background: transparent;
-        }
+        .saved-panel { position: fixed; top: 44px; left: 16px; width: auto; background: transparent; border-radius: 16px; box-shadow: none; z-index: 1001; overflow: hidden; transition: box-shadow 0.25s, background 0.25s; }
+        .saved-panel.open { width: 270px; background: rgba(245,240,255,0.98); box-shadow: 0 8px 32px rgba(61,53,88,0.15); backdrop-filter: blur(20px); }
+        .saved-header { width: fit-content; border: none; background: rgba(237,231,246,0.95); box-shadow: 0 4px 15px rgba(61,53,88,0.15); backdrop-filter: blur(10px); border-radius: 12px; padding: 3px 10px; display: flex; align-items: center; gap: 4px; cursor: pointer; font-family: -apple-system,sans-serif; white-space: nowrap; margin-right: auto; height: 38px; transition: border-radius 0.25s; }
+        .saved-panel.open .saved-header { width: 100%; border-radius: 0; box-shadow: none; backdrop-filter: none; background: transparent; }
         .saved-header-left { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; color: var(--purple); }
         .saved-header-arrow { font-size: 10px; color: var(--muted); transition: transform 0.25s; }
         .saved-header-arrow.open { transform: rotate(180deg); }
@@ -243,11 +198,7 @@
         .saved-body.open { max-height: 420px; }
         .saved-divider { height: 1px; background: var(--light); }
         .saved-tabs { display: flex; border-bottom: 1px solid var(--light); }
-        .saved-tab {
-            flex: 1; padding: 9px; border: none; background: transparent;
-            font-size: 13px; font-weight: 600; color: var(--muted);
-            cursor: pointer; font-family: -apple-system, sans-serif; border-bottom: 2px solid transparent;
-        }
+        .saved-tab { flex: 1; padding: 9px; border: none; background: transparent; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; font-family: -apple-system,sans-serif; border-bottom: 2px solid transparent; }
         .saved-tab.active { color: var(--deep); border-bottom: 2px solid var(--deep); }
         .saved-list { max-height: 240px; overflow-y: auto; }
         .saved-item { display: flex; align-items: center; padding: 10px 14px; gap: 10px; border-bottom: 1px solid var(--bg); cursor: pointer; }
@@ -257,93 +208,100 @@
         .saved-item-name { font-size: 13px; font-weight: 600; color: var(--purple); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .saved-item-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
         .saved-item-actions { display: flex; gap: 4px; flex-shrink: 0; }
-        .icon-btn { width: 28px; height: 28px; border-radius: 7px; border: none; background: var(--bg); font-size: 13px; cursor: pointer; color: var(--purple); display: flex; align-items: center; justify-content: center; font-family: -apple-system, sans-serif; font-weight: 600; }
+        .icon-btn { width: 28px; height: 28px; border-radius: 7px; border: none; background: var(--bg); font-size: 13px; cursor: pointer; color: var(--purple); display: flex; align-items: center; justify-content: center; }
         .icon-btn.del { background: #fdf0f0; color: #ff3b30; }
         .saved-empty { padding: 20px 16px; text-align: center; font-size: 13px; color: var(--muted); }
-        .saved-add-btn { width: calc(100% - 24px); margin: 10px 12px; padding: 10px; border-radius: 11px; border: none; background: var(--accent); color: var(--white); font-size: 13px; font-weight: 600; cursor: pointer; font-family: -apple-system, sans-serif; transition: background 0.2s; }
-        .saved-add-btn:hover { background: var(--deep); }
+        .saved-add-btn { width: calc(100% - 24px); margin: 10px 12px; padding: 10px; border-radius: 11px; border: none; background: var(--accent); color: var(--white); font-size: 13px; font-weight: 600; cursor: pointer; font-family: -apple-system,sans-serif; }
 
-        /* ── CONFIRM OVERLAY ── */
-        .confirm-overlay {
-            position: fixed; bottom: 140px; left: 20px; right: 20px;
-            background: rgba(245,240,255,0.98); padding: 16px; border-radius: 20px;
-            z-index: 1002; box-shadow: 0 8px 32px rgba(61,53,88,0.15); display: none;
-            border: 1px solid var(--light);
-        }
+        .confirm-overlay { position: fixed; bottom: 140px; left: 20px; right: 20px; background: rgba(245,240,255,0.98); padding: 16px; border-radius: 20px; z-index: 1002; box-shadow: 0 8px 32px rgba(61,53,88,0.15); display: none; border: 1px solid var(--light); }
         .confirm-overlay.open { display: block; }
         .confirm-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; color: var(--purple); }
         .confirm-sub   { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
         .confirm-btns  { display: flex; gap: 8px; }
-        .confirm-btns button { flex: 1; padding: 12px; border-radius: 12px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; font-family: -apple-system, sans-serif; }
+        .confirm-btns button { flex: 1; padding: 12px; border-radius: 12px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; font-family: -apple-system,sans-serif; }
         .confirm-yes { background: var(--accent); color: var(--white); }
         .confirm-no  { background: var(--light); color: var(--purple); }
 
-        /* ── MODAL ── */
         .modal-bg { position: fixed; inset: 0; background: rgba(61,53,88,0.4); z-index: 2000; display: none; align-items: center; justify-content: center; }
         .modal-bg.open { display: flex; }
         .modal { background: var(--white); border-radius: 20px; padding: 20px; width: calc(100% - 48px); max-width: 340px; border: 1px solid var(--light); }
         .modal h3 { font-size: 17px; font-weight: 700; margin: 0 0 14px; color: var(--purple); }
-        .modal input, .modal select { width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--light); font-size: 14px; margin-bottom: 10px; font-family: -apple-system, sans-serif; outline: none; background: var(--bg); color: var(--purple); }
-        .modal input:focus, .modal select:focus { border-color: var(--accent); }
+        .modal input, .modal select { width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--light); font-size: 14px; margin-bottom: 10px; font-family: -apple-system,sans-serif; outline: none; background: var(--bg); color: var(--purple); }
         .modal-btns { display: flex; gap: 8px; margin-top: 4px; }
-        .modal-btns button { flex: 1; padding: 13px; border-radius: 12px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; font-family: -apple-system, sans-serif; }
+        .modal-btns button { flex: 1; padding: 13px; border-radius: 12px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; font-family: -apple-system,sans-serif; }
         .modal-save   { background: var(--accent); color: var(--white); }
         .modal-cancel { background: var(--light); color: var(--purple); }
 
-        /* ── CONTROLS ── */
-        .controls {
-            position: fixed; bottom: 30px; left: 20px; right: 20px;
-            background: rgba(245,240,255,0.97); padding: 20px; border-radius: 24px;
-            z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--light); box-shadow: 0 8px 32px rgba(61,53,88,0.12);
-        }
+        .controls { position: fixed; bottom: 30px; left: 20px; right: 20px; background: rgba(245,240,255,0.97); padding: 20px; border-radius: 24px; z-index: 1000; backdrop-filter: blur(20px); border: 1px solid var(--light); box-shadow: 0 8px 32px rgba(61,53,88,0.12); }
         .speed-picker { display: flex; background: var(--light); border-radius: 12px; padding: 3px; margin-bottom: 15px; transition: opacity 0.2s; }
-        .speed-opt { flex: 1; border: none; background: transparent; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; cursor: pointer; color: var(--muted); font-family: -apple-system, sans-serif; }
+        .speed-opt { flex: 1; border: none; background: transparent; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; cursor: pointer; color: var(--muted); font-family: -apple-system,sans-serif; }
         .speed-opt.active { background: var(--white); color: var(--purple); box-shadow: 0 2px 5px rgba(61,53,88,0.1); }
         .btn-group { display: flex; gap: 10px; }
-        .btn { flex: 1; padding: 18px; border-radius: 16px; border: none; font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); font-family: -apple-system, sans-serif; }
-        #go-btn     { background: var(--accent); color: var(--white); }
-        #go-btn:hover { background: var(--deep); }
+        .btn { flex: 1; padding: 18px; border-radius: 16px; border: none; font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); font-family: -apple-system,sans-serif; }
+        #go-btn { background: var(--accent); color: var(--white); }
         #go-btn.success { background: #34c759; }
         #pause-btn  { background: #ff9500; color: white; display: none; }
         #cancel-btn { background: var(--purple); color: var(--white); }
-        #cancel-btn:hover { background: #2a1f45; }
         #cancel-btn.success { background: #ff3b30; }
 
-        /* ── LOGOUT / STATUS ── */
-        .top-right-bar {
-            position: fixed; top: 44px; right: 16px; z-index: 1001;
-            display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
-        }
-        .logout-btn {
-            background: rgba(237,231,246,0.95); border: none;
-            padding: 3px 10px; border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(61,53,88,0.15);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            font-size: 13px; font-weight: 700; color: var(--purple);
-            cursor: pointer; font-family: -apple-system, sans-serif; height: 38px;
-        }
-        .logout-btn:active { background: var(--light); }
-        .plan-badge {
-            background: rgba(237,231,246,0.95); color: var(--mid);
-            font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(61,53,88,0.1);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        }
-        .plan-badge.warning { color: #ff9500; background: rgba(255,149,0,0.1); }
-        .plan-badge.urgent  { color: #ff3b30; background: rgba(255,59,48,0.1); }
+        .top-right-bar { position: fixed; top: 44px; right: 16px; z-index: 1001; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+        .logout-btn { background: rgba(237,231,246,0.95); border: none; padding: 3px 10px; border-radius: 12px; box-shadow: 0 4px 15px rgba(61,53,88,0.15); backdrop-filter: blur(10px); font-size: 13px; font-weight: 700; color: var(--purple); cursor: pointer; font-family: -apple-system,sans-serif; height: 38px; }
+        .plan-badge { background: rgba(237,231,246,0.95); color: var(--mid); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(61,53,88,0.1); backdrop-filter: blur(10px); cursor: pointer; user-select: none; }
+        .plan-badge:hover { background: var(--light); }
+        .plan-badge.warning { color: #ff9500; background: rgba(255,149,0,0.12); }
+        .plan-badge.urgent  { color: #ff3b30; background: rgba(255,59,48,0.12); }
 
-        /* ── GRACE BANNER ── */
-        .grace-banner {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1500;
-            background: rgba(255,149,0,0.95); color: white;
-            padding: 10px 16px; text-align: center;
-            font-size: 13px; font-weight: 600; display: none;
-        }
+        .grace-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 1500; background: rgba(255,149,0,0.95); color: white; padding: 10px 16px; text-align: center; font-size: 13px; font-weight: 600; display: none; }
         .grace-banner a { color: white; text-decoration: underline; cursor: pointer; }
     </style>
 </head>
 <body>
+
+<!-- ── GLOBAL BOBA BUBBLE ── -->
+<div id="global-bubble" onclick="handleBubbleClick()">
+    <div class="bubble-dot">🧋</div>
+    <span id="bubble-text">3-day free trial</span>
+</div>
+
+<!-- ── PRICING PREVIEW MODAL (login page) ── -->
+<div id="pricing-preview-modal" onclick="closePricingPreview(event)">
+    <div class="preview-sheet">
+        <div class="preview-handle"></div>
+        <div class="preview-title">tapioca plans</div>
+        <div class="preview-sub">Sign up or sign in to get started</div>
+        <div style="background:var(--accent);border-radius:16px;padding:16px;text-align:center;margin-bottom:12px;">
+            <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.8);margin-bottom:4px;">FREE</div>
+            <div style="font-size:20px;font-weight:800;color:white;margin-bottom:2px;">🧋 3-Day Trial</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.85);">Full access. No card required.</div>
+        </div>
+        <div style="background:var(--white);border-radius:16px;padding:4px 14px;border:1px solid var(--light);margin-bottom:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--bg);">
+                <div><div style="font-size:14px;font-weight:600;color:var(--purple);">Weekly</div><div style="font-size:11px;color:var(--muted);">Billed weekly</div></div>
+                <div style="font-size:16px;font-weight:800;color:var(--deep);">$3.99</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--bg);">
+                <div><div style="font-size:14px;font-weight:600;color:var(--purple);">Monthly</div><div style="font-size:11px;color:var(--muted);">Billed monthly</div></div>
+                <div style="font-size:16px;font-weight:800;color:var(--deep);">$11.99</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
+                <div><div style="font-size:14px;font-weight:600;color:var(--purple);">Annual <span style="background:var(--accent);color:white;font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;vertical-align:middle;">BEST VALUE</span></div><div style="font-size:11px;color:var(--muted);">$10/mo · billed yearly</div></div>
+                <div style="font-size:16px;font-weight:800;color:var(--deep);">$120</div>
+            </div>
+        </div>
+        <button onclick="closePricingPreview(); switchLoginTab('signup');" style="width:100%;background:var(--accent);color:white;border:none;padding:15px;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;font-family:-apple-system,sans-serif;">Sign Up to Get Started →</button>
+    </div>
+</div>
+
+<!-- ── SUBSCRIPTION MANAGEMENT MODAL ── -->
+<div id="sub-modal" onclick="closeSubModal(event)">
+    <div class="sub-sheet" id="sub-sheet">
+        <div class="sub-handle"></div>
+        <div class="sub-title">Your Subscription</div>
+        <div class="sub-current" id="sub-current-info"></div>
+        <div id="sub-change-section"></div>
+        <button class="sub-close-btn" onclick="closeSubModalDirect()">Done</button>
+    </div>
+</div>
 
 <!-- ── LOGIN SCREEN ── -->
 <div id="login-screen" class="screen">
@@ -361,93 +319,36 @@
     </div>
 </div>
 
-<!-- Floating trial bubble — outside all screens so fixed positioning works reliably -->
-<div class="trial-bubble" id="trial-bubble" style="display:none;" onclick="switchLoginTab('signup')">
-    <div class="trial-bubble-dot">🧋</div>
-    <span>3-day free trial</span>
-</div>
-
 <!-- ── PRICING SCREEN ── -->
-<div id="pricing-screen" class="screen" style="flex-direction:column;align-items:center;justify-content:center;background:var(--bg);padding:32px 24px;overflow-y:auto;">
+<div id="pricing-screen" class="screen">
     <div class="pricing-logo">tapioca</div>
-    <div class="pricing-sub">Choose your plan to get started</div>
-
-    <!-- Trial card — prominent -->
-    <div class="trial-card" onclick="startTrial()">
-        <div class="trial-card-badge">MOST POPULAR</div>
-        <div class="trial-card-title">🧋 3-Day Free Trial</div>
-        <div class="trial-card-sub">Full access. No card required.</div>
-        <button class="trial-card-btn">Start Free Trial</button>
-    </div>
-
-    <div class="pricing-divider">— or choose a paid plan —</div>
-
-    <!-- Paid plans -->
-    <div class="pricing-card">
-        <div class="plan-row" onclick="startCheckout('weekly')">
-            <div>
-                <div class="plan-label">Weekly</div>
-                <div class="plan-period">Billed every 7 days</div>
-            </div>
-            <div style="display:flex;align-items:center;">
-                <div class="plan-price">$3.99</div>
-                <div class="plan-arrow">›</div>
-            </div>
-        </div>
-        <div class="plan-row" onclick="startCheckout('monthly')">
-            <div>
-                <div class="plan-label">Monthly</div>
-                <div class="plan-period">Billed every month</div>
-            </div>
-            <div style="display:flex;align-items:center;">
-                <div class="plan-price">$11.99</div>
-                <div class="plan-arrow">›</div>
-            </div>
-        </div>
-        <div class="plan-row" onclick="startCheckout('annual')">
-            <div>
-                <div class="plan-label" style="display:flex;align-items:center;gap:8px;">
-                    Annual
-                    <span style="background:var(--accent);color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">BEST VALUE</span>
-                </div>
-                <div class="plan-period">Billed once a year · $10/mo</div>
-            </div>
-            <div style="display:flex;align-items:center;">
-                <div class="plan-price">$120</div>
-                <div class="plan-arrow">›</div>
-            </div>
-        </div>
-    </div>
-
+    <div class="pricing-sub" id="pricing-sub-text">Choose your plan to get started</div>
+    <div id="pricing-content"></div>
     <div class="pricing-note">All plans include full access to every feature. Cancel anytime.</div>
-    <button onclick="handleLogout()" style="margin-top:16px;background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;font-family:-apple-system,sans-serif;">Sign out</button>
+    <button class="pricing-signout" onclick="handleLogout()">Sign out</button>
 </div>
 
 <!-- ── PAYWALL SCREEN ── -->
-<div id="paywall-screen" class="screen" style="flex-direction:column;align-items:center;justify-content:center;background:var(--bg);padding:32px 24px;">
+<div id="paywall-screen" class="screen">
     <div class="paywall-icon">🧋</div>
     <div class="paywall-title">Your trial has ended.</div>
-    <div class="paywall-sub">Pick a plan to keep using Tapioca. All plans include full access.</div>
+    <div class="paywall-sub">Pick a plan to keep using Tapioca. Full access on all plans.</div>
     <button class="paywall-btn" onclick="showScreen('pricing')">See Plans</button>
     <button class="paywall-signout" onclick="handleLogout()">Sign out</button>
 </div>
 
-<!-- ── APP ── -->
-<div id="app-screen" class="screen" style="display:none;position:fixed;inset:0;z-index:100;">
+<!-- ── APP SCREEN ── -->
+<div id="app-screen" class="screen" style="position:fixed;inset:0;z-index:100;">
     <div class="grace-banner" id="grace-banner">
-        ⚠️ Your trial has expired. <a onclick="showScreen('pricing')">Choose a plan</a> to keep access.
-        <span id="grace-timer"></span>
+        ⚠️ Your trial has expired. <a onclick="showScreen('pricing')">Choose a plan</a> to keep access. <span id="grace-timer"></span>
     </div>
-
     <div id="map"></div>
-
     <div class="top-bar">
         <div class="mode-toggle">
             <button id="t-teleport" class="mode-btn active" onclick="setMode('teleport')">Teleport</button>
             <button id="t-route"    class="mode-btn"        onclick="setMode('route')">Route</button>
         </div>
     </div>
-
     <div class="saved-panel" id="saved-panel">
         <button class="saved-header" onclick="toggleSavedPanel()">
             <span class="saved-header-left">Saved</span>
@@ -463,12 +364,10 @@
             <button class="saved-add-btn" id="saved-add-btn" onclick="handleAddSaved()">+ Save Current</button>
         </div>
     </div>
-
     <div class="top-right-bar">
         <button class="logout-btn" onclick="handleLogout()">Sign Out</button>
-        <div class="plan-badge" id="plan-badge"></div>
+        <div class="plan-badge" id="plan-badge" onclick="openSubModal()"></div>
     </div>
-
     <div class="confirm-overlay" id="confirm-overlay">
         <div class="confirm-title" id="confirm-title">Load this location?</div>
         <div class="confirm-sub"   id="confirm-sub"></div>
@@ -477,7 +376,6 @@
             <button class="confirm-no"  onclick="cancelConfirm()">Cancel</button>
         </div>
     </div>
-
     <div class="modal-bg" id="modal-bg">
         <div class="modal">
             <h3 id="modal-title">Save</h3>
@@ -493,13 +391,12 @@
             </div>
         </div>
     </div>
-
     <div class="controls">
         <div id="route-settings" style="display:none;">
             <div class="speed-picker" id="speed-picker">
                 <button id="s-3"  class="speed-opt active" onclick="setSpeed(3)"><span>🚶</span>3 mph</button>
-                <button id="s-18" class="speed-opt"         onclick="setSpeed(18)"><span>🚴</span>18 mph</button>
-                <button id="s-50" class="speed-opt"         onclick="setSpeed(50)"><span>🚗</span>50 mph</button>
+                <button id="s-18" class="speed-opt"        onclick="setSpeed(18)"><span>🚴</span>18 mph</button>
+                <button id="s-50" class="speed-opt"        onclick="setSpeed(50)"><span>🚗</span>50 mph</button>
             </div>
         </div>
         <div class="btn-group">
@@ -512,154 +409,293 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const AUTH_URL = 'https://tapioca-auth.onrender.com';
+const AUTH_URL   = 'https://tapioca-auth.onrender.com';
 const GRACE_HOURS = 12;
+let currentStatus = null;
 
-// ── session storage (clears on tab close) ──
-function getToken()       { return sessionStorage.getItem('tapioca_token'); }
-function setToken(t)      { sessionStorage.setItem('tapioca_token', t); }
-function clearToken()     { sessionStorage.removeItem('tapioca_token'); }
-function setInSession()   { sessionStorage.setItem('in_app_session', '1'); }
-function isInSession()    { return !!sessionStorage.getItem('in_app_session'); }
-function getGraceStart()  { return sessionStorage.getItem('trial_grace_start'); }
-function setGraceStart()  {
-    if (!getGraceStart()) sessionStorage.setItem('trial_grace_start', Date.now().toString());
-}
+// ── session storage ──
+function getToken()      { return sessionStorage.getItem('tapioca_token'); }
+function setToken(t)     { sessionStorage.setItem('tapioca_token', t); }
+function clearToken()    { sessionStorage.removeItem('tapioca_token'); }
+function setInSession()  { sessionStorage.setItem('in_app_session', '1'); }
+function isInSession()   { return !!sessionStorage.getItem('in_app_session'); }
+function getGraceStart() { return sessionStorage.getItem('trial_grace_start'); }
+function setGraceStart() { if (!getGraceStart()) sessionStorage.setItem('trial_grace_start', Date.now().toString()); }
 
 let loginMode = 'signin';
 
-// ── screen management ──
+// ── screens ──
 function showScreen(name) {
-    document.querySelectorAll('.screen').forEach(s => {
-        s.classList.remove('active');
-        s.style.display = 'none';
-    });
+    document.querySelectorAll('.screen').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
     const el = document.getElementById(name + '-screen');
-    if (el) {
-        el.style.display = 'flex';
-        el.classList.add('active');
-    }
-    // show trial bubble only on login screen
-    const bubble = document.getElementById('trial-bubble');
-    if (bubble) bubble.style.display = name === 'login' ? 'flex' : 'none';
-    if (name === 'app') {
+    if (el) { el.style.display = 'flex'; el.classList.add('active'); }
+
+    const bubble = document.getElementById('global-bubble');
+    if (name === 'login') {
+        bubble.classList.add('visible');
+        document.getElementById('bubble-text').textContent = '3-day free trial';
+        bubble.style.animation = 'float 3s ease-in-out infinite';
+    } else if (name === 'app') {
         setInSession();
         initMap();
+        // bubble managed by updateBubbleForApp()
+    } else {
+        bubble.classList.remove('visible');
+    }
+
+    if (name === 'pricing') renderPricingScreen();
+}
+
+// ── bubble ──
+function updateBubbleForApp(status) {
+    const bubble = document.getElementById('global-bubble');
+    const plan   = status.plan;
+    if (plan === 'admin') { bubble.classList.remove('visible'); return; }
+    if (plan === 'trial') {
+        const days = status.trial_days_remaining;
+        bubble.classList.add('visible');
+        document.getElementById('bubble-text').textContent = `${days}d left on trial`;
+        return;
+    }
+    if (['weekly','monthly','annual'].includes(plan)) {
+        const days = status.sub_days_remaining;
+        bubble.classList.add('visible');
+        document.getElementById('bubble-text').textContent = `${days}d · ${capitalize(plan)}`;
+        return;
+    }
+    bubble.classList.remove('visible');
+}
+
+function handleBubbleClick() {
+    const activeScreen = document.querySelector('.screen.active');
+    if (activeScreen && activeScreen.id === 'login-screen') {
+        document.getElementById('pricing-preview-modal').classList.add('open');
+    } else {
+        openSubModal();
     }
 }
 
-// ── check auth on load ──
+function closePricingPreview(e) {
+    if (!e || e.target === document.getElementById('pricing-preview-modal')) {
+        document.getElementById('pricing-preview-modal').classList.remove('open');
+    }
+}
+
+// ── subscription modal ──
+function openSubModal() {
+    if (!currentStatus) return;
+    const status = currentStatus;
+    const plan   = status.plan;
+
+    // current plan info
+    let planLabel = capitalize(plan);
+    let expiryText = '';
+    if (plan === 'trial') {
+        planLabel  = '🧋 Free Trial';
+        expiryText = `${status.trial_days_remaining} days remaining`;
+    } else if (['weekly','monthly','annual'].includes(plan)) {
+        planLabel  = capitalize(plan);
+        expiryText = status.subscription_status === 'cancelling'
+            ? `Cancels · ${status.sub_days_remaining} days left`
+            : `${status.sub_days_remaining} days until renewal`;
+    } else if (plan === 'admin') {
+        planLabel  = 'Admin';
+        expiryText = 'Unlimited access';
+    }
+
+    document.getElementById('sub-current-info').innerHTML = `
+        <div class="sub-current-label">Current Plan</div>
+        <div class="sub-current-plan">${planLabel}</div>
+        <div class="sub-current-expires">${expiryText}</div>
+    `;
+
+    // change section
+    const section = document.getElementById('sub-change-section');
+    if (plan === 'admin') { section.innerHTML = ''; }
+    else {
+        const hasTrial = !!status.trial_ends_at;
+        section.innerHTML = `
+            <div class="sub-section-label">Change Plan</div>
+            <div class="sub-plans-grid">
+                <div class="sub-plan-card ${plan === 'weekly' ? 'current-plan' : ''}" onclick="startCheckout('weekly')">
+                    <div class="sub-plan-name">Weekly</div>
+                    <div class="sub-plan-price">$3.99</div>
+                    <div class="sub-plan-period">per week</div>
+                    <button class="sub-plan-btn">${plan === 'weekly' ? 'Current' : 'Select'}</button>
+                </div>
+                <div class="sub-plan-card ${plan === 'monthly' ? 'current-plan' : ''}" onclick="startCheckout('monthly')">
+                    <div class="sub-plan-name">Monthly</div>
+                    <div class="sub-plan-price">$11.99</div>
+                    <div class="sub-plan-period">per month</div>
+                    <button class="sub-plan-btn">${plan === 'monthly' ? 'Current' : 'Select'}</button>
+                </div>
+            </div>
+            <button class="sub-annual-btn ${plan === 'annual' ? 'current-plan' : ''}" onclick="startCheckout('annual')">
+                <div class="plan-card-annual-left">
+                    <div class="plan-card-annual-name">Annual <span class="plan-card-annual-badge">BEST VALUE</span></div>
+                    <div class="plan-card-annual-period">$10/mo · billed once a year</div>
+                </div>
+                <div class="plan-card-annual-price">$120</div>
+            </button>
+            ${['weekly','monthly','annual'].includes(plan) && status.subscription_status !== 'cancelling'
+                ? `<button class="sub-cancel-btn" onclick="cancelSubscription()">Cancel Subscription</button>
+                   <div class="sub-note">Plan changes take effect at your next billing cycle.</div>`
+                : status.subscription_status === 'cancelling'
+                ? `<div class="sub-note" style="color:#ff9500;">Your subscription is set to cancel. You keep access until it expires.</div>`
+                : '<div class="sub-note">Plan changes take effect at your next billing cycle.</div>'
+            }
+        `;
+    }
+
+    document.getElementById('sub-modal').classList.add('open');
+}
+
+function closeSubModal(e) {
+    if (e.target === document.getElementById('sub-modal')) closeSubModalDirect();
+}
+function closeSubModalDirect() {
+    document.getElementById('sub-modal').classList.remove('open');
+}
+
+// ── pricing screen ──
+function renderPricingScreen() {
+    const status  = currentStatus;
+    const hasTrial = status && !!status.trial_ends_at;
+    const content  = document.getElementById('pricing-content');
+
+    if (!hasTrial) {
+        // trial not used → trial prominent + stacked plans
+        document.getElementById('pricing-sub-text').textContent = 'Choose your plan to get started';
+        content.innerHTML = `
+            <div class="trial-card" onclick="startTrial()">
+                <div class="trial-card-badge">MOST POPULAR · FREE</div>
+                <div class="trial-card-title">🧋 3-Day Free Trial</div>
+                <div class="trial-card-sub">Full access. No card required.</div>
+                <button class="trial-card-btn">Start Free Trial</button>
+            </div>
+            <div class="pricing-divider">— or choose a paid plan —</div>
+            <div class="plans-stacked">
+                <div class="plan-row" onclick="startCheckout('weekly')">
+                    <div><div class="plan-label">Weekly</div><div class="plan-period">Billed every 7 days</div></div>
+                    <div style="display:flex;align-items:center;"><div class="plan-price">$3.99</div><div class="plan-arrow">›</div></div>
+                </div>
+                <div class="plan-row" onclick="startCheckout('monthly')">
+                    <div><div class="plan-label">Monthly</div><div class="plan-period">Billed every month</div></div>
+                    <div style="display:flex;align-items:center;"><div class="plan-price">$11.99</div><div class="plan-arrow">›</div></div>
+                </div>
+                <div class="plan-row" onclick="startCheckout('annual')">
+                    <div><div class="plan-label">Annual <span class="best-tag">BEST VALUE</span></div><div class="plan-period">$10/mo · billed yearly</div></div>
+                    <div style="display:flex;align-items:center;"><div class="plan-price">$120</div><div class="plan-arrow">›</div></div>
+                </div>
+            </div>
+        `;
+    } else {
+        // trial used → plans side by side
+        document.getElementById('pricing-sub-text').textContent = 'Pick a plan to continue';
+        content.innerHTML = `
+            <div class="plans-grid">
+                <div class="plan-card" onclick="startCheckout('weekly')">
+                    <div class="plan-card-name">Weekly</div>
+                    <div class="plan-card-price">$3.99</div>
+                    <div class="plan-card-period">per week</div>
+                    <button class="plan-card-btn">Select</button>
+                </div>
+                <div class="plan-card featured" onclick="startCheckout('monthly')">
+                    <div class="plan-card-name">Monthly</div>
+                    <div class="plan-card-price">$11.99</div>
+                    <div class="plan-card-period">per month</div>
+                    <button class="plan-card-btn">Select</button>
+                </div>
+            </div>
+            <button class="plan-card-annual" onclick="startCheckout('annual')">
+                <div class="plan-card-annual-left">
+                    <div class="plan-card-annual-name">Annual <span class="plan-card-annual-badge">BEST VALUE</span></div>
+                    <div class="plan-card-annual-period">$10/mo · billed once a year</div>
+                </div>
+                <div class="plan-card-annual-price">$120</div>
+            </button>
+        `;
+    }
+}
+
+// ── auth ──
 async function checkAuth() {
-    // handle Stripe redirect
     const params = new URLSearchParams(window.location.search);
     if (params.get('payment') === 'success') {
         window.history.replaceState({}, '', '/');
         const token = getToken();
-        if (token) {
-            showScreen('pricing');
-            await pollForActivation(token);
-            return;
-        }
+        if (token) { showScreen('pricing'); await pollForActivation(token); return; }
     }
-    if (params.get('payment') === 'cancelled') {
-        window.history.replaceState({}, '', '/');
-    }
+    if (params.get('payment') === 'cancelled') window.history.replaceState({}, '', '/');
 
     const token = getToken();
     if (!token) { showScreen('login'); return; }
 
     try {
-        const res  = await fetch(`${AUTH_URL}/subscription-status`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const res = await fetch(`${AUTH_URL}/subscription-status`, { headers: { 'Authorization': `Bearer ${token}` } });
         if (!res.ok) { clearToken(); showScreen('login'); return; }
         const data = await res.json();
+        currentStatus = data;
         handleSubscriptionStatus(data);
-    } catch(e) {
-        showScreen('login');
-    }
+    } catch(e) { showScreen('login'); }
 }
 
 async function pollForActivation(token, attempts = 0) {
     if (attempts > 10) { showScreen('pricing'); return; }
     try {
-        const res  = await fetch(`${AUTH_URL}/subscription-status`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const res  = await fetch(`${AUTH_URL}/subscription-status`, { headers: { 'Authorization': `Bearer ${token}` } });
         const data = await res.json();
-        if (data.plan && !['none','expired'].includes(data.plan)) {
-            handleSubscriptionStatus(data);
-            return;
-        }
+        currentStatus = data;
+        if (data.plan && !['none','expired'].includes(data.plan)) { handleSubscriptionStatus(data); return; }
     } catch(e) {}
     setTimeout(() => pollForActivation(token, attempts + 1), 2000);
 }
 
 function handleSubscriptionStatus(data) {
     const plan = data.plan;
-
-    if (plan === 'admin') { showMapWithBadge('Admin ∞', ''); return; }
-
+    if (plan === 'admin') { showMapWithBadge('Admin ∞', ''); updateBubbleForApp(data); return; }
     if (['weekly','monthly','annual'].includes(plan)) {
-        if (data.subscription_status === 'cancelling') {
-            const days = data.sub_days_remaining;
-            showMapWithBadge(`Access until cancelled`, days <= 3 ? 'urgent' : '');
-        } else {
-            const days = data.sub_days_remaining;
-            showMapWithBadge(
-                `${capitalize(plan)} · ${days}d left`,
-                days <= 3 ? 'urgent' : days <= 7 ? 'warning' : ''
-            );
-        }
+        const days = data.sub_days_remaining;
+        const cls  = data.subscription_status === 'cancelling' ? 'warning' : days <= 3 ? 'urgent' : days <= 7 ? 'warning' : '';
+        const label = data.subscription_status === 'cancelling' ? `Cancelling · ${days}d` : `${capitalize(plan)} · ${days}d`;
+        showMapWithBadge(label, cls);
+        updateBubbleForApp(data);
         return;
     }
-
     if (plan === 'trial') {
         const days = data.trial_days_remaining;
-        showMapWithBadge(
-            `Trial · ${days}d left`,
-            days <= 1 ? 'urgent' : days <= 2 ? 'warning' : ''
-        );
+        showMapWithBadge(`Trial · ${days}d left`, days <= 1 ? 'urgent' : days <= 2 ? 'warning' : '');
+        updateBubbleForApp(data);
         return;
     }
-
     if (plan === 'expired') {
         if (isInSession()) {
-            // grace period logic
             setGraceStart();
-            const graceStart = parseInt(getGraceStart());
-            const elapsed    = (Date.now() - graceStart) / 3600000; // hours
+            const elapsed = (Date.now() - parseInt(getGraceStart())) / 3600000;
             if (elapsed < GRACE_HOURS) {
                 const hoursLeft = Math.ceil(GRACE_HOURS - elapsed);
                 showScreen('app');
                 document.getElementById('grace-banner').style.display = 'block';
                 document.getElementById('grace-timer').textContent = ` ${hoursLeft}h remaining.`;
                 updateMapBadge(`Grace · ${hoursLeft}h`, 'urgent');
+                document.getElementById('global-bubble').classList.remove('visible');
                 return;
             }
         }
         showScreen('paywall');
         return;
     }
-
-    // plan === 'none' or anything else → show pricing
     showScreen('pricing');
 }
 
-function showMapWithBadge(text, cls) {
-    showScreen('app');
-    updateMapBadge(text, cls);
-}
-
+function showMapWithBadge(text, cls) { showScreen('app'); updateMapBadge(text, cls); }
 function updateMapBadge(text, cls) {
     const badge = document.getElementById('plan-badge');
     badge.textContent = text;
     badge.className   = 'plan-badge' + (cls ? ' ' + cls : '');
 }
-
 function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
-// ── login ──
 function switchLoginTab(tab) {
     loginMode = tab;
     document.getElementById('lt-signin').classList.toggle('active', tab === 'signin');
@@ -675,26 +711,21 @@ async function handleAuth() {
     const btn      = document.getElementById('login-btn');
     const msg      = document.getElementById('login-msg');
     if (!email || !password) { msg.textContent = 'Please fill in all fields.'; return; }
-
-    btn.disabled    = true;
+    btn.disabled = true;
     btn.textContent = loginMode === 'signin' ? 'Signing in...' : 'Creating account...';
     msg.textContent = ''; msg.className = 'login-msg';
-
     try {
-        const endpoint = loginMode === 'signin' ? '/login' : '/register';
-        const res      = await fetch(`${AUTH_URL}${endpoint}`, {
+        const res  = await fetch(`${AUTH_URL}${loginMode === 'signin' ? '/login' : '/register'}`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
         });
         const data = await res.json();
-
         if (res.ok) {
             setToken(data.token);
-            const statusRes  = await fetch(`${AUTH_URL}/subscription-status`, {
-                headers: { 'Authorization': `Bearer ${data.token}` }
-            });
-            const statusData = await statusRes.json();
-            handleSubscriptionStatus(statusData);
+            const sr   = await fetch(`${AUTH_URL}/subscription-status`, { headers: { 'Authorization': `Bearer ${data.token}` } });
+            const sd   = await sr.json();
+            currentStatus = sd;
+            handleSubscriptionStatus(sd);
         } else {
             msg.textContent = data.detail || 'Something went wrong.';
             btn.textContent = loginMode === 'signin' ? 'Sign In' : 'Create Account';
@@ -707,34 +738,28 @@ async function handleAuth() {
 }
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && document.getElementById('login-screen').classList.contains('active')) {
-        handleAuth();
-    }
+    if (e.key === 'Enter' && document.getElementById('login-screen').classList.contains('active')) handleAuth();
 });
 
-// ── trial ──
 async function startTrial() {
     const token = getToken();
     if (!token) { showScreen('login'); return; }
     try {
-        const res  = await fetch(`${AUTH_URL}/start-trial`, {
-            method: 'POST', headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const res = await fetch(`${AUTH_URL}/start-trial`, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` } });
         if (res.ok) {
+            if (currentStatus) currentStatus.plan = 'trial';
             showMapWithBadge('Trial · 3d left', '');
+            if (currentStatus) updateBubbleForApp({ ...currentStatus, plan: 'trial', trial_days_remaining: 3 });
         } else {
-            const data = await res.json();
-            alert(data.detail || 'Could not start trial.');
+            const data = await res.json(); alert(data.detail || 'Could not start trial.');
         }
-    } catch(e) {
-        alert('Could not reach server. Try again.');
-    }
+    } catch(e) { alert('Could not reach server. Try again.'); }
 }
 
-// ── checkout ──
 async function startCheckout(plan) {
     const token = getToken();
     if (!token) { showScreen('login'); return; }
+    closeSubModalDirect();
     try {
         const res  = await fetch(`${AUTH_URL}/create-checkout`, {
             method: 'POST',
@@ -742,23 +767,32 @@ async function startCheckout(plan) {
             body: JSON.stringify({ plan })
         });
         const data = await res.json();
-        if (res.ok && data.url) {
-            window.location.href = data.url;
-        } else {
-            alert(data.detail || 'Could not start checkout.');
-        }
-    } catch(e) {
-        alert('Could not reach server. Try again.');
-    }
+        if (res.ok && data.url) { window.location.href = data.url; }
+        else alert(data.detail || 'Could not start checkout.');
+    } catch(e) { alert('Could not reach server. Try again.'); }
 }
 
-// ── logout ──
+async function cancelSubscription() {
+    if (!confirm('Cancel your subscription? You keep access until the period ends.')) return;
+    const token = getToken();
+    try {
+        const res  = await fetch(`${AUTH_URL}/cancel-subscription`, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` } });
+        const data = await res.json();
+        if (res.ok) {
+            alert(`Subscription cancelled. Access until period ends.`);
+            closeSubModalDirect();
+            if (currentStatus) currentStatus.subscription_status = 'cancelling';
+        } else alert(data.detail || 'Could not cancel.');
+    } catch(e) { alert('Could not reach server.'); }
+}
+
 function handleLogout() {
-    clearToken();
-    sessionStorage.clear();
+    clearToken(); sessionStorage.clear();
     document.getElementById('login-email').value    = '';
     document.getElementById('login-password').value = '';
     document.getElementById('login-msg').textContent = '';
+    document.getElementById('global-bubble').classList.remove('visible');
+    currentStatus = null;
     showScreen('login');
 }
 
@@ -791,15 +825,7 @@ function initMap() {
 const blueDotIcon = L.divIcon({ className: 'blue-dot', iconSize: [14,14], iconAnchor: [7,7] });
 const realDotIcon = L.divIcon({ className: 'real-dot', iconSize: [14,14], iconAnchor: [7,7] });
 function makePin(fill) {
-    return L.divIcon({
-        className: '',
-        html: `<svg width="22" height="38" viewBox="0 0 22 38" style="overflow:visible">
-                 <path d="M11 2 C5.5 2 2 6.5 2 11 C2 18 11 30 11 30 C11 30 20 18 20 11 C20 6.5 16.5 2 11 2 Z"
-                       fill="${fill}" stroke="white" stroke-width="2"/>
-                 <circle cx="11" cy="11" r="4" fill="white"/>
-               </svg>`,
-        iconSize: [22,30], iconAnchor: [11,30]
-    });
+    return L.divIcon({ className: '', html: `<svg width="22" height="38" viewBox="0 0 22 38" style="overflow:visible"><path d="M11 2 C5.5 2 2 6.5 2 11 C2 18 11 30 11 30 C11 30 20 18 20 11 C20 6.5 16.5 2 11 2 Z" fill="${fill}" stroke="white" stroke-width="2"/><circle cx="11" cy="11" r="4" fill="white"/></svg>`, iconSize: [22,30], iconAnchor: [11,30] });
 }
 const icons = { teleport: makePin('#B39DDB'), start: makePin('#34c759'), end: makePin('#ff3b30') };
 
@@ -819,64 +845,40 @@ function setSaved(type, arr) { localStorage.setItem('tapioca_' + type, JSON.stri
 function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
 
 function toggleSavedPanel() {
-    const panel = document.getElementById('saved-panel');
-    const body  = document.getElementById('saved-body');
-    const arrow = document.getElementById('saved-arrow');
+    const panel = document.getElementById('saved-panel'), body = document.getElementById('saved-body'), arrow = document.getElementById('saved-arrow');
     const isOpen = body.classList.toggle('open');
-    arrow.classList.toggle('open', isOpen);
-    panel.classList.toggle('open', isOpen);
+    arrow.classList.toggle('open', isOpen); panel.classList.toggle('open', isOpen);
     if (isOpen) renderSavedList();
 }
-
 function switchTab(tab) {
     savedTab = tab;
     document.getElementById('tab-locations').classList.toggle('active', tab === 'locations');
-    document.getElementById('tab-routes').classList.toggle('active',    tab === 'routes');
+    document.getElementById('tab-routes').classList.toggle('active', tab === 'routes');
     renderSavedList();
 }
-
 function renderSavedList() {
-    const list   = document.getElementById('saved-list');
-    const addBtn = document.getElementById('saved-add-btn');
-    const items  = getSaved(savedTab);
+    const list = document.getElementById('saved-list'), addBtn = document.getElementById('saved-add-btn'), items = getSaved(savedTab);
     addBtn.textContent = savedTab === 'locations' ? '+ Save Current Location' : '+ Save Current Route';
-    if (items.length === 0) {
-        list.innerHTML = `<div class="saved-empty">No saved ${savedTab} yet.</div>`; return;
-    }
+    if (!items.length) { list.innerHTML = `<div class="saved-empty">No saved ${savedTab} yet.</div>`; return; }
     list.innerHTML = items.map(item => {
-        const sub = savedTab === 'locations'
-            ? `${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}`
-            : `${item.coords.length} pts · ${item.speed} mph`;
-        return `<div class="saved-item" onclick="previewSaved('${item.id}')">
-            <div class="saved-item-info">
-                <div class="saved-item-name">${item.name}</div>
-                <div class="saved-item-sub">${sub}</div>
-            </div>
-            <div class="saved-item-actions" onclick="event.stopPropagation()">
-                <button class="icon-btn" onclick="editSaved('${item.id}')">&#9998;</button>
-                <button class="icon-btn del" onclick="deleteSaved('${item.id}')">&#10005;</button>
-            </div>
-        </div>`;
+        const sub = savedTab === 'locations' ? `${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}` : `${item.coords.length} pts · ${item.speed} mph`;
+        return `<div class="saved-item" onclick="previewSaved('${item.id}')"><div class="saved-item-info"><div class="saved-item-name">${item.name}</div><div class="saved-item-sub">${sub}</div></div><div class="saved-item-actions" onclick="event.stopPropagation()"><button class="icon-btn" onclick="editSaved('${item.id}')">&#9998;</button><button class="icon-btn del" onclick="deleteSaved('${item.id}')">&#10005;</button></div></div>`;
     }).join('');
 }
-
 function handleAddSaved() {
     if (savedTab === 'locations') {
         let lat, lon;
-        if (markers[0])     { const ll = markers[0].getLatLng(); lat = ll.lat; lon = ll.lng; }
-        else if (simMarker) { const ll = simMarker.getLatLng();  lat = ll.lat; lon = ll.lng; }
+        if (markers[0]) { const ll = markers[0].getLatLng(); lat = ll.lat; lon = ll.lng; }
+        else if (simMarker) { const ll = simMarker.getLatLng(); lat = ll.lat; lon = ll.lng; }
         else { alert('Place a pin on the map first.'); return; }
         openModal({ isNew: true, type: 'locations', data: { lat, lon } });
     } else {
-        if (!routeCoords.length) { alert('Set a route on the map first.'); return; }
+        if (!routeCoords.length) { alert('Set a route first.'); return; }
         openModal({ isNew: true, type: 'routes', data: { coords: routeCoords, speed } });
     }
 }
-
 function previewSaved(id) {
-    const items = getSaved(savedTab);
-    const item  = items.find(i => i.id === id);
-    if (!item) return;
+    const item = getSaved(savedTab).find(i => i.id === id); if (!item) return;
     document.getElementById('saved-panel').classList.remove('open');
     document.getElementById('saved-body').classList.remove('open');
     document.getElementById('saved-arrow').classList.remove('open');
@@ -902,47 +904,33 @@ function previewSaved(id) {
     }
     document.getElementById('confirm-overlay').classList.add('open');
 }
-
 function confirmLoad() {
     document.getElementById('confirm-overlay').classList.remove('open');
     if (!pendingLoad) return;
-    if (pendingLoad.type === 'location') {
-        fetch(`/set-location?lat=${pendingLoad.item.lat}&lon=${pendingLoad.item.lon}`);
-    } else {
-        fetch('/start-route', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ coords: pendingLoad.item.coords, speed: pendingLoad.item.speed })
-        });
-        document.getElementById('go-btn').style.display    = 'none';
+    if (pendingLoad.type === 'location') { fetch(`/set-location?lat=${pendingLoad.item.lat}&lon=${pendingLoad.item.lon}`); }
+    else {
+        fetch('/start-route', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ coords: pendingLoad.item.coords, speed: pendingLoad.item.speed }) });
+        document.getElementById('go-btn').style.display = 'none';
         document.getElementById('pause-btn').style.display = 'block';
-        document.getElementById('speed-picker').style.opacity      = '0.35';
-        document.getElementById('speed-picker').style.pointerEvents= 'none';
+        document.getElementById('speed-picker').style.opacity = '0.35';
+        document.getElementById('speed-picker').style.pointerEvents = 'none';
     }
     pendingLoad = null;
 }
-
 function cancelConfirm() {
-    document.getElementById('confirm-overlay').classList.remove('open');
-    pendingLoad = null;
+    document.getElementById('confirm-overlay').classList.remove('open'); pendingLoad = null;
     markers.forEach(m => m && map.removeLayer(m)); markers = [];
-    if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
-    routeCoords = [];
+    if (routeLine) { map.removeLayer(routeLine); routeLine = null; } routeCoords = [];
 }
-
 function openModal(opts) {
     editingItem = opts;
-    document.getElementById('modal-title').textContent =
-        opts.isNew
-            ? (opts.type === 'locations' ? 'Save Location' : 'Save Route')
-            : (opts.type === 'locations' ? 'Edit Location' : 'Edit Route');
-    const speedSel = document.getElementById('modal-speed');
-    speedSel.style.display = opts.type === 'routes' ? 'block' : 'none';
-    if (opts.type === 'routes') speedSel.value = opts.isNew ? (opts.data.speed || 3) : opts.currentSpeed;
+    document.getElementById('modal-title').textContent = opts.isNew ? (opts.type === 'locations' ? 'Save Location' : 'Save Route') : (opts.type === 'locations' ? 'Edit Location' : 'Edit Route');
+    const ss = document.getElementById('modal-speed'); ss.style.display = opts.type === 'routes' ? 'block' : 'none';
+    if (opts.type === 'routes') ss.value = opts.isNew ? (opts.data.speed || 3) : opts.currentSpeed;
     document.getElementById('modal-name').value = opts.currentName || '';
     document.getElementById('modal-bg').classList.add('open');
     setTimeout(() => document.getElementById('modal-name').focus(), 100);
 }
-
 function saveModal() {
     if (!editingItem) return;
     const name = document.getElementById('modal-name').value.trim();
@@ -954,27 +942,12 @@ function saveModal() {
         items.push(entry);
     } else {
         const idx = items.findIndex(i => i.id === editingItem.id);
-        if (idx !== -1) {
-            items[idx].name = name;
-            if (editingItem.type === 'routes') items[idx].speed = parseInt(document.getElementById('modal-speed').value);
-        }
+        if (idx !== -1) { items[idx].name = name; if (editingItem.type === 'routes') items[idx].speed = parseInt(document.getElementById('modal-speed').value); }
     }
-    setSaved(editingItem.type, items);
-    closeModal(); renderSavedList();
+    setSaved(editingItem.type, items); closeModal(); renderSavedList();
 }
-
-function editSaved(id) {
-    const item = getSaved(savedTab).find(i => i.id === id);
-    if (!item) return;
-    openModal({ isNew: false, type: savedTab, id, currentName: item.name, currentSpeed: item.speed });
-}
-
-function deleteSaved(id) {
-    if (!confirm('Delete this saved item?')) return;
-    setSaved(savedTab, getSaved(savedTab).filter(i => i.id !== id));
-    renderSavedList();
-}
-
+function editSaved(id) { const item = getSaved(savedTab).find(i => i.id === id); if (!item) return; openModal({ isNew: false, type: savedTab, id, currentName: item.name, currentSpeed: item.speed }); }
+function deleteSaved(id) { if (!confirm('Delete this saved item?')) return; setSaved(savedTab, getSaved(savedTab).filter(i => i.id !== id)); renderSavedList(); }
 function closeModal() { document.getElementById('modal-bg').classList.remove('open'); editingItem = null; }
 
 function createMarker(latlng, icon) {
@@ -982,7 +955,6 @@ function createMarker(latlng, icon) {
     m.on('dragend', () => { if (mode === 'route' && markers.length === 2) fetchRoute(); });
     return m;
 }
-
 async function fetchStatus() {
     try {
         const data = await fetch('/status').then(r => r.json());
@@ -997,25 +969,21 @@ async function fetchStatus() {
         }
     } catch(e) {}
 }
-
 function setMode(m) {
     mode = m;
     document.getElementById('t-teleport').classList.toggle('active', m === 'teleport');
-    document.getElementById('t-route').classList.toggle('active',    m === 'route');
+    document.getElementById('t-route').classList.toggle('active', m === 'route');
     document.getElementById('route-settings').style.display = m === 'route' ? 'block' : 'none';
     handleCancel();
 }
-
 function setSpeed(s) {
     if (document.getElementById('pause-btn').style.display === 'block') return;
-    speed = s;
-    [3,18,50].forEach(v => document.getElementById(`s-${v}`).classList.toggle('active', v === s));
+    speed = s; [3,18,50].forEach(v => document.getElementById(`s-${v}`).classList.toggle('active', v === s));
 }
-
 async function fetchRoute() {
     const s = markers[0].getLatLng(), e = markers[1].getLatLng();
     try {
-        const res  = await fetch(`https://router.project-osrm.org/route/v1/driving/${s.lng},${s.lat};${e.lng},${e.lat}?overview=full&geometries=geojson`);
+        const res = await fetch(`https://router.project-osrm.org/route/v1/driving/${s.lng},${s.lat};${e.lng},${e.lat}?overview=full&geometries=geojson`);
         const data = await res.json();
         routeCoords = data.routes[0].geometry.coordinates;
         if (routeLine) map.removeLayer(routeLine);
@@ -1026,7 +994,6 @@ async function fetchRoute() {
         routeLine = L.polyline([s, e], { color: '#ff3b30', dashArray: '10,10' }).addTo(map);
     }
 }
-
 async function handleGo() {
     const btn = document.getElementById('go-btn');
     if (mode === 'teleport') {
@@ -1037,51 +1004,35 @@ async function handleGo() {
         setTimeout(() => { btn.innerText = 'Confirm'; btn.classList.remove('success'); }, 2000);
     } else {
         if (!routeCoords.length) return;
-        await fetch('/start-route', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ coords: routeCoords, speed })
-        });
-        btn.style.display = 'none';
-        document.getElementById('pause-btn').style.display = 'block';
-        document.getElementById('speed-picker').style.opacity       = '0.35';
-        document.getElementById('speed-picker').style.pointerEvents = 'none';
+        await fetch('/start-route', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ coords: routeCoords, speed }) });
+        btn.style.display = 'none'; document.getElementById('pause-btn').style.display = 'block';
+        document.getElementById('speed-picker').style.opacity = '0.35'; document.getElementById('speed-picker').style.pointerEvents = 'none';
     }
 }
-
 async function handlePause() {
     const data = await fetch('/pause-route').then(r => r.json());
     document.getElementById('pause-btn').innerText = data.paused ? 'Resume' : 'Pause';
 }
-
 async function handleCancel() {
     const btn = document.getElementById('cancel-btn');
     await fetch('/reset-location');
     btn.innerText = 'GPS Reset!'; btn.classList.add('success');
     setTimeout(() => { btn.innerText = 'Cancel'; btn.classList.remove('success'); }, 2000);
     markers.forEach(m => m && map.removeLayer(m)); markers = [];
-    if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
-    routeCoords = [];
+    if (routeLine) { map.removeLayer(routeLine); routeLine = null; } routeCoords = [];
     if (simMarker) { map.removeLayer(simMarker); simMarker = null; }
     if (realMarker) realMarker.setOpacity(1);
-    document.getElementById('go-btn').style.display    = 'block';
-    document.getElementById('go-btn').innerText        = 'Confirm';
-    document.getElementById('go-btn').classList.remove('success');
-    document.getElementById('pause-btn').style.display = 'none';
-    document.getElementById('pause-btn').innerText     = 'Pause';
-    document.getElementById('speed-picker').style.opacity       = '1';
-    document.getElementById('speed-picker').style.pointerEvents = 'auto';
+    document.getElementById('go-btn').style.display = 'block'; document.getElementById('go-btn').innerText = 'Confirm'; document.getElementById('go-btn').classList.remove('success');
+    document.getElementById('pause-btn').style.display = 'none'; document.getElementById('pause-btn').innerText = 'Pause';
+    document.getElementById('speed-picker').style.opacity = '1'; document.getElementById('speed-picker').style.pointerEvents = 'auto';
 }
-
 document.addEventListener('click', (e) => {
     const panel = document.getElementById('saved-panel');
-    if (panel && !panel.contains(e.target)) {
-        panel.classList.remove('open');
-        document.getElementById('saved-body').classList.remove('open');
-        document.getElementById('saved-arrow').classList.remove('open');
+    if (panel && !panel.contains(e.target) && !e.target.closest('#sub-modal')) {
+        panel.classList.remove('open'); document.getElementById('saved-body').classList.remove('open'); document.getElementById('saved-arrow').classList.remove('open');
     }
 });
 
-// ── start ──
 checkAuth();
 </script>
 </body>
