@@ -359,11 +359,12 @@
         <button class="login-btn" id="login-btn" onclick="handleAuth()">Sign In</button>
         <div class="login-msg" id="login-msg"></div>
     </div>
-    <!-- Floating trial bubble -->
-    <div class="trial-bubble" onclick="switchLoginTab('signup'); document.getElementById('login-screen').querySelector('.login-card').scrollIntoView()">
-        <div class="trial-bubble-dot">🧋</div>
-        <span>3-day free trial</span>
-    </div>
+</div>
+
+<!-- Floating trial bubble — outside all screens so fixed positioning works reliably -->
+<div class="trial-bubble" id="trial-bubble" style="display:none;" onclick="switchLoginTab('signup')">
+    <div class="trial-bubble-dot">🧋</div>
+    <span>3-day free trial</span>
 </div>
 
 <!-- ── PRICING SCREEN ── -->
@@ -538,6 +539,9 @@ function showScreen(name) {
         el.style.display = 'flex';
         el.classList.add('active');
     }
+    // show trial bubble only on login screen
+    const bubble = document.getElementById('trial-bubble');
+    if (bubble) bubble.style.display = name === 'login' ? 'flex' : 'none';
     if (name === 'app') {
         setInSession();
         initMap();
