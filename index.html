@@ -37,9 +37,23 @@
         .login-logo { font-family: 'Comfortaa','Arial Rounded MT Bold',sans-serif; font-size: 38px; font-weight: 700; color: var(--purple); margin-bottom: 4px; }
         .login-tagline { font-size: 14px; color: var(--mid); margin-bottom: 32px; font-style: italic; }
         .login-card { width: 100%; max-width: 360px; background: var(--white); border-radius: 20px; padding: 24px; box-shadow: 0 4px 24px rgba(61,53,88,0.1); border: 1px solid var(--light); }
-        .login-tabs { display: flex; background: var(--bg); border-radius: 10px; padding: 3px; gap: 2px; margin-bottom: 20px; }
-        .login-tab { flex: 1; padding: 8px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; background: transparent; color: var(--muted); font-family: -apple-system,sans-serif; }
-        .login-tab.active { background: var(--white); color: var(--purple); box-shadow: 0 1px 4px rgba(61,53,88,0.12); }
+        /* ── SLIDING PILL ── */
+        .sliding-pill {
+            position: absolute;
+            top: 3px; left: 0;
+            height: calc(100% - 6px);
+            background: var(--white);
+            border-radius: 9px;
+            box-shadow: 0 2px 8px rgba(61,53,88,0.13);
+            pointer-events: none;
+            transition: transform 0.38s cubic-bezier(0.34,1.56,0.64,1),
+                        width 0.38s cubic-bezier(0.34,1.56,0.64,1);
+            z-index: 0;
+        }
+
+        .login-tabs { display: flex; background: var(--bg); border-radius: 10px; padding: 3px; gap: 2px; margin-bottom: 20px; position: relative; }
+        .login-tab { flex: 1; padding: 8px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; background: transparent; color: var(--muted); font-family: -apple-system,sans-serif; position: relative; z-index: 1; transition: color 0.25s ease; }
+        .login-tab.active { background: transparent; color: var(--purple); box-shadow: none; }
         .login-input { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid var(--light); font-size: 15px; margin-bottom: 10px; font-family: -apple-system,sans-serif; outline: none; transition: border-color 0.2s; background: var(--bg); color: var(--purple); }
         .login-input:focus { border-color: var(--accent); background: var(--white); }
         .login-input::placeholder { color: var(--muted); }
@@ -212,9 +226,9 @@
         .real-dot { width: 14px; height: 14px; background: var(--muted); border: 2px solid white; border-radius: 50%; box-shadow: 0 0 0 4px rgba(139,125,168,0.3); }
 
         .top-bar { position: fixed; top: 44px; left: 0; width: 100%; display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 0 16px; }
-        .mode-toggle { display: flex; background: rgba(237,231,246,0.95); padding: 3px; border-radius: 12px; box-shadow: 0 4px 15px rgba(61,53,88,0.15); backdrop-filter: blur(10px); }
-        .mode-btn { padding: 8px 20px; border-radius: 9px; border: none; font-weight: 600; background: transparent; color: var(--muted); font-size: 14px; cursor: pointer; transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease; }
-        .mode-btn.active { background: var(--white); color: var(--purple); box-shadow: 0 2px 5px rgba(61,53,88,0.12); }
+        .mode-toggle { display: flex; background: rgba(237,231,246,0.95); padding: 3px; border-radius: 12px; box-shadow: 0 4px 15px rgba(61,53,88,0.15); backdrop-filter: blur(10px); position: relative; }
+        .mode-btn { padding: 8px 20px; border-radius: 9px; border: none; font-weight: 600; background: transparent; color: var(--muted); font-size: 14px; cursor: pointer; position: relative; z-index: 1; transition: color 0.25s ease; }
+        .mode-btn.active { background: transparent; color: var(--purple); box-shadow: none; }
 
         .saved-panel { position: fixed; top: 44px; left: 16px; width: auto; background: transparent; border-radius: 16px; box-shadow: none; z-index: 1001; overflow: hidden; transition: box-shadow 0.25s, background 0.25s; }
         .saved-panel.open { width: 270px; background: rgba(245,240,255,0.98); box-shadow: 0 8px 32px rgba(61,53,88,0.15); backdrop-filter: blur(20px); }
@@ -227,9 +241,9 @@
         .saved-body { max-height: 0; overflow: hidden; width: 270px; transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; opacity: 0; }
         .saved-body.open { max-height: 420px; opacity: 1; }
         .saved-divider { height: 1px; background: var(--light); }
-        .saved-tabs { display: flex; background: var(--bg); padding: 4px; gap: 3px; margin: 10px 10px 0; border-radius: 10px; }
-        .saved-tab { flex: 1; padding: 7px; border-radius: 8px; border: none; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; font-family: -apple-system,sans-serif; background: transparent; transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease; }
-        .saved-tab.active { background: var(--white); color: var(--purple); box-shadow: 0 1px 4px rgba(61,53,88,0.12); }
+        .saved-tabs { display: flex; background: var(--bg); padding: 4px; gap: 3px; margin: 10px 10px 0; border-radius: 10px; position: relative; }
+        .saved-tab { flex: 1; padding: 7px; border-radius: 8px; border: none; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; font-family: -apple-system,sans-serif; background: transparent; position: relative; z-index: 1; transition: color 0.25s ease; }
+        .saved-tab.active { background: transparent; color: var(--purple); box-shadow: none; }
         .saved-list { max-height: 240px; overflow-y: auto; }
         .saved-item { display: flex; align-items: center; padding: 10px 14px; gap: 10px; border-bottom: 1px solid var(--bg); cursor: pointer; }
         .saved-item:last-child { border-bottom: none; }
@@ -268,9 +282,9 @@
         .modal-cancel:hover { background: var(--accent); color: white; }
 
         .controls { position: fixed; bottom: 30px; left: 20px; right: 20px; background: rgba(245,240,255,0.97); padding: 20px; border-radius: 24px; z-index: 1000; backdrop-filter: blur(20px); border: 1px solid var(--light); box-shadow: 0 8px 32px rgba(61,53,88,0.12); }
-        .speed-picker { display: flex; background: var(--light); border-radius: 12px; padding: 3px; margin-bottom: 15px; transition: opacity 0.2s; }
-        .speed-opt { flex: 1; border: none; background: transparent; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; cursor: pointer; color: var(--muted); font-family: -apple-system,sans-serif; transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease; }
-        .speed-opt.active { background: var(--white); color: var(--purple); box-shadow: 0 2px 5px rgba(61,53,88,0.1); }
+        .speed-picker { display: flex; background: var(--light); border-radius: 12px; padding: 3px; margin-bottom: 15px; transition: opacity 0.2s; position: relative; }
+        .speed-opt { flex: 1; border: none; background: transparent; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; cursor: pointer; color: var(--muted); font-family: -apple-system,sans-serif; position: relative; z-index: 1; transition: color 0.25s ease; }
+        .speed-opt.active { background: transparent; color: var(--purple); box-shadow: none; }
         #route-settings { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; }
         #route-settings.visible { max-height: 80px; opacity: 1; }
         .btn-group { display: flex; gap: 10px; }
@@ -350,6 +364,7 @@
     <div class="login-tagline">anywhere but here.</div>
     <div class="login-card">
         <div class="login-tabs">
+            <div class="sliding-pill" id="login-pill"></div>
             <button class="login-tab active" id="lt-signin" onclick="switchLoginTab('signin')">Sign In</button>
             <button class="login-tab"        id="lt-signup" onclick="switchLoginTab('signup')">Sign Up</button>
         </div>
@@ -386,6 +401,7 @@
     <div id="map"></div>
     <div class="top-bar">
         <div class="mode-toggle">
+            <div class="sliding-pill" id="mode-pill"></div>
             <button id="t-teleport" class="mode-btn active" onclick="setMode('teleport')">Teleport</button>
             <button id="t-route"    class="mode-btn"        onclick="setMode('route')">Route</button>
         </div>
@@ -398,6 +414,7 @@
         <div class="saved-body" id="saved-body">
             <div class="saved-divider"></div>
             <div class="saved-tabs">
+                <div class="sliding-pill" id="saved-tab-pill"></div>
                 <button class="saved-tab active" id="tab-locations" onclick="switchTab('locations')">Locations</button>
                 <button class="saved-tab"        id="tab-routes"    onclick="switchTab('routes')">Routes</button>
             </div>
@@ -435,6 +452,7 @@
     <div class="controls">
         <div id="route-settings">
             <div class="speed-picker" id="speed-picker">
+                <div class="sliding-pill" id="speed-pill"></div>
                 <button id="s-3"  class="speed-opt active" onclick="setSpeed(3)"><span>🚶</span>3 mph</button>
                 <button id="s-18" class="speed-opt"        onclick="setSpeed(18)"><span>🚴</span>18 mph</button>
                 <button id="s-50" class="speed-opt"        onclick="setSpeed(50)"><span>🚗</span>50 mph</button>
@@ -477,11 +495,17 @@ function showScreen(name) {
         bubble.classList.add('visible');
         document.getElementById('bubble-text').textContent = '3-day free trial';
         bubble.style.animation = 'float 3s ease-in-out infinite';
+        // init login pill
+        setTimeout(() => movePill('login-pill', document.getElementById('lt-signin')), 50);
     } else if (name === 'app') {
         bubble.classList.add('in-app');
         setInSession();
         initMap();
-        // bubble managed by updateBubbleForApp()
+        // init mode and speed pills
+        setTimeout(() => {
+            movePill('mode-pill', document.getElementById('t-teleport'));
+            movePill('speed-pill', document.getElementById('s-3'));
+        }, 50);
     } else {
         bubble.classList.remove('in-app');
         bubble.classList.remove('visible');
@@ -748,6 +772,18 @@ function updateMapBadge(text, cls) {
 }
 function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
+// ── sliding pill helper ──
+function movePill(pillId, activeEl) {
+    const pill = document.getElementById(pillId);
+    if (!pill || !activeEl) return;
+    requestAnimationFrame(() => {
+        pill.style.width     = activeEl.offsetWidth + 'px';
+        pill.style.height    = activeEl.offsetHeight + 'px';
+        pill.style.top       = activeEl.offsetTop + 'px';
+        pill.style.transform = `translateX(${activeEl.offsetLeft}px)`;
+    });
+}
+
 function switchLoginTab(tab) {
     loginMode = tab;
     document.getElementById('lt-signin').classList.toggle('active', tab === 'signin');
@@ -755,6 +791,7 @@ function switchLoginTab(tab) {
     document.getElementById('login-btn').textContent = tab === 'signin' ? 'Sign In' : 'Create Account';
     document.getElementById('login-msg').textContent = '';
     document.getElementById('login-msg').className   = 'login-msg';
+    movePill('login-pill', document.getElementById(tab === 'signin' ? 'lt-signin' : 'lt-signup'));
 }
 
 async function handleAuth() {
@@ -900,12 +937,17 @@ function toggleSavedPanel() {
     const panel = document.getElementById('saved-panel'), body = document.getElementById('saved-body'), arrow = document.getElementById('saved-arrow');
     const isOpen = body.classList.toggle('open');
     arrow.classList.toggle('open', isOpen); panel.classList.toggle('open', isOpen);
-    if (isOpen) renderSavedList();
+    if (isOpen) {
+        renderSavedList();
+        // position pill after panel opens and has dimensions
+        setTimeout(() => movePill('saved-tab-pill', document.getElementById('tab-locations')), 50);
+    }
 }
 function switchTab(tab) {
     savedTab = tab;
     document.getElementById('tab-locations').classList.toggle('active', tab === 'locations');
     document.getElementById('tab-routes').classList.toggle('active', tab === 'routes');
+    movePill('saved-tab-pill', document.getElementById(tab === 'locations' ? 'tab-locations' : 'tab-routes'));
     renderSavedList();
 }
 function renderSavedList() {
@@ -1025,6 +1067,7 @@ function setMode(m) {
     mode = m;
     document.getElementById('t-teleport').classList.toggle('active', m === 'teleport');
     document.getElementById('t-route').classList.toggle('active', m === 'route');
+    movePill('mode-pill', document.getElementById(m === 'teleport' ? 't-teleport' : 't-route'));
 
     const routeSettings = document.getElementById('route-settings');
     if (m === 'route') {
@@ -1033,7 +1076,6 @@ function setMode(m) {
         routeSettings.classList.remove('visible');
     }
 
-    // move bubble up in route mode, back down in teleport
     const bubble = document.getElementById('global-bubble');
     bubble.classList.toggle('route-mode', m === 'route');
 
@@ -1041,7 +1083,9 @@ function setMode(m) {
 }
 function setSpeed(s) {
     if (document.getElementById('pause-btn').style.display === 'block') return;
-    speed = s; [3,18,50].forEach(v => document.getElementById(`s-${v}`).classList.toggle('active', v === s));
+    speed = s;
+    [3,18,50].forEach(v => document.getElementById(`s-${v}`).classList.toggle('active', v === s));
+    movePill('speed-pill', document.getElementById(`s-${s}`));
 }
 async function fetchRoute() {
     const s = markers[0].getLatLng(), e = markers[1].getLatLng();
