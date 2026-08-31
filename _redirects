@@ -1,2 +1,4 @@
 /download/windows https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.7/TapiocaSetup.exe 302
 /download/windows/sha256 https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.7/TapiocaSetup.exe.sha256 302
+/privacy /privacy.html 200
+/terms /terms.html 200

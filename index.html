@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>tapioca — anywhere but here.</title>
-  <meta name="description" content="Tapioca is a signed Windows desktop app for simulating an iPhone’s GPS location over USB. Download the Windows Beta 7 release." />
+  <meta name="description" content="Be anywhere. Instantly. Try the interactive Tapioca preview and download the signed Windows beta." />
   <meta property="og:title" content="tapioca — anywhere but here." />
-  <meta property="og:description" content="Download the signed Tapioca Windows Beta 7 installer." />
+  <meta property="og:description" content="A calm, polished way to change your iPhone's reported location." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://usetapioca.com/" />
+  <link rel="icon" href="assets/tapioca-logo.png" type="image/png" />
   <style>
 @font-face {
   font-family: 'Comfortaa';
@@ -39,1480 +40,827 @@
   src: url('data:font/woff2;base64,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') format('woff2');
 }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink:#3d3558;
+  --ink-soft:#756a89;
+  --accent:#b39ddb;
+  --accent-deep:#9575cd;
+  --accent-dark:#7658ad;
+  --lavender:#ede7f6;
+  --lavender-soft:#f7f3ff;
+  --white:#fff;
+  --mint:#aee7c5;
+  --danger:#d94d64;
+  --glass:rgba(255,255,255,.58);
+  --glass-strong:rgba(255,255,255,.72);
+  --glass-line:rgba(255,255,255,.82);
+  --shadow:0 28px 80px rgba(61,53,88,.14);
+  --shadow-soft:0 16px 44px rgba(61,53,88,.10);
+  --radius-xl:38px;
+  --radius-lg:28px;
+  --radius-md:20px;
+}
 
-    :root {
-      --bg: #F5F0FF;
-      --bg-alt: #EDE7F6;
-      --text: #3D3558;
-      --accent: #B39DDB;
-      --accent-deep: #9575CD;
-      --light-lav: #D1C4E9;
-      --blue: #90CAF9;
-      --white: #FFFFFF;
-      --footer-bg: #3D3558;
-      --footer-text: #F5F0FF;
-    }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#f5f0ff}
+section[id],header[id]{scroll-margin-top:88px}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 12% 2%,rgba(255,255,255,.98) 0 4%,transparent 28%),
+    radial-gradient(circle at 92% 11%,rgba(190,229,255,.42),transparent 27%),
+    radial-gradient(circle at 76% 42%,rgba(229,207,255,.52),transparent 34%),
+    linear-gradient(145deg,#f7f4ff 0%,#eee6fa 44%,#f8f4ff 100%);
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:radial-gradient(rgba(149,117,205,.08) 1px,transparent 1px);
+  background-size:34px 34px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.3),transparent 72%);
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input{font:inherit}
+h1,h2,h3,.brand-word{font-family:'Comfortaa',cursive}
 
-    html { scroll-behavior: smooth; }
+@media (pointer:fine){
+  *{scrollbar-width:thin;scrollbar-color:#a98bd7 #f5f0ff}
+  *::-webkit-scrollbar{width:10px;height:10px}
+  *::-webkit-scrollbar-track{background:#f5f0ff}
+  *::-webkit-scrollbar-thumb{
+    border:2px solid #f5f0ff;border-radius:999px;
+    background:linear-gradient(180deg,#bba5df,#9270c7);
+  }
+  *::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#aa8ed5,#7f5eb7)}
+}
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.6;
-    }
+.container{width:min(1180px,calc(100% - 48px));margin:0 auto}
+.section{padding:112px 0;position:relative}
+.section-kicker{
+  margin:0 0 14px;font-size:.76rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent-dark)
+}
+.section-title{font-size:clamp(2.1rem,5vw,4rem);line-height:1.08;letter-spacing:-.04em;margin:0}
+.section-copy{font-size:clamp(1rem,1.5vw,1.15rem);color:var(--ink-soft);max-width:680px;margin:18px 0 0}
 
-    h1, h2, h3, .display {
-      font-family: 'Comfortaa', cursive;
-      font-weight: 700;
-    }
+.glass{
+  background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(244,237,252,.48));
+  border:1px solid var(--glass-line);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(24px) saturate(1.08);
+  -webkit-backdrop-filter:blur(24px) saturate(1.08);
+}
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 16px;
-      left: 16px;
-      right: 16px;
-      z-index: 100;
-      padding: 0 24px;
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-radius: 0px;
-      background: transparent;
-      border: 1px solid transparent;
-      transition: left 0.45s cubic-bezier(0.22,1,0.36,1),
-                  right 0.45s cubic-bezier(0.22,1,0.36,1),
-                  border-radius 0.45s cubic-bezier(0.22,1,0.36,1),
-                  background 0.35s ease,
-                  backdrop-filter 0.35s ease,
-                  box-shadow 0.35s ease,
-                  border-color 0.35s ease,
-                  padding 0.45s cubic-bezier(0.22,1,0.36,1);
-    }
-    nav.scrolled {
-      background: rgba(237, 231, 246, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 4px 24px rgba(61,53,88,0.10);
-      border-color: rgba(179,157,219,0.3);
-      border-radius: 999px;
-      left: max(32px, calc(50% - 460px));
-      right: max(32px, calc(50% - 460px));
-      padding: 0 28px;
-    }
-    /* right-side group: hamburger + download always together */
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.orb{position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(255,255,255,.82);background:radial-gradient(circle at 32% 25%,rgba(255,255,255,.95) 0 5%,rgba(255,255,255,.34) 20%,rgba(209,196,233,.24) 58%,rgba(149,117,205,.12));box-shadow:inset -12px -16px 28px rgba(97,70,135,.08),0 22px 55px rgba(61,53,88,.08)}
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text);
-    }
-    .nav-logo svg { width: 32px; height: 32px; }
-    .nav-wordmark {
-      font-family: 'Comfortaa', cursive;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--text);
-      letter-spacing: -0.02em;
-    }
+/* payment banner */
+.payment-banner{position:fixed;top:86px;left:50%;transform:translate(-50%,-18px);z-index:200;width:min(620px,calc(100% - 32px));padding:14px 18px;border-radius:18px;display:flex;align-items:center;gap:12px;opacity:0;pointer-events:none;transition:.3s ease}
+.payment-banner.visible{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.payment-banner.success{background:rgba(230,248,236,.92);border:1px solid rgba(77,169,110,.28)}
+.payment-banner.cancelled{background:rgba(255,244,224,.94);border:1px solid rgba(196,144,56,.28)}
+.payment-banner-msg{flex:1;font-size:.9rem}
+.payment-banner-close{border:0;background:transparent;color:var(--ink);cursor:pointer;font-size:1rem}
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.15s;
-    }
-    .nav-links a:hover { color: var(--accent-deep); }
+/* nav */
+.site-nav{position:fixed;z-index:150;top:16px;left:50%;transform:translateX(-50%);width:min(1120px,calc(100% - 28px));height:62px;padding:0 18px 0 16px;border-radius:24px;display:flex;align-items:center;justify-content:space-between;transition:.35s ease}
+.site-nav.scrolled{border-radius:999px;background:rgba(247,243,255,.74);border-color:rgba(255,255,255,.92);box-shadow:0 12px 36px rgba(61,53,88,.10);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:38px;height:38px;object-fit:contain}
+.brand-word{font-size:1.2rem;font-weight:700;letter-spacing:-.03em}
+.nav-links{display:flex;align-items:center;gap:27px}
+.nav-links a{font-size:.9rem;text-decoration:none;color:var(--ink-soft);font-weight:600;transition:.18s ease}
+.nav-links a:hover{color:var(--accent-dark)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-download{padding:10px 19px;border-radius:999px;background:linear-gradient(135deg,#b79ee0,#9876cf);color:#fff;text-decoration:none;font-size:.88rem;font-weight:700;box-shadow:0 9px 24px rgba(149,117,205,.24)}
+.nav-toggle{display:none;width:42px;height:42px;border:1px solid rgba(255,255,255,.82);border-radius:50%;background:rgba(255,255,255,.52);color:var(--ink);cursor:pointer}
+.mobile-menu{display:none;position:fixed;z-index:145;top:86px;left:16px;right:16px;padding:18px;border-radius:24px}
+.mobile-menu.open{display:grid;gap:6px}
+.mobile-menu a{padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:600;color:var(--ink-soft)}
+.mobile-menu a:hover{background:rgba(255,255,255,.45);color:var(--ink)}
 
-    /* Coming Soon shimmer */
-    .nav-coming-soon {
-      background: linear-gradient(90deg, var(--accent-deep) 0%, #c9aff5 40%, #e8d5ff 55%, #c9aff5 70%, var(--accent-deep) 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: nav-shimmer 2.8s linear infinite;
-      font-weight: 600 !important;
-    }
-    @keyframes nav-shimmer {
-      0%   { background-position: 200% center; }
-      100% { background-position: -200% center; }
-    }
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 70px;position:relative;overflow:hidden}
+.hero .orb.a{width:150px;height:150px;right:5%;top:12%}
+.hero .orb.b{width:70px;height:70px;left:4%;bottom:16%}
+.hero .orb.c{width:42px;height:42px;right:40%;bottom:8%}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(520px,1.2fr);gap:56px;align-items:center}
+.hero-copy{position:relative;z-index:2}
+.hero-title{font-size:clamp(3.5rem,7.2vw,6.6rem);line-height:.98;letter-spacing:-.065em;margin:0 0 25px}
+.hero-lead{font-size:clamp(1.08rem,1.7vw,1.35rem);line-height:1.55;color:var(--ink-soft);max-width:560px;margin:0}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:32px 0 24px}
+.button{min-height:52px;padding:0 24px;border-radius:999px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;font-weight:700;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.button:hover{transform:translateY(-2px)}
+.button.primary{background:linear-gradient(135deg,#b59cdc,#9472c9);color:#fff;box-shadow:0 14px 30px rgba(149,117,205,.26)}
+.button.secondary{background:rgba(255,255,255,.47);border-color:rgba(149,117,205,.38);color:var(--ink);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+.button.disabled{opacity:.52;pointer-events:none}
+.trust-row{display:flex;gap:18px;flex-wrap:wrap;color:var(--ink-soft);font-size:.84rem}
+.trust-row span{display:flex;align-items:center;gap:7px}
+.trust-row span::before{content:'✓';color:var(--accent-dark);font-weight:800}
+.hero-mobile-note{display:none;padding:14px 16px;border-radius:18px;margin-top:18px;font-size:.9rem;color:var(--ink-soft)}
+.hero-visual{position:relative;z-index:2;padding:16px;border-radius:42px;transform:perspective(1400px) rotateY(-3deg) rotateX(1.2deg)}
+.hero-visual::before{content:'';position:absolute;inset:10% 9%;z-index:-1;background:radial-gradient(circle,rgba(181,156,220,.52),transparent 66%);filter:blur(30px)}
+.hero-visual img{width:100%;border-radius:30px;box-shadow:0 32px 90px rgba(61,53,88,.18)}
+.hero-visual-note{position:absolute;left:34px;bottom:28px;padding:11px 15px;border-radius:999px;background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:.82rem;font-weight:700;color:var(--ink)}
 
-    /* Manage Billing — same style as other nav links */
-    .nav-billing { color: var(--text) !important; font-weight: 500 !important; }
+/* demo */
+.demo-section{padding-top:126px}
+.demo-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:38px}
+.demo-heading .section-copy{max-width:520px}
+.demo-shell{position:relative;border-radius:44px;padding:24px;overflow:hidden}
+.demo-shell .orb{width:110px;height:110px;right:-18px;top:12%}
+.demo-grid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(230px,.62fr);gap:26px;align-items:center;position:relative;z-index:2}
+.laptop{border-radius:30px;overflow:hidden;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.86);box-shadow:0 26px 70px rgba(61,53,88,.17)}
+.laptop-bar{height:38px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 14px;background:linear-gradient(90deg,rgba(238,233,244,.92),rgba(246,231,235,.88),rgba(215,242,247,.9));font-family:'Comfortaa';font-size:.72rem;font-weight:700;color:#76668f}
+.traffic{display:flex;gap:5px} .traffic i{width:9px;height:9px;border-radius:50%;display:block;background:#cdb6eb} .traffic i:nth-child(2){background:#aee7c5} .traffic i:nth-child(3){background:#f4a0ae}
+.demo-map{position:relative;aspect-ratio:16/8.4;overflow:hidden;cursor:crosshair;background:#e7edf2}
+.demo-map>img{width:100%;height:100%;object-fit:cover;object-position:center 51%;transition:transform .75s cubic-bezier(.22,1,.36,1),filter .4s ease}
+.demo-map.selected>img,.demo-map.active>img{transform:scale(1.035) translate(-1.5%,1%)}
+.demo-map::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,.04),rgba(214,195,236,.08));pointer-events:none}
+.demo-tabs{position:absolute;top:16px;left:50%;transform:translateX(-50%);display:flex;padding:4px;border-radius:18px;background:rgba(247,242,251,.78);border:1px solid rgba(255,255,255,.9);box-shadow:0 10px 25px rgba(61,53,88,.12);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);z-index:4}
+.demo-tab{border:0;background:transparent;padding:9px 18px;border-radius:14px;font-weight:700;color:#7a6e8d;cursor:pointer}
+.demo-tab.active{background:rgba(255,255,255,.78);color:var(--ink);box-shadow:0 6px 18px rgba(61,53,88,.10)}
+.demo-instruction{position:absolute;left:18px;top:18px;padding:10px 14px;border-radius:15px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);font-size:.78rem;font-weight:700;z-index:3;transition:.25s ease}
+.demo-pin{position:absolute;left:52%;top:52%;width:32px;height:32px;z-index:5;transform:translate(-50%,-50%) scale(.2);opacity:0;transition:.35s cubic-bezier(.22,1,.36,1)}
+.demo-pin::before{content:'';position:absolute;inset:0;border-radius:50% 50% 50% 12%;transform:rotate(-45deg);background:linear-gradient(135deg,#baa0df,#8060b4);box-shadow:0 12px 26px rgba(61,53,88,.25)}
+.demo-pin::after{content:'';position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;left:11px;top:11px;box-shadow:0 0 0 4px rgba(255,255,255,.28)}
+.demo-map.selected .demo-pin,.demo-map.active .demo-pin,.demo-map.updating .demo-pin,.demo-map.resetting .demo-pin{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.demo-map.updating .demo-pin,.demo-map.active .demo-pin{animation:pinPulse 1.05s ease-in-out infinite}
+@keyframes pinPulse{50%{filter:drop-shadow(0 0 10px rgba(149,117,205,.8));transform:translate(-50%,-50%) scale(1.08)}}
+.device-pill{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:6;padding:9px 15px;border-radius:999px;background:rgba(230,252,238,.82);border:1px solid rgba(255,255,255,.9);color:#32845a;font-size:.78rem;font-weight:800;box-shadow:0 10px 24px rgba(41,133,83,.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.demo-tray{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 20px 20px;background:linear-gradient(135deg,rgba(255,255,255,.84),rgba(232,223,246,.72));border-top:1px solid rgba(255,255,255,.9)}
+.tray-title{font-weight:800;font-size:.95rem} .tray-sub{font-size:.78rem;color:var(--ink-soft)}
+.tray-actions{display:flex;gap:9px}
+.demo-button{min-width:120px;height:44px;border-radius:16px;border:0;font-weight:800;cursor:pointer;transition:.2s ease}
+.demo-button.confirm{background:linear-gradient(135deg,#b79ee0,#8c68c3);color:#fff;box-shadow:0 9px 22px rgba(149,117,205,.22)}
+.demo-button.cancel{background:#463a58;color:#fff}
+.demo-button:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}
+.demo-signal{position:absolute;left:72%;top:50%;width:9%;height:3px;border-radius:999px;background:linear-gradient(90deg,transparent,rgba(149,117,205,.55),transparent);opacity:0;z-index:3}
+.demo-shell.transmitting .demo-signal{opacity:1;animation:signal 1.1s ease-in-out}
+@keyframes signal{0%{transform:translateX(-40px);opacity:0}45%{opacity:1}100%{transform:translateX(42px);opacity:0}}
+.phone-wrap{display:grid;place-items:center;position:relative}
+.phone{position:relative;width:min(100%,285px);aspect-ratio:941/2048;border-radius:44px;padding:8px;background:linear-gradient(145deg,#fefeff,#cfc7d9 60%,#8f829d);box-shadow:0 30px 70px rgba(35,28,50,.28),inset 0 1px 1px rgba(255,255,255,.8)}
+.phone-screen{position:relative;width:100%;height:100%;border-radius:37px;overflow:hidden;background:#15383d}
+.phone-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .65s ease,transform .85s cubic-bezier(.22,1,.36,1)}
+.phone-destination{opacity:0;transform:scale(1.04)}
+.phone.active .phone-home,.phone.updating .phone-home{opacity:0}
+.phone.active .phone-destination,.phone.updating .phone-destination{opacity:1;transform:scale(1)}
+.phone-status{position:absolute;left:50%;bottom:15%;transform:translateX(-50%) translateY(8px);width:82%;padding:10px 12px;border-radius:17px;text-align:center;background:rgba(18,48,53,.78);border:1px solid rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transition:.35s ease}
+.phone-status.visible{opacity:1;transform:translateX(-50%) translateY(0)}
+.phone-status strong{display:block;font-size:.78rem} .phone-status span{display:block;font-size:.68rem;color:rgba(255,255,255,.72);margin-top:1px}
+.phone-caption{margin-top:14px;text-align:center;font-size:.8rem;color:var(--ink-soft)}
 
-    .nav-cta {
-      background: var(--accent);
-      color: var(--white);
-      border: none;
-      border-radius: 24px;
-      padding: 9px 22px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.15s;
-      white-space: nowrap;
-    }
-    .nav-cta:hover { background: var(--accent-deep); }
+/* showcase */
+.showcase-grid{display:grid;grid-template-columns:1.35fr .78fr .92fr;gap:18px;margin-top:42px}
+.showcase-card{border-radius:32px;padding:18px;overflow:hidden;min-height:410px;display:flex;flex-direction:column}
+.showcase-card h3{font-size:1.35rem;letter-spacing:-.03em;margin:2px 3px 7px}
+.showcase-card p{font-size:.9rem;color:var(--ink-soft);margin:0 3px 18px}
+.showcase-media{flex:1;border-radius:22px;overflow:hidden;background:rgba(218,207,235,.55);min-height:245px}
+.showcase-media img{width:100%;height:100%;object-fit:cover}
+.showcase-card.large .showcase-media img{object-position:center}
+.showcase-card.phone-card .showcase-media{display:grid;place-items:center;background:linear-gradient(145deg,rgba(218,207,235,.55),rgba(255,255,255,.38))}
+.showcase-card.phone-card img{height:300px;width:auto;border-radius:28px;box-shadow:0 18px 36px rgba(35,28,50,.25)}
+.showcase-card.reset-card .showcase-media img{object-position:center bottom}
 
-    .nav-mobile-toggle { display: none; }
+/* reassurance */
+.reassurance{overflow:hidden}
+.reassurance-wrap{border-radius:42px;padding:48px;position:relative}
+.reassurance-wrap .orb{width:125px;height:125px;right:-20px;bottom:-25px}
+.reassurance-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:start;position:relative;z-index:2}
+.reassurance-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px;grid-column:1/-1}
+.reassurance-card{padding:24px;border-radius:25px;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.72)}
+.reassurance-card i{display:grid;place-items:center;width:42px;height:42px;border-radius:16px;background:rgba(179,157,219,.26);font-style:normal;margin-bottom:20px}
+.reassurance-card h3{font-size:1.02rem;margin:0 0 8px}
+.reassurance-card p{font-size:.88rem;color:var(--ink-soft);margin:0}
 
-    /* ── SECTIONS ── */
-    section { padding: 88px 32px; }
-    section.alt { background: var(--bg-alt); }
-    section.dark { background: var(--footer-bg); color: var(--footer-text); }
+/* compatibility */
+.compatibility{text-align:center;padding:40px 0 28px}
+.compatibility p{font-size:1rem;color:var(--ink-soft);margin:0 0 20px}
+.chips{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.chip{padding:9px 15px;border-radius:999px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.82);box-shadow:0 8px 22px rgba(61,53,88,.07);font-size:.82rem;font-weight:700;color:var(--ink-soft)}
 
-    .container { max-width: 1080px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-deep);
-      margin-bottom: 12px;
-    }
+/* pricing */
+.pricing-head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:35px}
+.trial-strip{border-radius:28px;padding:25px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:18px}
+.trial-strip h3{font-size:1.45rem;margin:0 0 5px} .trial-strip p{margin:0;color:var(--ink-soft)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.price-card{position:relative;border-radius:30px;padding:30px 25px;min-height:330px;display:flex;flex-direction:column}
+.price-card.featured{outline:2px solid rgba(149,117,205,.38);transform:translateY(-8px)}
+.best-value{position:absolute;top:16px;right:16px;padding:5px 10px;border-radius:999px;background:#a285d4;color:#fff;font-size:.69rem;font-weight:800}
+.price-tier{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;font-weight:800;color:var(--ink-soft)}
+.price-amount{font-family:'Comfortaa';font-size:2.65rem;line-height:1;margin:22px 0 12px;color:var(--accent-dark)}
+.price-equiv{font-size:.82rem;color:var(--accent-dark);font-weight:700}
+.price-note{font-size:.82rem;color:var(--ink-soft);margin-top:6px}
+.price-card ul{list-style:none;padding:0;margin:24px 0 26px;display:grid;gap:10px;color:var(--ink-soft);font-size:.86rem}
+.price-card li::before{content:'✓';margin-right:8px;color:var(--accent-dark);font-weight:800}
+.price-card .button{margin-top:auto;width:100%}
+.billing-row{display:flex;justify-content:center;gap:10px;align-items:center;margin-top:25px;color:var(--ink-soft);font-size:.87rem}
+.billing-row a{color:var(--accent-dark);font-weight:800;text-decoration:none}
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background: var(--bg);
-      padding-top: 84px;
-    }
+/* faq */
+.faq-wrap{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px;align-items:start}
+.faq-list{display:grid;gap:10px}
+.faq-item{border-radius:22px;padding:0 20px}
+.faq-q{width:100%;border:0;background:transparent;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;padding:20px 0;color:var(--ink);font-weight:800;cursor:pointer}
+.faq-q span{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:rgba(179,157,219,.2);transition:.25s ease}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;color:var(--ink-soft);font-size:.9rem;transition:max-height .35s ease,padding .35s ease}
+.faq-item.open .faq-a{max-height:220px;padding:0 0 20px}
 
-    .hero-pearls {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .pearl {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--light-lav);
-      opacity: 0.35;
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-18px); }
-    }
+/* final download */
+.download-panel{border-radius:44px;padding:56px;text-align:center;position:relative;overflow:hidden}
+.download-panel .orb.a{width:120px;height:120px;left:-30px;bottom:-28px}
+.download-panel .orb.b{width:78px;height:78px;right:7%;top:18%}
+.download-panel-inner{position:relative;z-index:2;max-width:720px;margin:0 auto}
+.download-panel .section-title{margin-bottom:16px}
+.download-panel .section-copy{margin:0 auto 28px}
+.download-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.download-meta{margin-top:18px;font-size:.78rem;color:var(--ink-soft)}
+.download-meta a{color:var(--accent-dark);font-weight:800;text-decoration:none}
 
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 680px;
-    }
-    .hero-headline {
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      line-height: 1.05;
-      color: var(--text);
-      margin-bottom: 16px;
-    }
-    .hero-sub {
-      font-size: 1.3rem;
-      color: var(--accent-deep);
-      font-weight: 500;
-      margin-bottom: 36px;
-    }
+/* footer */
+footer{margin-top:95px;padding:58px 0 28px;background:#3d3558;color:#f5f0ff;position:relative;overflow:hidden}
+footer::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 0%,rgba(179,157,219,.18),transparent 30%),radial-gradient(circle at 8% 100%,rgba(144,202,249,.13),transparent 28%)}
+.footer-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px}
+.footer-brand{font-family:'Comfortaa';font-size:1.35rem;font-weight:700}
+.footer-tag{font-size:.85rem;color:rgba(245,240,255,.62);margin-top:9px}
+.footer-links h4{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,240,255,.5);margin:0 0 14px}
+.footer-links a{display:block;text-decoration:none;color:rgba(245,240,255,.78);font-size:.86rem;margin:7px 0}
+.footer-bottom{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:20px;font-size:.76rem;color:rgba(245,240,255,.46)}
 
-    .download-btns {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
+/* auth modal */
+.auth-overlay{position:fixed;inset:0;z-index:500;display:grid;place-items:center;padding:20px;background:rgba(44,37,58,.48);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:.25s ease}
+.auth-overlay.open{opacity:1;pointer-events:auto}
+.auth-modal{width:min(500px,100%);border-radius:32px;padding:30px;position:relative}
+.auth-close{position:absolute;right:18px;top:18px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.82);background:rgba(255,255,255,.52);color:var(--ink);cursor:pointer}
+.auth-plan{display:inline-flex;padding:7px 11px;border-radius:999px;background:rgba(179,157,219,.23);font-size:.76rem;font-weight:800;color:var(--accent-dark);margin-bottom:18px}
+.auth-modal h2{font-size:2rem;margin:0 0 8px}
+.auth-modal>p{color:var(--ink-soft);margin:0 0 21px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;padding:4px;border-radius:16px;background:rgba(179,157,219,.13);margin-bottom:14px}
+.auth-tab{border:0;background:transparent;padding:10px;border-radius:12px;font-weight:800;color:var(--ink-soft);cursor:pointer}
+.auth-tab.active{background:rgba(255,255,255,.72);color:var(--ink)}
+.auth-error{display:none;padding:10px 12px;border-radius:13px;background:rgba(217,77,100,.1);color:#a22d42;font-size:.82rem;margin-bottom:12px}
+.auth-error.visible{display:block}
+.auth-field{width:100%;height:50px;border:1px solid rgba(149,117,205,.25);background:rgba(255,255,255,.58);border-radius:15px;padding:0 15px;color:var(--ink);outline:none;margin-bottom:10px}
+.auth-field:focus{border-color:var(--accent-deep);box-shadow:0 0 0 3px rgba(149,117,205,.12)}
+.auth-submit{width:100%;height:50px;border:0;border-radius:16px;background:linear-gradient(135deg,#b59cdc,#9472c9);color:#fff;font-weight:800;cursor:pointer}
+.auth-loading{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin-right:8px;vertical-align:-2px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.auth-success{display:none;text-align:center;padding:20px 0 5px;color:var(--ink-soft)}
 
-    .btn-primary {
-      background: var(--accent);
-      color: var(--white);
-      border: 2px solid var(--accent);
-      border-radius: 28px;
-      padding: 14px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.15s, border-color 0.15s;
-    }
-    .btn-primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+/* reveal once */
+.reveal{opacity:0;transform:translateY(18px);filter:blur(7px);transition:opacity .52s ease,transform .52s cubic-bezier(.22,1,.36,1),filter .52s ease}
+.reveal.revealed{opacity:1;transform:none;filter:none}
+.reveal-delay-1{transition-delay:.08s} .reveal-delay-2{transition-delay:.16s} .reveal-delay-3{transition-delay:.24s}
 
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 2px solid var(--accent);
-      border-radius: 28px;
-      padding: 14px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .btn-secondary:hover { border-color: var(--accent-deep); color: var(--accent-deep); }
+@media(max-width:1050px){
+  .nav-links{display:none} .nav-toggle{display:grid;place-items:center}
+  .hero-grid{grid-template-columns:1fr;gap:46px} .hero-copy{max-width:720px} .hero-visual{width:min(900px,100%);justify-self:center;transform:none}
+  .demo-grid{grid-template-columns:1fr .48fr} .showcase-grid{grid-template-columns:1fr 1fr} .showcase-card.large{grid-column:1/-1}
+  .reassurance-grid{grid-template-columns:1fr} .reassurance-cards{grid-column:auto}
+  .faq-wrap{grid-template-columns:1fr;gap:34px}
+}
+@media(max-width:760px){
+  .container{width:min(100% - 28px,680px)} .section{padding:82px 0}
+  .site-nav{height:58px;top:10px;width:calc(100% - 20px)} .brand img{width:34px;height:34px} .brand-word{font-size:1.05rem} .nav-download{padding:9px 14px}
+  .hero{padding-top:105px;min-height:auto} .hero-title{font-size:clamp(3rem,15vw,5rem)} .hero-actions{display:grid} .hero-actions .button{width:100%}
+  .hero-visual{padding:9px;border-radius:28px} .hero-visual img{border-radius:22px} .hero-visual-note{left:20px;bottom:17px;font-size:.72rem}
+  .demo-heading{display:block} .demo-grid{grid-template-columns:1fr;gap:22px} .demo-shell{padding:12px;border-radius:30px} .demo-signal{display:none}
+  .laptop{border-radius:23px} .demo-map{aspect-ratio:16/10.5} .demo-tabs{top:11px} .demo-tab{padding:7px 12px;font-size:.75rem} .demo-instruction{top:auto;bottom:12px;left:12px;font-size:.7rem;max-width:68%}
+  .device-pill{display:none} .demo-tray{grid-template-columns:1fr;padding:15px} .tray-actions{display:grid;grid-template-columns:1fr 1fr} .demo-button{min-width:0;width:100%}
+  .phone{width:235px} .phone-wrap{padding:4px 0 12px}
+  .showcase-grid{grid-template-columns:1fr} .showcase-card.large{grid-column:auto} .showcase-card{min-height:380px}
+  .reassurance-wrap{padding:30px 20px;border-radius:30px} .reassurance-cards{grid-template-columns:1fr}
+  .pricing-head{display:block} .trial-strip{align-items:flex-start;flex-direction:column} .pricing-grid{grid-template-columns:1fr} .price-card.featured{transform:none}
+  .download-panel{padding:42px 20px;border-radius:30px} .download-actions{display:grid} .download-actions .button{width:100%}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .auth-modal{padding:28px 20px}
+}
+@media(max-width:460px){
+  .hero-title{font-size:3.15rem} .section-title{font-size:2.35rem}
+  .demo-map{min-height:260px;aspect-ratio:auto} .laptop-bar{height:34px} .demo-tray{gap:12px}
+  .showcase-media{min-height:220px} .showcase-card.phone-card img{height:270px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none;filter:none}
+}
+  
+/* ──────────────────────────────────────────────────────────────────────────
+   REDESIGN PREVIEW V2 — compact hero, purpose-built demo, OTP checkout
+   ─────────────────────────────────────────────────────────────────────── */
+.map-defs{position:absolute;width:0;height:0;overflow:hidden}
 
+/* centered hero without redundant screenshot */
+.hero-v2{min-height:82vh;padding:150px 0 92px;text-align:center}
+.hero-v2::before{content:"";position:absolute;inset:9% 9% 6%;border-radius:70px;background:linear-gradient(145deg,rgba(255,255,255,.48),rgba(255,255,255,.14));border:1px solid rgba(255,255,255,.58);box-shadow:0 40px 120px rgba(93,70,128,.09);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);pointer-events:none}
+.hero-centered{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.hero-v2 .hero-copy{max-width:900px;margin:auto}
+.hero-v2 .hero-title{font-size:clamp(4.4rem,10.2vw,8.3rem);line-height:.92;letter-spacing:-.065em;margin:14px 0 30px}
+.hero-v2 .hero-lead{max-width:720px;margin:0 auto 36px;font-size:clamp(1.2rem,2.1vw,1.62rem);line-height:1.55}
+.hero-v2 .hero-actions,.hero-v2 .trust-row{justify-content:center}
+.hero-down{margin-top:54px;display:inline-flex;align-items:center;gap:14px;padding:11px 18px;border-radius:999px;text-decoration:none;color:var(--ink-soft);font-size:.78rem;font-weight:800;letter-spacing:.02em}
+.hero-down b{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:rgba(179,157,219,.22);color:var(--accent-dark)}
 
-    .btn-disabled {
-      opacity: 0.58;
-      cursor: default;
-      pointer-events: none;
-    }
+/* coherent demo heading */
+.demo-v2{padding-top:78px}
+.demo-heading-centered{max-width:820px;margin:0 auto 42px;text-align:center;display:block}
+.demo-heading-centered .section-title{margin:0 auto 18px}
+.demo-heading-centered .section-copy{max-width:700px;margin:0 auto}
+.demo-shell-v2{padding:30px;border-radius:48px}
+.demo-grid-v2{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:34px;align-items:center}
 
-    .download-meta {
-      margin-top: -12px;
-      margin-bottom: 24px;
-      font-size: 0.78rem;
-      color: var(--text);
-      opacity: 0.64;
-    }
+/* purpose-built Tapioca app */
+.demo-app{min-width:0;border-radius:30px;overflow:hidden;background:rgba(244,239,252,.88);border:1px solid rgba(255,255,255,.92);box-shadow:0 28px 80px rgba(61,53,88,.16),inset 0 1px 0 rgba(255,255,255,.95)}
+.demo-app-chrome{height:40px;padding:0 18px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:linear-gradient(90deg,rgba(224,214,241,.92),rgba(250,239,243,.9),rgba(218,242,247,.9));color:#85789b;font-family:'Comfortaa',sans-serif;font-size:.74rem;font-weight:800}
+.demo-app-chrome .traffic{display:flex;gap:7px}.demo-app-chrome .traffic i{width:9px;height:9px;border-radius:50%}.demo-app-chrome .traffic i:nth-child(1){background:#d09ae9}.demo-app-chrome .traffic i:nth-child(2){background:#8fdcae}.demo-app-chrome .traffic i:nth-child(3){background:#ef93a5}
+.demo-app-stage{position:relative;min-height:555px;overflow:hidden;background:linear-gradient(155deg,#e9f3dc,#f8efe9 48%,#e8dff5)}
+.glass-soft{background:linear-gradient(145deg,rgba(255,255,255,.74),rgba(242,235,249,.58));border:1px solid rgba(255,255,255,.9);box-shadow:0 14px 35px rgba(60,46,82,.12),inset 0 1px 0 rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.demo-brand-mini,.demo-account-mini,.demo-mode-single,.demo-search-mini{position:absolute;z-index:4}
+.demo-brand-mini{left:18px;top:17px;border-radius:18px;padding:9px 13px;display:flex;align-items:center;gap:9px}.demo-brand-mini img{width:29px;height:29px;object-fit:contain}.demo-brand-mini span,.demo-account-mini span{display:flex;flex-direction:column;line-height:1.08}.demo-brand-mini strong{font-family:'Comfortaa',sans-serif;font-size:.82rem}.demo-brand-mini small,.demo-account-mini small{font-size:.56rem;color:#8a7d99;margin-top:3px}
+.demo-mode-single{left:50%;top:15px;transform:translateX(-50%);padding:11px 24px;border-radius:17px;font-weight:800;color:#3d3558;white-space:nowrap}.demo-mode-single span{color:#9a76cf;margin-right:7px}
+.demo-account-mini{right:18px;top:17px;border-radius:18px;padding:9px 12px;display:flex;align-items:center;gap:8px}.demo-account-mini strong{font-size:.67rem}.avatar-mini{width:28px;height:28px;display:grid!important;place-items:center;border-radius:11px;background:rgba(179,157,219,.18);color:#835dbb;font-size:1rem}
+.demo-search-mini{top:75px;left:17%;right:17%;height:47px;border-radius:17px;padding:0 9px 0 16px;display:flex;align-items:center;gap:10px;color:#716783;font-size:.76rem;font-weight:700}.demo-search-mini>span:first-child{font-size:1.15rem;color:#8a64c2}.demo-search-mini>span:nth-child(2){flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.demo-search-mini button{border:0;border-radius:13px;background:linear-gradient(135deg,#b59adf,#916acb);color:#fff;padding:9px 14px;font:800 .68rem 'DM Sans',sans-serif}
+.demo-map-v2{position:absolute;inset:0;cursor:pointer;outline:none}.demo-map-v2:focus-visible{box-shadow:inset 0 0 0 4px rgba(149,117,205,.62)}
+.city-map{width:100%;height:100%;display:block}
+.app-map-svg .map-land{fill:#f1ecdf}.app-map-svg .map-water{fill:#b8dce8}.app-map-svg .map-park{fill:#bfe2a5}.app-map-svg .map-park.small{fill:#d0e9b9}.app-map-svg .map-minor-roads path{fill:none;stroke:#fff;stroke-width:4;opacity:.96;vector-effect:non-scaling-stroke}.app-map-svg .map-major-roads path{fill:none;stroke:#f2a9b5;stroke-width:9;opacity:.95;vector-effect:non-scaling-stroke}.app-map-svg .map-blocks rect{fill:#e2dcd3;stroke:#fff;stroke-width:2}.app-map-svg .map-labels text{fill:#6e715e;font:700 18px 'DM Sans',sans-serif;paint-order:stroke;stroke:#f5f1e7;stroke-width:5;stroke-linejoin:round}
+.demo-map-glow{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,.1),transparent 25%,transparent 75%,rgba(231,219,244,.18));pointer-events:none}
+.demo-pearl-v2{position:absolute;left:61%;top:31%;width:30px;height:30px;transform:translate(-50%,-50%) scale(.25);border-radius:50% 50% 50% 14%;rotate:-45deg;background:linear-gradient(135deg,#c8b0ed,#8259bd);box-shadow:0 9px 24px rgba(75,48,105,.32);opacity:0;transition:opacity .28s ease,transform .45s cubic-bezier(.16,1,.3,1)}.demo-pearl-v2 span{position:absolute;inset:8px;border-radius:50%;background:#fff;opacity:.88}.demo-shell-v2[data-state="selected"] .demo-pearl-v2,.demo-shell-v2[data-state="updating"] .demo-pearl-v2,.demo-shell-v2[data-state="active"] .demo-pearl-v2,.demo-shell-v2[data-state="resetting"] .demo-pearl-v2{opacity:1;transform:translate(-50%,-50%) scale(1)}.demo-shell-v2[data-state="updating"] .demo-pearl-v2{animation:pearlPulse 1s ease-in-out infinite}@keyframes pearlPulse{50%{filter:drop-shadow(0 0 14px rgba(149,117,205,.8));transform:translate(-50%,-50%) scale(1.1)}}
+.demo-instruction-v2{position:absolute;left:22px;top:137px;padding:10px 14px;border-radius:999px;font-size:.7rem;font-weight:800;color:#4a415f;transition:all .25s ease}
+.device-pill-v2{position:absolute;left:50%;bottom:110px;transform:translateX(-50%);z-index:5;padding:9px 16px;border-radius:999px;background:linear-gradient(145deg,rgba(236,255,243,.95),rgba(221,248,231,.83));border:1px solid rgba(255,255,255,.95);box-shadow:0 10px 30px rgba(65,132,85,.16);font-size:.72rem;font-weight:800;color:#37885a;white-space:nowrap}.device-pill-v2 span{display:inline-block;width:8px;height:8px;border-radius:50%;background:#46c978;box-shadow:0 0 0 5px rgba(70,201,120,.14);margin-right:7px}
+.demo-tray-v2{position:absolute;left:16px;right:16px;bottom:15px;z-index:5;border-radius:25px;padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(242,234,249,.72));border:1px solid rgba(255,255,255,.92);box-shadow:0 18px 50px rgba(54,42,73,.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.tray-copy-v2{display:flex;align-items:center;gap:12px;min-width:0}.tray-copy-v2>span:last-child{display:flex;flex-direction:column;min-width:0}.tray-copy-v2 strong{font-size:.8rem;color:#4a415f}.tray-copy-v2 small{font-size:.63rem;color:#81758f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}.tray-pearl-icon{width:34px;height:34px;display:grid;grid-template-columns:repeat(2,7px);place-content:center;gap:3px;border-radius:13px;background:linear-gradient(135deg,#ba9be8,#8055b9);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}.tray-pearl-icon i{width:7px;height:7px;border-radius:50%;background:#403655}.tray-pearl-icon i:last-child{grid-column:1/3;justify-self:center}
+.tray-actions-v2{display:flex;gap:8px}.tray-actions-v2 .demo-button{min-width:104px;padding:11px 18px;border-radius:15px;font-size:.72rem}
 
-    .download-meta a {
-      color: var(--accent-deep);
-      font-weight: 600;
-      text-decoration: none;
-    }
+/* simplified Find My phone */
+.phone-wrap-v2{align-self:center}.findmy-phone{width:100%;max-width:300px;aspect-ratio:9/18.7;margin:auto;padding:10px;border-radius:44px;background:linear-gradient(145deg,#f9f9fc,#b7adc1);box-shadow:0 28px 65px rgba(45,34,61,.24),inset 0 1px 0 #fff;transition:transform .4s ease}.findmy-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:35px;background:#183c43}.findmy-map-svg{position:absolute;inset:-1%;width:102%;height:102%;transition:transform 1s cubic-bezier(.2,.8,.2,1)}.findmy-map-svg .map-land{fill:#253841}.findmy-map-svg .map-water{fill:#16494f}.findmy-map-svg .map-park{fill:#225c51}.findmy-map-svg .map-park.small{fill:#294f48}.findmy-map-svg .map-minor-roads path{fill:none;stroke:#667682;stroke-width:4;opacity:.72;vector-effect:non-scaling-stroke}.findmy-map-svg .map-major-roads path{fill:none;stroke:#8da2b2;stroke-width:8;opacity:.92;vector-effect:non-scaling-stroke}.findmy-map-svg .map-blocks rect{fill:#344954;stroke:#586974;stroke-width:2}.findmy-map-svg .map-labels text{fill:#d2d6d8;font:700 17px 'DM Sans',sans-serif;paint-order:stroke;stroke:#253841;stroke-width:5;stroke-linejoin:round}.findmy-statusbar{position:absolute;z-index:4;top:13px;left:17px;right:17px;display:flex;align-items:center;justify-content:space-between;color:#fff;font-weight:800;font-size:.68rem;text-shadow:0 1px 4px rgba(0,0,0,.35)}.dynamic-island{width:92px;height:25px;border-radius:999px;background:#030303}.findmy-tools{position:absolute;z-index:4;right:13px;top:72px;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:rgba(28,41,51,.84);border:1px solid rgba(255,255,255,.12);box-shadow:0 9px 24px rgba(0,0,0,.2)}.findmy-tools span{width:43px;height:43px;display:grid;place-items:center;color:#fff;font-size:1rem}.findmy-tools span+span{border-top:1px solid rgba(255,255,255,.1)}
+.findmy-dot{position:absolute;z-index:5;left:37%;top:71%;width:24px;height:24px;transform:translate(-50%,-50%);border-radius:50%;background:#58aef8;border:4px solid #fff;box-shadow:0 0 0 9px rgba(56,159,247,.23),0 8px 20px rgba(0,0,0,.24);transition:left 1s cubic-bezier(.2,.8,.2,1),top 1s cubic-bezier(.2,.8,.2,1),opacity .25s}.findmy-dot i{position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(80,174,249,.4);animation:phonePulse 2s ease-out infinite}@keyframes phonePulse{from{transform:scale(.55);opacity:.75}to{transform:scale(1.45);opacity:0}}
+.findmy-phone[data-state="updating"] .findmy-dot{opacity:.38}.findmy-phone[data-state="active"] .findmy-dot,.findmy-phone[data-state="resetting"] .findmy-dot{left:61%;top:31%}.findmy-phone[data-state="active"] .findmy-map-svg,.findmy-phone[data-state="resetting"] .findmy-map-svg{transform:scale(1.06) translate(-2%,3%)}
+.findmy-location-card{position:absolute;z-index:5;left:16px;right:16px;bottom:78px;padding:10px 12px;border-radius:16px;background:rgba(23,43,49,.86);border:1px solid rgba(255,255,255,.12);color:#fff;display:flex;flex-direction:column;box-shadow:0 12px 28px rgba(0,0,0,.23);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.findmy-location-card strong{font-size:.7rem}.findmy-location-card span{font-size:.58rem;color:#bdc7ca;margin-top:2px}
+.findmy-tabs{position:absolute;z-index:5;left:11px;right:11px;bottom:11px;height:60px;border-radius:24px;background:rgba(15,47,50,.88);border:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;box-shadow:0 15px 30px rgba(0,0,0,.22);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}.findmy-tabs>span{display:flex;flex-direction:column;align-items:center;gap:2px;color:#f3f7f7;font-size:.92rem}.findmy-tabs small{font-size:.48rem;font-family:'DM Sans',sans-serif}.findmy-tabs .active{color:#55aefd}
+.phone-wrap-v2 .phone-caption{max-width:280px;margin:14px auto 0;text-align:center;font-size:.74rem;color:var(--ink-soft)}
+.demo-shell-v2.transmitting .demo-signal{opacity:1;animation:signalTravel 1.05s ease both}@keyframes signalTravel{0%{transform:translateX(-40px) scale(.7);opacity:0}35%{opacity:1}100%{transform:translateX(70px) scale(1.1);opacity:0}}
 
-    .download-meta a:hover {
-      text-decoration: underline;
-    }
+/* compact reassurance + integrated compatibility */
+.reassurance-v2{padding:58px 0 52px}.reassurance-wrap-v2{padding:44px 48px 34px}.reassurance-top-v2{display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:start}.reassurance-top-v2 .section-title{font-size:clamp(2.6rem,5vw,4.8rem)}.reassurance-top-v2 .section-copy{padding-top:24px}.reassurance-cards-v2{margin-top:30px;gap:14px}.reassurance-cards-v2 .reassurance-card{padding:24px 25px;min-height:180px}.compatibility-inline{margin-top:24px;padding-top:24px;border-top:1px solid rgba(126,103,161,.13);display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}.compatibility-inline>p{color:var(--ink-soft);font-size:.88rem}.compatibility-inline .chips{justify-content:flex-end}
 
-    .btn-os-active { background: var(--accent); color: var(--white); border-color: var(--accent); }
-    .btn-os-inactive { background: transparent; color: var(--text); border-color: var(--accent); }
+/* pricing hierarchy */
+.pricing-v2{padding-top:80px}.pricing-head-v2{text-align:center;max-width:760px;margin:0 auto 34px;display:block}.pricing-head-v2 .section-title{margin-bottom:13px}.pricing-head-v2 .section-copy{margin:0 auto;max-width:620px}
+.trial-spotlight{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:30px;align-items:center;padding:28px 32px;border-radius:34px;background:linear-gradient(135deg,rgba(157,118,213,.2),rgba(255,255,255,.7) 48%,rgba(168,220,237,.2));border-color:rgba(255,255,255,.9)}.trial-number{display:flex;align-items:center;gap:10px;padding-right:28px;border-right:1px solid rgba(96,73,129,.14)}.trial-number strong{font-family:'Comfortaa',sans-serif;font-size:5rem;line-height:.8;color:#815aba;letter-spacing:-.08em}.trial-number span{font-family:'Comfortaa',sans-serif;font-weight:800;font-size:1.15rem;line-height:1.05;color:#554768}.no-card-badge{display:inline-flex;padding:6px 10px;border-radius:999px;background:#3d3558;color:#fff;font-size:.65rem;font-weight:900;letter-spacing:.1em;margin-bottom:8px}.trial-message h3{font-size:1.3rem;margin:0 0 4px}.trial-message p{font-size:.86rem;color:var(--ink-soft);max-width:550px}.paid-intro{margin:42px 0 20px;text-align:center}.paid-intro p{font-family:'Comfortaa',sans-serif;font-size:1.35rem;font-weight:800;color:#4b405e}.paid-intro span{font-size:.78rem;color:var(--ink-soft)}.pricing-grid-v2{align-items:stretch}.price-card-v2{min-height:325px;padding:30px;display:flex;flex-direction:column}.price-card-v2 .price-note{margin-bottom:auto}.price-card-v2 .button{width:100%;justify-content:center;margin-top:32px}.price-card-v2 ul{display:none}
 
-    .mobile-msg {
-      display: none;
-      background: var(--light-lav);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 14px 20px;
-      font-size: 0.9rem;
-      margin-bottom: 20px;
-    }
+/* OTP modal */
+.auth-modal{width:min(500px,calc(100vw - 28px))}.auth-tabs{display:none}.auth-label{display:block;font-size:.72rem;font-weight:900;letter-spacing:.04em;color:var(--ink-soft);margin:0 0 7px 4px}.otp-step[hidden]{display:none!important}.auth-footnote{font-size:.7rem!important;text-align:center;margin:12px 0 0!important;color:var(--ink-soft)!important}.otp-sent-card{padding:12px 14px;margin-bottom:17px;border-radius:15px;background:rgba(179,157,219,.12);display:flex;flex-direction:column}.otp-sent-card span{font-size:.65rem;color:var(--ink-soft)}.otp-sent-card strong{font-size:.8rem;margin-top:2px;overflow-wrap:anywhere}.auth-code{text-align:center;font-family:'Comfortaa',sans-serif;font-size:1.55rem!important;font-weight:800!important;letter-spacing:.34em;padding-left:calc(18px + .34em)!important}.otp-links{display:flex;justify-content:space-between;margin-top:13px;gap:12px}.otp-links button{border:0;background:transparent;color:#7654ad;font:800 .72rem 'DM Sans',sans-serif;cursor:pointer;padding:4px}.otp-links button:disabled{opacity:.48;cursor:default}.auth-success{display:none;min-height:180px;place-items:center;text-align:center;gap:12px;color:var(--ink-soft)}.auth-success.visible{display:grid}.auth-loading.large{width:28px;height:28px;border-width:3px;margin:0 auto 4px}
 
-    .trust-strip {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .trust-item {
-      font-size: 0.82rem;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      opacity: 0.75;
-    }
-    .trust-item::before {
-      content: "✓";
-      color: var(--accent-deep);
-      font-weight: 700;
-    }
-
-    /* ── HOW IT WORKS ── */
-    .how-headline { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 12px; }
-    .how-sub { font-size: 1.05rem; color: var(--accent-deep); margin-bottom: 20px; max-width: 520px; }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-    .step-card {
-      background: var(--white);
-      border: 1.5px solid var(--light-lav);
-      border-radius: 14px;
-      padding: 18px 16px;
-    }
-    .step-num {
-      font-family: 'Comfortaa', cursive;
-      font-size: 1.6rem;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .step-card h3 { font-size: 0.95rem; margin-bottom: 6px; }
-    .step-card p { font-size: 0.84rem; opacity: 0.75; }
-
-    .app-mockup {
-      background: var(--light-lav);
-      border-radius: 16px;
-      height: 240px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 40px;
-      color: var(--accent-deep);
-      font-size: 0.9rem;
-      font-weight: 500;
-      opacity: 0.7;
-    }
-
-    .how-footnote {
-      margin-top: 28px;
-      font-size: 0.9rem;
-      color: var(--text);
-      opacity: 0.65;
-      font-style: italic;
-    }
-
-    /* ── HARDWARE TEASER ── */
-    .hw-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .hw-badge {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--white);
-      border-radius: 24px;
-      padding: 5px 16px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hw-badge::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      animation: shimmer 2.4s infinite;
-    }
-    @keyframes shimmer { to { left: 160%; } }
-
-    .hw-badge-mobile { display: none; }
-    .hw-headline { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 16px; }
-    .hw-body { font-size: 1rem; opacity: 0.8; margin-bottom: 28px; max-width: 460px; }
-
-    .hw-visual {
-      background: var(--light-lav);
-      border-radius: 20px;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-deep);
-      font-size: 0.9rem;
-      font-weight: 500;
-      opacity: 0.7;
-    }
+@media(max-width:1050px){
+  .demo-grid-v2{grid-template-columns:minmax(0,1fr) 260px;gap:24px}.demo-app-stage{min-height:510px}.demo-account-mini{display:none}.demo-search-mini{left:20%;right:12%}.findmy-phone{max-width:245px}
+}
+@media(max-width:820px){
+  .hero-v2{min-height:auto;padding:145px 0 86px}.hero-v2::before{inset:8% 18px 5%;border-radius:46px}.hero-v2 .hero-title{font-size:clamp(4.1rem,15vw,6.7rem)}
+  .demo-shell-v2{padding:20px}.demo-grid-v2{grid-template-columns:1fr}.phone-wrap-v2{display:grid;grid-template-columns:minmax(0,240px) 1fr;align-items:center;gap:26px}.phone-wrap-v2 .phone-caption{text-align:left;margin:0;max-width:250px}.demo-app-stage{min-height:500px}
+  .reassurance-top-v2{grid-template-columns:1fr;gap:5px}.reassurance-top-v2 .section-copy{padding-top:0}.reassurance-wrap-v2{padding:36px 28px 28px}.compatibility-inline{align-items:flex-start}.compatibility-inline .chips{justify-content:flex-start}
+  .trial-spotlight{grid-template-columns:auto 1fr}.trial-spotlight>.button{grid-column:1/-1;justify-content:center}.trial-number{padding-right:20px}
+}
+@media(max-width:620px){
+  .hero-v2{padding:125px 0 72px}.hero-v2 .hero-title{font-size:clamp(3.65rem,18vw,5.2rem)}.hero-v2 .hero-lead br{display:none}.hero-down{margin-top:38px}
+  .demo-v2{padding-top:60px}.demo-heading-centered{margin-bottom:28px}.demo-heading-centered .section-title{font-size:clamp(2.45rem,12vw,3.4rem)}.demo-shell-v2{padding:12px;border-radius:31px}.demo-app{border-radius:24px}.demo-app-stage{min-height:470px}.demo-brand-mini{left:11px;top:12px}.demo-mode-single{top:12px;padding:10px 17px}.demo-search-mini{top:68px;left:11px;right:11px}.demo-instruction-v2{top:126px;left:12px}.device-pill-v2{bottom:121px}.demo-tray-v2{left:9px;right:9px;bottom:9px;grid-template-columns:1fr;padding:13px;border-radius:21px;gap:11px}.tray-actions-v2{display:grid;grid-template-columns:1fr 1fr}.tray-actions-v2 .demo-button{min-width:0}.phone-wrap-v2{grid-template-columns:1fr}.phone-wrap-v2 .phone-caption{text-align:center;margin:12px auto 5px}.findmy-phone{max-width:255px}
+  .reassurance-v2{padding:42px 0}.reassurance-wrap-v2{padding:30px 18px 24px;border-radius:32px}.reassurance-cards-v2{grid-template-columns:1fr;margin-top:22px}.reassurance-cards-v2 .reassurance-card{min-height:0;padding:20px}.compatibility-inline{margin-top:18px;padding-top:18px}
+  .pricing-v2{padding-top:58px}.trial-spotlight{grid-template-columns:1fr;text-align:center;padding:24px 20px}.trial-number{justify-content:center;padding:0 0 20px;border-right:0;border-bottom:1px solid rgba(96,73,129,.14)}.trial-message p{margin:auto}.trial-number strong{font-size:4.4rem}.paid-intro{margin-top:32px}.price-card-v2{min-height:280px}
+  .auth-modal{padding:28px 20px}.auth-code{font-size:1.35rem!important}
+}
 
 
-    /* trust section removed — condensed into pricing strip */
+/* SVG <use> instances inherit these variables into the shared map geometry. */
+.city-map{--map-land:#f1ecdf;--map-water:#b8dce8;--map-park:#bfe2a5;--map-park-small:#d0e9b9;--map-minor:#ffffff;--map-major:#f2a9b5;--map-block:#e2dcd3;--map-block-stroke:#ffffff;--map-label:#6e715e;--map-label-stroke:#f5f1e7}
+.findmy-map-svg{--map-land:#253841;--map-water:#16494f;--map-park:#225c51;--map-park-small:#294f48;--map-minor:#667682;--map-major:#8da2b2;--map-block:#344954;--map-block-stroke:#586974;--map-label:#d2d6d8;--map-label-stroke:#253841}
+.map-land{fill:var(--map-land)!important}.map-water{fill:var(--map-water)!important}.map-park{fill:var(--map-park)!important}.map-park.small{fill:var(--map-park-small)!important}.map-minor-roads path{fill:none!important;stroke:var(--map-minor)!important;stroke-width:4;opacity:.78;vector-effect:non-scaling-stroke}.map-major-roads path{fill:none!important;stroke:var(--map-major)!important;stroke-width:8;opacity:.93;vector-effect:non-scaling-stroke}.map-blocks rect{fill:var(--map-block)!important;stroke:var(--map-block-stroke)!important;stroke-width:2}.map-labels text{fill:var(--map-label)!important;font:700 17px 'DM Sans',sans-serif;paint-order:stroke;stroke:var(--map-label-stroke)!important;stroke-width:5;stroke-linejoin:round}
 
-    /* ── PRICING ── */
-    .pricing-headline { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-top: 16px; margin-bottom: 16px; }
-    .pricing-all-same {
-      font-size: 0.85rem;
-      opacity: 0.6;
-      margin-bottom: 36px;
-      max-width: 560px;
-    }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      align-items: start;
-    }
-    .price-card {
-      background: var(--white);
-      border: 1.5px solid var(--light-lav);
-      border-radius: 20px;
-      padding: 24px 20px;
-      position: relative;
-    }
-    .price-card.featured { border-color: var(--accent); }
 
-    /* Free trial — prominent dark card */
-    .price-trial {
-      background: var(--accent-deep);
-      border-color: var(--accent-deep);
-      padding: 32px 24px;
-    }
-    .price-trial .price-tier { color: rgba(255,255,255,0.65); }
-    .price-trial .price-note { color: rgba(255,255,255,0.55); }
-    .price-amount-trial {
-      font-size: 3.8rem;
-      font-weight: 800;
-      color: white;
-      line-height: 1;
-      margin: 10px 0 6px;
-      font-family: 'Comfortaa', sans-serif;
-    }
-    .price-cta-trial {
-      background: white !important;
-      color: var(--accent-deep) !important;
-    }
-    .price-cta-trial:hover { opacity: 0.92; }
 
-    .best-value {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: var(--white);
-      border-radius: 12px;
-      padding: 3px 14px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .price-tier { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; opacity: 0.55; margin-bottom: 6px; }
-    .price-amount { font-family: 'Comfortaa', cursive; font-size: 2rem; color: var(--accent-deep); margin-bottom: 4px; }
-    .price-note { font-size: 0.78rem; opacity: 0.6; margin-bottom: 20px; }
-    .price-cta {
-      width: 100%;
-      padding: 12px;
-      border-radius: 24px;
-      border: 2px solid var(--accent);
-      background: transparent;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 0.88rem;
-      cursor: pointer;
-      transition: all 0.18s;
-    }
-    .price-cta:hover {
-      background: var(--accent);
-      color: var(--white);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(149,117,205,0.35);
-    }
-    .price-card.featured .price-cta {
-      background: var(--accent);
-      color: var(--white);
-    }
-    .price-card.featured .price-cta:hover {
-      background: var(--accent-deep);
-      border-color: var(--accent-deep);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(61,53,88,0.35);
-    }
+/* ──────────────────────────────────────────────────────────────────────────
+   REDESIGN PREVIEW V3 — compact cards, edge bubbles, approved pricing copy
+   ─────────────────────────────────────────────────────────────────────── */
+.edge-bubble-zone{position:relative;isolation:isolate;overflow:clip}
+.edge-bubble-zone>.edge-orbs{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:visible}
+.edge-bubble-zone>.container,.hero-v3>.container{position:relative;z-index:2}
+.edge-orb{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.88);background:radial-gradient(circle at 30% 23%,rgba(255,255,255,.98) 0 7%,rgba(255,255,255,.38) 19%,rgba(216,201,239,.27) 57%,rgba(149,117,205,.13));box-shadow:inset -14px -18px 30px rgba(91,66,126,.09),0 24px 65px rgba(61,53,88,.10);opacity:.86;animation:edgeBubbleFloat 7.5s ease-in-out infinite;will-change:transform}
+.edge-orb::after{content:"";position:absolute;width:22%;height:14%;left:22%;top:16%;border-radius:50%;background:rgba(255,255,255,.62);filter:blur(1px);transform:rotate(-22deg)}
+@keyframes edgeBubbleFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-13px,0)}}
 
-    /* ── FAQ ── */
-    .faq-headline { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 40px; }
-    .faq-list { max-width: 720px; }
-    .faq-item {
-      border-bottom: 1.5px solid var(--light-lav);
-    }
-    .faq-q {
-      width: 100%;
-      background: none;
-      border: none;
-      text-align: left;
-      padding: 20px 0;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.98rem;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-    .faq-q .chevron {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s;
-      font-size: 0.7rem;
-      color: var(--accent-deep);
-    }
-    .faq-item.open .faq-q .chevron { transform: rotate(180deg); }
-    .faq-a {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      opacity: 0.78;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s;
-    }
-    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 18px; }
+/* Randomized edge placement; cards always sit above these bubbles. */
+.hero-edge-orbs .h1{width:172px;height:172px;right:4.2%;top:13%;animation-delay:-1.4s}
+.hero-edge-orbs .h2{width:56px;height:56px;left:2.5%;top:37%;animation-delay:-4.8s}
+.hero-edge-orbs .h3{width:94px;height:94px;left:7%;bottom:5%;animation-delay:-2.5s}
+.hero-edge-orbs .h4{width:36px;height:36px;right:16%;bottom:13%;animation-delay:-6.2s}
+.demo-edge-orbs .d1{width:126px;height:126px;right:1.5%;top:21%;animation-delay:-3.2s}
+.demo-edge-orbs .d2{width:58px;height:58px;left:2%;top:64%;animation-delay:-.7s}
+.demo-edge-orbs .d3{width:34px;height:34px;left:10%;top:10%;animation-delay:-5.4s}
+.why-edge-orbs .w1{width:138px;height:138px;right:1.5%;bottom:8%;animation-delay:-2s}
+.why-edge-orbs .w2{width:54px;height:54px;left:1.5%;top:24%;animation-delay:-5.9s}
+.why-edge-orbs .w3{width:30px;height:30px;right:17%;top:8%;animation-delay:-3.7s}
+.pricing-edge-orbs .p1{width:78px;height:78px;left:1.2%;top:14%;animation-delay:-5s}
+.pricing-edge-orbs .p2{width:148px;height:148px;right:1%;bottom:7%;animation-delay:-2.7s}
+.pricing-edge-orbs .p3{width:40px;height:40px;right:7%;top:47%;animation-delay:-6.4s}
+.faq-edge-orbs .f1{width:92px;height:92px;left:2%;top:20%;animation-delay:-1.2s}
+.faq-edge-orbs .f2{width:45px;height:45px;right:3%;bottom:18%;animation-delay:-4.2s}
+.download-edge-orbs .x1{width:130px;height:130px;left:1%;bottom:7%;animation-delay:-3.5s}
+.download-edge-orbs .x2{width:82px;height:82px;right:5%;top:13%;animation-delay:-6.1s}
+.download-edge-orbs .x3{width:36px;height:36px;right:22%;bottom:4%;animation-delay:-1.1s}
 
-    /* ── WAITLIST ── */
-    .waitlist-headline { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 12px; }
-    .waitlist-sub { font-size: 1rem; opacity: 0.8; margin-bottom: 40px; }
+/* Smaller hero card with roomier headline kerning. */
+.hero-v3{min-height:76vh;padding:116px 0 64px;overflow:clip}
+.hero-v3::before{inset:10% 10% 7%;z-index:1;border-radius:58px}
+.hero-v3 .hero-centered{z-index:2}
+.hero-v3 .hero-copy{max-width:900px}
+.hero-v3 .hero-title{font-size:clamp(3.85rem,8.7vw,7.2rem);line-height:.98;letter-spacing:-.018em;margin:8px 0 17px;font-kerning:normal;text-rendering:optimizeLegibility}
+.hero-v3 .hero-title span{display:block}
+.hero-v3 .hero-lead{max-width:none;margin:0 auto 25px;font-family:'Comfortaa',cursive;font-size:clamp(1.18rem,1.85vw,1.52rem);font-weight:700;line-height:1.25;letter-spacing:-.012em;color:var(--accent-dark)}
+.hero-v3 .hero-actions{margin:25px 0 20px}
+.hero-v3 .trust-row{margin-top:0}
 
-    .waitlist-form { max-width: 480px; display: flex; flex-direction: column; gap: 14px; }
-    .waitlist-form input, .waitlist-form select {
-      background: var(--white);
-      border: 1.5px solid var(--light-lav);
-      border-radius: 10px;
-      padding: 13px 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.93rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.15s;
-    }
-    .waitlist-form input:focus, .waitlist-form select:focus { border-color: var(--accent); }
-    .waitlist-form select { cursor: pointer; }
-    .waitlist-submit {
-      background: var(--accent);
-      color: var(--white);
-      border: none;
-      border-radius: 24px;
-      padding: 14px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .waitlist-submit:hover { background: var(--accent-deep); }
-    .waitlist-confirm {
-      display: none;
-      background: var(--light-lav);
-      border-radius: 12px;
-      padding: 16px 20px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
-    }
+/* Preserve the approved demo UI, scaled down enough to sit comfortably in view. */
+.demo-v3{padding:66px 0 82px}
+.demo-v3>.container{width:min(1110px,calc(100% - 48px))}
+.demo-v3 .demo-heading-centered{margin-bottom:29px}
+.demo-v3 .demo-heading-centered .section-title{font-size:clamp(2.45rem,4.55vw,3.75rem)}
+.demo-shell-v3{max-width:1110px;margin:0 auto;padding:19px;border-radius:40px;position:relative;z-index:2}
+.demo-grid-v3{grid-template-columns:minmax(0,1fr) 252px;gap:24px}
+.demo-v3 .demo-app-chrome{height:36px}
+.demo-v3 .demo-app-stage{min-height:474px}
+.demo-v3 .demo-brand-mini{left:15px;top:14px}
+.demo-v3 .demo-mode-single{top:12px;padding:10px 21px}
+.demo-v3 .demo-account-mini{right:15px;top:14px}
+.demo-v3 .demo-search-mini{top:68px}
+.demo-v3 .demo-instruction-v2{top:124px;left:18px}
+.demo-v3 .device-pill-v2{bottom:101px}
+.demo-v3 .demo-tray-v2{left:13px;right:13px;bottom:12px;padding:14px 16px;border-radius:22px}
+.demo-v3 .findmy-phone{max-width:246px}
+.demo-v3 .phone-wrap-v2 .phone-caption{margin-top:10px}
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--footer-bg);
-      color: var(--footer-text);
-      padding: 56px 32px;
-    }
-    .footer-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-    .footer-brand .nav-wordmark { color: var(--footer-text); font-size: 1.3rem; }
-    .footer-tagline { font-size: 0.85rem; opacity: 0.55; margin-top: 8px; }
-    .footer-links-col h4 { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; margin-bottom: 14px; }
-    .footer-links-col a {
-      display: block;
-      color: var(--footer-text);
-      text-decoration: none;
-      font-size: 0.88rem;
-      opacity: 0.75;
-      margin-bottom: 8px;
-      transition: opacity 0.15s;
-    }
-    .footer-links-col a:hover { opacity: 1; }
-    .footer-bottom {
-      max-width: 1080px;
-      margin: 36px auto 0;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.8rem;
-      opacity: 0.45;
-    }
+/* More compact reassurance card, with all decoration outside the glass surface. */
+.reassurance-v3{padding:46px 0 44px}
+.reassurance-v3>.container{width:min(1120px,calc(100% - 48px))}
+.reassurance-wrap-v3{padding:34px 40px 26px;border-radius:42px;position:relative;z-index:2}
+.reassurance-v3 .reassurance-top-v2{gap:38px}
+.reassurance-v3 .reassurance-top-v2 .section-title{font-size:clamp(2.45rem,4.55vw,4.35rem)}
+.reassurance-v3 .reassurance-top-v2 .section-copy{padding-top:17px}
+.reassurance-v3 .reassurance-cards-v2{margin-top:22px}
+.reassurance-v3 .reassurance-cards-v2 .reassurance-card{padding:20px 22px;min-height:148px}
+.reassurance-v3 .compatibility-inline{margin-top:17px;padding-top:17px}
 
-    /* ── MODAL ── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(61,53,88,0.45);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 36px;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-    }
-    .modal h3 { font-size: 1.15rem; margin-bottom: 12px; }
-    .modal p { font-size: 0.9rem; opacity: 0.72; margin-bottom: 24px; }
-    .modal-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .modal-btns button {
-      border-radius: 24px;
-      padding: 10px 22px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 0.88rem;
-      cursor: pointer;
-      border: 2px solid var(--accent);
-    }
-    .modal-yes { background: var(--accent); color: var(--white); }
-    .modal-no { background: transparent; color: var(--text); }
-    .modal-email-form { display: none; flex-direction: column; gap: 10px; }
-    .modal-email-form input {
-      border: 1.5px solid var(--light-lav);
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-    }
-    .modal-email-send {
-      background: var(--accent);
-      color: var(--white);
-      border: none;
-      border-radius: 24px;
-      padding: 11px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      cursor: pointer;
-    }
+/* Tighter pricing rhythm and approved wording. */
+.pricing-v3{padding-top:64px;padding-bottom:86px}
+.pricing-head-v3{margin-bottom:23px}
+.trial-spotlight-v3{padding:23px 28px;gap:25px;position:relative;z-index:2}
+.trial-spotlight-v3 .trial-number strong{font-size:4.55rem}
+.trial-spotlight-v3 .trial-message h3{text-transform:lowercase;font-size:1.34rem}
+.paid-intro-v3{margin:30px 0 18px}
+.paid-intro-v3 p{text-transform:lowercase}
+.pricing-v3 .pricing-grid-v2{position:relative;z-index:2}
+.pricing-v3 .price-card-v2{min-height:282px;padding:26px}
+.pricing-v3 .price-card-v2 .button{margin-top:24px}
+.pricing-v3 .billing-row{position:relative;z-index:2}
+.faq-v3 .faq-wrap,.download-v3 .download-panel{position:relative;z-index:2}
 
-    /* ── HERO PARALLAX + FROST ANIMATIONS ── */
+@media(max-width:1050px){
+  .demo-grid-v3{grid-template-columns:minmax(0,1fr) 235px;gap:20px}
+  .demo-v3 .demo-app-stage{min-height:455px}
+  .demo-v3 .findmy-phone{max-width:228px}
+}
+@media(max-width:820px){
+  .hero-v3{min-height:auto;padding:119px 0 70px}
+  .hero-v3::before{inset:7% 18px 5%;border-radius:44px}
+  .hero-v3 .hero-title{font-size:clamp(3.65rem,14.5vw,5.7rem);letter-spacing:-.012em}
+  .hero-v3 .hero-lead{font-size:1.2rem}
+  .demo-v3>.container,.reassurance-v3>.container{width:min(100% - 36px,760px)}
+  .demo-grid-v3{grid-template-columns:1fr}
+  .demo-v3 .demo-app-stage{min-height:470px}
+  .demo-v3 .findmy-phone{max-width:240px}
+  .reassurance-wrap-v3{padding:31px 27px 24px}
+  .trial-spotlight-v3{padding:22px 24px}
+  .edge-orb{opacity:.72}
+}
+@media(max-width:620px){
+  .hero-v3{padding:113px 0 64px}
+  .hero-v3 .hero-title{font-size:clamp(3.25rem,16.5vw,4.8rem);line-height:1;letter-spacing:-.008em}
+  .hero-v3 .hero-lead{font-size:1.05rem;margin-bottom:20px}
+  .hero-v3 .hero-actions{margin-top:20px}
+  .demo-v3{padding:56px 0 68px}
+  .demo-v3 .demo-heading-centered{margin-bottom:24px}
+  .demo-shell-v3{padding:10px;border-radius:29px}
+  .demo-v3 .demo-app-stage{min-height:464px}
+  .demo-v3 .findmy-phone{max-width:245px}
+  .reassurance-v3{padding:38px 0}
+  .reassurance-wrap-v3{padding:27px 17px 21px;border-radius:31px}
+  .reassurance-v3 .reassurance-cards-v2 .reassurance-card{padding:19px;min-height:0}
+  .pricing-v3{padding-top:52px;padding-bottom:68px}
+  .trial-spotlight-v3{padding:21px 18px}
+  .paid-intro-v3{margin-top:26px}
+  .pricing-v3 .price-card-v2{min-height:266px}
+  .hero-edge-orbs .h2,.hero-edge-orbs .h4,.demo-edge-orbs .d3,.why-edge-orbs .w3,.pricing-edge-orbs .p3,.faq-edge-orbs .f2,.download-edge-orbs .x3{display:none}
+  .hero-edge-orbs .h1{width:104px;height:104px;right:-16px;top:13%}
+  .hero-edge-orbs .h3{width:62px;height:62px;left:-10px;bottom:7%}
+  .demo-edge-orbs .d1{width:88px;height:88px;right:-18px;top:24%}
+  .demo-edge-orbs .d2{width:44px;height:44px;left:-9px;top:67%}
+  .why-edge-orbs .w1{width:92px;height:92px;right:-18px;bottom:9%}
+  .why-edge-orbs .w2{width:42px;height:42px;left:-8px;top:23%}
+  .pricing-edge-orbs .p1{width:58px;height:58px;left:-12px}.pricing-edge-orbs .p2{width:96px;height:96px;right:-20px}
+}
 
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1);
-    }
-    .reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-    .reveal-delay-5 { transition-delay: 0.40s; }
-    .reveal-delay-6 { transition-delay: 0.48s; }
 
-    /* ── WORKS WITH STRIP ── */
-    .works-with {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-      margin-bottom: 0;
-    }
-    .works-with-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0.5;
-      white-space: nowrap;
-    }
-    .works-with-apps {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .works-with-app {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      opacity: 0.55;
-      transition: opacity 0.15s;
-    }
-    .works-with-app:hover { opacity: 0.85; }
-    .works-with-app svg { flex-shrink: 0; }
 
-    /* ── SOCIAL PROOF COUNTER ── */
-    .social-proof {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(179,157,219,0.15);
-      border: 1px solid rgba(179,157,219,0.3);
-      border-radius: 24px;
-      padding: 6px 16px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      margin-bottom: 20px;
-      color: var(--accent-deep);
-    }
-    .social-proof-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #7CB342;
-      animation: pulse-green 2s ease-in-out infinite;
-    }
-    @keyframes pulse-green {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.8); }
-    }
+/* ──────────────────────────────────────────────────────────────────────────
+   REDESIGN PREVIEW V4 — hero clearance, stable demo caption, legal links
+   ─────────────────────────────────────────────────────────────────────── */
 
-    /* ── PRICING WEEK EQUIV ── */
-    .price-week-equiv {
-      font-size: 0.75rem;
-      color: var(--accent-deep);
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .price-save-badge {
-      display: inline-block;
-      background: rgba(149,117,205,0.12);
-      color: var(--accent-deep);
-      border-radius: 8px;
-      padding: 2px 8px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      margin-left: 6px;
-      vertical-align: middle;
-    }
+/* Keep the glass title card visually separate from the fixed navigation. */
+.hero-v4{
+  min-height:80vh;
+  padding:150px 0 58px;
+}
+.hero-v4::before{
+  inset:104px 10% 22px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72);
+}
+.hero-v4 .hero-copy{padding-top:8px}
+.hero-v4 .hero-down{
+  margin-top:27px;
+  padding:9px 15px;
+  gap:10px;
+  color:var(--ink-soft);
+  background:rgba(255,255,255,.38);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:none;
+}
+.hero-v4 .hero-down b{width:25px;height:25px}
 
-    /* ── PAYMENT BANNER ── */
-    .payment-banner {
-      position: fixed;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-20px);
-      z-index: 150;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 24px;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 8px 32px rgba(30,24,48,0.15);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1);
-      white-space: nowrap;
-    }
-    .payment-banner.visible {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-      pointer-events: auto;
-    }
-    .payment-banner.success {
-      background: #f0fdf4;
-      border: 1.5px solid #86efac;
-      color: #166534;
-    }
-    .payment-banner.cancelled {
-      background: #fefce8;
-      border: 1.5px solid #fde047;
-      color: #854d0e;
-    }
-    .payment-banner-icon { font-size: 1.1rem; }
-    .payment-banner-close {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      opacity: 0.5;
-      padding: 0 0 0 8px;
-      color: inherit;
-      line-height: 1;
-      transition: opacity 0.15s;
-    }
-    .payment-banner-close:hover { opacity: 1; }
+/* Keep the approved demo frame stable as the status copy changes. */
+.demo-shell-v4{box-shadow:0 24px 70px rgba(61,53,88,.10)}
+.demo-v4 .phone-wrap-v2 .phone-caption{
+  max-width:none;
+  white-space:nowrap;
+  font-size:.68rem;
+  line-height:1.25;
+  height:1.05rem;
+  overflow:hidden;
+  letter-spacing:-.01em;
+}
 
-    /* ── AUTH MODAL ── */
-    .auth-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(30,24,48,0.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .auth-overlay.open { display: flex; }
-    .auth-modal {
-      background: var(--white);
-      border-radius: 24px;
-      padding: 40px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 24px 64px rgba(30,24,48,0.18);
-      position: relative;
-      animation: authSlideIn 0.28s cubic-bezier(0.22,1,0.36,1);
-    }
-    @keyframes authSlideIn {
-      from { opacity: 0; transform: translateY(16px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .auth-close {
-      position: absolute;
-      top: 16px; right: 20px;
-      background: none; border: none;
-      font-size: 1.3rem; cursor: pointer;
-      color: var(--text-light); opacity: 0.5;
-      transition: opacity 0.15s;
-      line-height: 1;
-    }
-    .auth-close:hover { opacity: 1; }
-    .auth-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-    .auth-logo img { width: 28px; height: 28px; object-fit: contain; }
-    .auth-logo span { font-family: 'Comfortaa', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--accent-deep); }
-    .auth-plan-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(179,157,219,0.15);
-      border: 1px solid rgba(179,157,219,0.3);
-      border-radius: 999px;
-      padding: 5px 14px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--accent-deep);
-      margin-bottom: 20px;
-    }
-    .auth-headline {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text);
-      line-height: 1.25;
-    }
-    .auth-sub {
-      font-size: 0.88rem;
-      color: var(--text-light);
-      margin-bottom: 28px;
-      opacity: 0.7;
-    }
-    .auth-tabs {
-      display: flex;
-      gap: 0;
-      background: rgba(179,157,219,0.12);
-      border-radius: 12px;
-      padding: 4px;
-      margin-bottom: 24px;
-    }
-    .auth-tab {
-      flex: 1;
-      padding: 8px;
-      border: none;
-      border-radius: 9px;
-      background: none;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--text-light);
-      transition: background 0.18s, color 0.18s;
-    }
-    .auth-tab.active {
-      background: var(--white);
-      color: var(--accent-deep);
-      box-shadow: 0 2px 8px rgba(61,53,88,0.1);
-    }
-    .auth-field {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-    .auth-field input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid rgba(179,157,219,0.35);
-      border-radius: 12px;
-      font-size: 0.92rem;
-      font-family: inherit;
-      color: var(--text);
-      background: var(--white);
-      outline: none;
-      transition: border-color 0.18s;
-      box-sizing: border-box;
-    }
-    .auth-field input:focus { border-color: var(--accent); }
-    .auth-submit {
-      width: 100%;
-      padding: 13px;
-      border: none;
-      border-radius: 12px;
-      background: var(--accent);
-      color: var(--white);
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
-      transition: background 0.18s, transform 0.1s;
-      margin-top: 4px;
-    }
-    .auth-submit:hover { background: var(--accent-deep); }
-    .auth-submit:active { transform: scale(0.98); }
-    .auth-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-    .auth-error {
-      font-size: 0.82rem;
-      color: #e53935;
-      background: rgba(229,57,53,0.07);
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-bottom: 14px;
-      display: none;
-    }
-    .auth-error.visible { display: block; }
-    .auth-loading {
-      display: inline-block;
-      width: 16px; height: 16px;
-      border: 2px solid rgba(255,255,255,0.4);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-      vertical-align: middle;
-      margin-right: 6px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .auth-success {
-      text-align: center;
-      padding: 16px 0 8px;
-      display: none;
-    }
-    .auth-success-icon { font-size: 2.5rem; margin-bottom: 12px; }
-    .auth-success p { font-size: 0.95rem; color: var(--text-light); }
+/* Remove the visual divider and hard lower shadow from the reassurance card. */
+.reassurance-wrap-v4{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.76);
+}
+.reassurance-v4 .compatibility-inline{
+  border-top:0;
+  padding-top:0;
+}
 
-    /* ── MOBILE DOWNLOAD MODAL ── */
-    .mobile-dl-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(30,24,48,0.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      align-items: flex-end;
-      justify-content: center;
-      padding: 0;
-    }
-    .mobile-dl-overlay.open { display: flex; }
-    .mobile-dl-sheet {
-      background: var(--white);
-      border-radius: 24px 24px 0 0;
-      padding: 32px 28px 40px;
-      width: 100%;
-      max-width: 520px;
-      animation: sheetUp 0.32s cubic-bezier(0.22,1,0.36,1);
-    }
-    @keyframes sheetUp {
-      from { transform: translateY(100%); }
-      to   { transform: translateY(0); }
-    }
-    .mobile-dl-handle {
-      width: 36px; height: 4px;
-      background: rgba(179,157,219,0.4);
-      border-radius: 99px;
-      margin: 0 auto 24px;
-    }
-    .mobile-dl-icon { font-size: 2rem; margin-bottom: 12px; }
-    .mobile-dl-headline {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-    .mobile-dl-sub {
-      font-size: 0.88rem;
-      opacity: 0.6;
-      margin-bottom: 24px;
-    }
-    .mobile-dl-version {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-    .mobile-dl-version-btn {
-      flex: 1;
-      padding: 12px;
-      border: 2px solid var(--light-lav);
-      border-radius: 12px;
-      background: none;
-      font-family: inherit;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--text);
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .mobile-dl-version-btn.selected {
-      border-color: var(--accent);
-      background: rgba(179,157,219,0.12);
-      color: var(--accent-deep);
-    }
-    .mobile-dl-field {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .mobile-dl-field input {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid rgba(179,157,219,0.35);
-      border-radius: 12px;
-      font-size: 0.92rem;
-      font-family: inherit;
-      color: var(--text);
-      background: var(--white);
-      outline: none;
-      box-sizing: border-box;
-      transition: border-color 0.18s;
-    }
-    .mobile-dl-field input:focus { border-color: var(--accent); }
-    .mobile-dl-submit {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: var(--accent);
-      color: white;
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .mobile-dl-submit:hover { background: var(--accent-deep); }
-    .mobile-dl-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-    .mobile-dl-error {
-      font-size: 0.82rem;
-      color: #e53935;
-      background: rgba(229,57,53,0.07);
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-bottom: 12px;
-      display: none;
-    }
-    .mobile-dl-error.visible { display: block; }
-    .mobile-dl-success {
-      text-align: center;
-      padding: 12px 0;
-      display: none;
-    }
-    .mobile-dl-success-icon { font-size: 2.5rem; margin-bottom: 10px; }
-    .mobile-dl-success p { font-size: 0.92rem; opacity: 0.7; }
+@media(max-width:820px){
+  .hero-v4{padding:142px 0 66px}
+  .hero-v4::before{inset:96px 18px 18px}
+  .hero-v4 .hero-copy{padding-top:13px}
+  .demo-v4 .phone-wrap-v2 .phone-caption{font-size:.67rem}
+}
+@media(max-width:620px){
+  .hero-v4{padding:132px 0 60px}
+  .hero-v4::before{inset:88px 14px 16px}
+  .hero-v4 .hero-down{margin-top:23px}
+  .demo-v4 .phone-wrap-v2 .phone-caption{font-size:.66rem;white-space:nowrap}
+}
 
-    /* ── BILLING MANAGE ── */
-    .billing-manage {
-      text-align: center;
-      margin-top: 40px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(179,157,219,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-    .billing-manage p {
-      font-size: 0.9rem;
-      opacity: 0.6;
-      margin: 0;
-    }
-    .billing-manage-btn {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--accent-deep);
-      text-decoration: none;
-      border: 1.5px solid rgba(179,157,219,0.5);
-      border-radius: 999px;
-      padding: 8px 20px;
-      transition: background 0.18s, border-color 0.18s;
-    }
-    .billing-manage-btn:hover {
-      background: rgba(179,157,219,0.12);
-      border-color: var(--accent-deep);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .steps-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr 1fr; }
-      .hw-inner { grid-template-columns: 1fr; }
-      .hw-visual { order: -1; }
-      .hw-visual svg:first-child { max-width: 140px !important; }
-      .hw-badge-desktop { display: none; }
-      .hw-badge-mobile { display: inline-block; margin-bottom: 16px; }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
-    }
-
-    .nav-mobile-menu { display: none; }
-
-    @media (max-width: 860px) {
-      .nav-links { display: none; }
-      .nav-mobile-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(179,157,219,0.15);
-        border: 1.5px solid rgba(179,157,219,0.3);
-        border-radius: 50%;
-        width: 36px; height: 36px;
-        font-size: 1rem;
-        cursor: pointer;
-        color: var(--accent-deep);
-        transition: background 0.15s;
-        flex-shrink: 0;
-      }
-      .nav-mobile-toggle:hover { background: rgba(179,157,219,0.28); }
-      /* mobile dropdown menu */
-      .nav-mobile-menu {
-        display: none;
-        position: fixed;
-        top: 80px;
-        left: 16px; right: 16px;
-        background: rgba(245,240,255,0.97);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1.5px solid rgba(179,157,219,0.3);
-        border-radius: 20px;
-        padding: 16px 0;
-        box-shadow: 0 8px 32px rgba(61,53,88,0.12);
-        z-index: 99;
-        animation: menuDrop 0.25s cubic-bezier(0.22,1,0.36,1);
-      }
-      .nav-mobile-menu.open { display: block; }
-      @keyframes menuDrop {
-        from { opacity: 0; transform: translateY(-10px); }
-        to   { opacity: 1; transform: translateY(0); }
-      }
-      .nav-mobile-menu a {
-        display: block;
-        padding: 13px 24px;
-        text-decoration: none;
-        color: var(--text);
-        font-size: 1rem;
-        font-weight: 500;
-        transition: background 0.12s;
-        border-radius: 0;
-      }
-      .nav-mobile-menu a:hover { background: rgba(179,157,219,0.12); }
-      .nav-mobile-menu a.nav-coming-soon {
-        background: linear-gradient(90deg, var(--accent-deep) 0%, #c9aff5 40%, #e8d5ff 55%, #c9aff5 70%, var(--accent-deep) 100%);
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: nav-shimmer 2.8s linear infinite;
-        font-weight: 600;
-      }
-      .nav-mobile-menu a.nav-billing { color: var(--text); font-weight: 500; }
-      .nav-mobile-menu-divider { height: 1px; background: rgba(179,157,219,0.2); margin: 8px 16px; }
-    }
-
-    @media (max-width: 640px) {
-      nav { padding: 0 16px; }
-      section { padding: 64px 16px; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; }
-    }
-  </style>
+</style>
 </head>
 <body>
 
-<!-- PAYMENT BANNER -->
-<div class="payment-banner" id="payment-banner">
-  <span class="payment-banner-icon" id="payment-banner-icon"></span>
-  <span id="payment-banner-msg"></span>
-  <button class="payment-banner-close" onclick="dismissPaymentBanner()">✕</button>
-</div>
+<svg class="map-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="tapioca-city-map" viewBox="0 0 800 460">
+      <rect class="map-land" width="800" height="460" rx="30" />
+      <path class="map-water" d="M625 -20 C665 50 655 115 692 174 C725 226 711 286 746 338 C774 380 782 422 790 480 L840 480 L840 -20 Z" />
+      <path class="map-park" d="M40 36 L205 22 L229 117 L184 167 L58 151 Z" />
+      <path class="map-park" d="M486 260 L606 232 L672 312 L613 404 L480 381 L442 322 Z" />
+      <path class="map-park small" d="M254 269 L341 251 L368 315 L313 357 L235 327 Z" />
+      <g class="map-minor-roads">
+        <path d="M-20 84 C105 106 196 77 319 103 C438 127 548 103 690 72" />
+        <path d="M-5 147 C96 169 194 148 305 164 C462 187 573 153 809 176" />
+        <path d="M-20 229 C126 205 239 232 343 214 C504 187 641 232 820 219" />
+        <path d="M-18 318 C115 286 212 325 352 301 C495 276 640 324 826 303" />
+        <path d="M22 402 C174 362 290 399 432 374 C535 357 651 389 784 357" />
+        <path d="M96 -12 C118 88 91 163 133 256 C166 329 149 390 176 478" />
+        <path d="M225 -15 C238 78 221 161 252 235 C285 316 267 386 297 480" />
+        <path d="M368 -16 C344 86 386 160 373 248 C362 324 410 390 391 480" />
+        <path d="M493 -15 C468 92 512 155 496 247 C480 331 529 388 512 478" />
+        <path d="M586 -15 C602 70 571 142 603 219 C635 296 613 372 645 480" />
+        <path d="M44 34 L308 350" />
+        <path d="M194 -12 L562 458" />
+        <path d="M430 -8 L739 364" />
+        <path d="M-20 385 L315 41" />
+        <path d="M142 474 L469 90" />
+        <path d="M349 470 L653 112" />
+      </g>
+      <g class="map-major-roads">
+        <path d="M-20 278 C105 253 211 281 336 257 C478 230 594 266 820 246" />
+        <path d="M314 -20 C319 80 307 156 338 229 C370 305 361 382 389 480" />
+        <path d="M18 438 C158 397 277 422 407 397 C540 372 656 401 782 373" />
+      </g>
+      <g class="map-blocks">
+        <rect x="82" y="188" width="72" height="42" rx="8" />
+        <rect x="176" y="190" width="48" height="62" rx="8" />
+        <rect x="410" y="76" width="68" height="52" rx="8" />
+        <rect x="515" y="102" width="53" height="67" rx="8" />
+        <rect x="405" y="326" width="53" height="54" rx="8" />
+        <rect x="682" y="258" width="55" height="75" rx="8" />
+      </g>
+      <g class="map-labels">
+        <text x="92" y="67">Pearl Park</text>
+        <text x="422" y="204">Willow Center</text>
+        <text x="236" y="413">West Garden</text>
+        <text x="568" y="353">Riverside</text>
+        <text x="471" y="112">Central Station</text>
+      </g>
+    </symbol>
+  </defs>
+</svg>
 
-<!-- NAV -->
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAOX0lEQVR4Aexc+ZNcVRU+b+nX68wkIcvMZAgxmIQYCAlkI4FAIktCAQKFC2BZJVjRKi0t+Qf8RQtES4sSRBRjANGIxGKTRQqUKEW5oALKkiCBkIVsk5nJLD0z3a893+t3u9/rfabfveme6tT7+px77r3nnHvOu/e9e7szOrX+NVQEWglpqHQQtRLSSkgwERjNZJYkM5nFjEWMxVw+i+kiQYOxol5LU86QTCYT+dyu5Js37kq+zXiH8TaX32D6DtO3QNWHMhiLTZkQHrrGsF2kmOIy8cEYYzTt1awJGeWIw3cAiUByRGIsrmvapGBA7H/TXRnXYyQCwDhAIQZFUsA3HTCQpnNa0zSREPgPYAxNmwQ4LyAGI8rNRjEbms3niv7KSUhFk4FVTrlkIDLNnBD4DmAcUwZTbkDNnplWQhosg82ckNYzpMFupinpjrQZwudNJmPS+rkvjkdKBp3roBdAvXemgBdy1AUOtq0xQgwp+57AnWdHtT2v9Wbeff3EECMNvkaMu+1Ax7mvzeVRBsoZpgD0oW709o5hmzHG0BkpBjH029uHB5iS2x59goBjFzrhF2OMgeObwBMeeELg4fDJ8STDYtAEoLttTaZeHmWbZSkG5Cibo4MpnWExiAEe1B4dSrVzGXZFH/D1wGsXPHRBN4YaOKQkhL2MMHBhCQGtBrTz+gLeI8vg4FAcIgpdw8xALtqBRz8Wk5ChD8r1ADqgDzrAJ5mBHSHjYnAXFAenLasJaz+ClS3V9in88AzSSYLbW8N6jTq0g24EP8aVCBAT5wIPORecvuABLtd9wTYARbjZ4AN8QTlQyFCKgz8ES9xJ1RwWAy1o5yTBK2NfMzhWh24EH/0A0Qa8K3f6ggdEfT0Uetg+YUywgxukHn1l+8JI2co6KzCIWlRggKId/PGWWe4kgSkuBFqUnVmA9gD6MHXqmKIt4S52mPo+HJ1QgWRgdkA/AFngkKaYPa1Vd2Hi0E8sNRxobxJYK6FMXA+aCxb3AQ+Z8/xAQ8wk7g+2Hjg62R4hGVAkdAoKWWDggQSmy1GE7yrmnB5/lUHG7Cj1T4tMBqbbT8/SqJWlOV3mHsui3VbY2u1QH69D5rZ3++f6TcYX9IEeGzpnnR5P8dh0xiFnwAF/BJ4Q+Nd5RmIlw7C64l/pn4akBA8kpBICtJtkXZyQqN7fEbG75sU7eWwaowdjDRpSEiKcXJjQfyb4JqZYqrA82bw9J14BTsgci9SEsPMYiEz/VejG8wNxSoV1DVSqTekGpHqvRjleOvC6rYdNbLHkGm0lpHp8kQzsO8yoqUmf8dITEpZuoXpEK7aoXolkoNVYyJgCS1YiJH+aI1qSgeeIZSi4uaSbiBu+hGDKA4ifoOCbAr6RSPJYekJCOuHuwjqMIcAeIPhmSQoe7MTfuEn3VwQHAZICniDHWLFYh8WABJVun20HdSV5Q4KbKyh9JfVID0ibSd9iy2Igwh4oZCIx3KRhL+GjFTZpULaXCIxUG+GYsYMNIPhMcgd/4LEMSLcPQwFBj5j6gwHpKqtGekBmEJ1k6zzb+dN/iST5pY1XEjGyw7q+XbZ7umwDfHyCL6xgBt8nCHtiGYC80SF81UMhOijbWREgqXZcI2KWiJmBJUuq3YCUu+47y206IJ1l1QhjZRsEURHJW8HdhkQIiUhOEGak6tBtZ6LX6u+kfRGBmbSCWjpOG+JtyLt9RMUwS8hKtSuSzfxokGZVwGT1luhnQ9bWO4JYjdcy3nrawEg9/Wvqmzg5SvS/ftuF4EEnjc4DA1QJbGvSukv17cAYiKbGkhVvD9mcOSQfYNa5IHOYBv9wfDYtHf4665ZMfx1jMg1AdzRhvg7qAewCHlFjszofObCHU2OGhCLGIzyYZr0wM2x+fdcZ4KWOQ8ldGo7SkzwKvKHAnhgUKMBVDX3BZ7IUfbHjGJMdDsuyPvDYEDZBAU9Vw7I6L7tKbh5VARnhUGP/wSR38btwjm90JhWJmW+qcFJVQtI85XGHYdkS4ypMkJA3IjX5Ofh9FY4pSQg/DDOxdv6qyj8iJbb9Juso6aFn6+hdc9eKQalZSw0NI1FnQgh7mC0CNfQ+9U3icZL6AzkxQhEgUZZGrahRqBu2gUJ5I5ax1OIGku6bsoCYIWenK31AMgwY2R/ITa2E8KCQfEBGzKTqjCZCWG+lH5tgEMoCxEcPpe6wUjL41UiwI8XLrTT/lCUk1mYe8IwCdrEPAfWIG5K1rYiBX71PrRkSjZnb3HCLWdEMyYDLZiis4eYBLx3KgmIlzEc9o0FSsC6DesQNyabMkCF+VybdQWUJSSTKnmdJH2SdBkx+/tWpovbuyhLCLmHae2eEl+fqBr40LaD/0Vt9jCoT4iag6f68+VgsbuJ/9FaPZgAtVCYkFY76ftCv0nY9obIicfNIPQom0ldZUHDAyBss+CZmCngcSYA2NMJR/V5VDipLCAYUjRsgXpt404KsoRGxdGVfQXuDIz0oobCTEPykFLMEkG4zAAO2lbA+DEBPTSqUJsQMOeYwKxymJg9PfSP4OqTKDRhTZYv4gBGvvkgIbCq1DYOTBT//lM1mpUExTF3Ya4qHORLIXz0r9VUECLalI9YWEoObsN3B4ZO0/9AHdOjIfhodw2OovLuZTIZ6+47RvgN76WjvYUqnJ//7NvZZzOjyBgOsmXBg6rHN7/Mvu/2F3apLwXhqnF54+Wm698Hv0a8ev58e+t199GPm//XfvxEC7+rLkb6BXtrxxDa6f8ddtOPJbfSLR+6m7b+9hw4d3p9rMxEmrPDoHX6JwICXjnDUfI6NiFmCZFS1/+obrxCQofzp93hqjJ7/85P04cG9rC574dPO2PT7F3bSh4feRzGH431H6fHnd1SdWbkOHsZ9M/RI5LJVAxKk+VDYxi83xBIA20hKRROvvv5K2frX3vqHr+7Y8cN04PA+n0wUBgb7afd7E/9pVciCm0KLfKrUmmVZB3lISIJ4CFS0n06naGik/H98Pc7PCdaXu46dqHzC0Tcw8R+O8ItITr8KpmJAJDiA6GLJEv+9raIJXTfINENl2yRibb66tniHr1xYiEaihaKqZfl/3cTvguqEpCMxUyxZmCmA3yNPid//afmSlR6Jnz170XKfoHtOD83omOmTiULYitCSj58jijVT09JxA9Xcvt6GqhNiR+MmbGKQoEDFMaxf9Unqmj23qM05i1fQWQUBNgyTrtx0HUXC/pkA+eUbrqF4wYwqUlpCEI2HqvpYotukRUqNwctIXEwQlKojbIXp5mu30pUbr6cLzruY1q/cSDdc+QXawuVSvbvnzKNbP/t1umTtFbR2xQbasOYy+uKnvzqp2QH9kZjRC6oKqhOSCYUdk8gKZklN49R5g3/24hV00epLOSGbaMG8hRX7xWMJWr38QicZazkpM6aVXsYqKnErrYjxR5dVQpzoKLHERviZkAllXyORDCSFpf4Lm72R5DBhZ5620/7KEiXsPYZHhpy3Mduu+Ehyetusc4h3/SPJoZIbS6eR5yMUMl/yFKWzShOC0ejZ/6sHtgiHjx6kn/76h/Sj7bfzbvxOuuvn36b/7P53UTsheH//u3TPA9+lux+4I0ff27dHVBfRN/e8Rndt+w7d8+CdbOMOuu/hHzhHMUUNPQLD0v/pKUpnlSfEPYIvsjs4NEC/eWo79Xv2Cinehzz94k7as7d4Q3fk+Ee08+lfEmaTiFJydIR2PvMQfXTE+5u8bO17+3bTUy88SuN8FJOVEA0M9mVtnuwTogJK/NpNE9+8FGmpXaDX3jSYlu7XuLDrW1/+8vcXCQEtZeW5l54oWl7+sOsJKrWkYcl7btfjBWoy9OyfHiuQZYtjY6O066/PZwsFn5rmCJT94gTWEBhQZYglnEcHkgHboI7t3n78nTOHLfoY5vU+lfb/EQXMkKKGruAIH6EQ5c++0nzai2eSW11EjvNZV5GQBe4b4QCzyi4ERZkxGLLCBh4Kwq6gRXsHtBXQdYMM3mOIMmh7ovyuPB6Nc5Ps7c0MoT8AvhQS/FZWSh7NvqKPlqqTJdNlKS6nlxPysFuXmx0oz+2cB1ISPVyna35Xz5i7oGRbCM/oORMkB03TaF73/Fy5kJnLe5dCGcrhmDOb0+BVwT9KBVbNsP6Ma8Zne9Wy9VQqKTjy2HLJdW6XPNmw5nKa3nFaXuByiXg7bVy32S3lCXREI8W/d+uaNZf3LBdRqX/uK7p/rSzVMECZLygB6q2kar9uaNiHoE1ului8+bvpU1+izRdfS+edvYbO/cQqupCPTb58823U0T4dbX0I8w7+ls98jTat20Irlq52sPGCzbT1xm9SLIIly9ec2niJ23rTbc7mErphA8cpN1+/lQzD8Dd2S3gj1DQt/zBy5TLJqUjIwIzZEZEI2M8lhwc/tmzJ+XTphVfRFRuuSa47/5KKzxaDnysrl62jyy662sGqc9fza6qzzJSMGZKI4xfW7dhYzkl3l8KcD56OScPMP4c8cqksAiLVQKFyDnpm/tJpECMIACIICl/Ez/6RMJTRTjZgCz4IOyiDj5zWGd0LRiVUDdo3ps558a7O+c4rjLCPgOBLKyRGBATJEWXIZEL4B3+A1OyemD2zO7ZIVKiiMK7KVs4Oz5LelWu6OqfPcv74H36rhcDjSyskBu0QfFAAPsqEsAk/YC81sztqrr68ezr7Cb8gCxSVlGGgleql1WkJ7fD6q3uiS9fO/Em8I0RadrnGrhg+AUiKCJY0P1ixjRPo7o8lkguWTXvs4ivmdF6wpUfjf0o3hOyHc2HgDnMqPnjQyQVLp39j0w3zQ1fdslC7+taFcQaowRQALxvG5s+fqZ2/qatj6apZ17X3tB8/FbEQNk9pQoQTLZqPQCsh+Vg0BNdKSEOkIe9EKyH5WDQE10pIQ6Qh70QrIflYNAT3fwAAAP//Lcc0qwAAAAZJREFUAwBHB7EUUupW6wAAAABJRU5ErkJggg==" style="width:36px;height:36px;object-fit:contain;" alt="tapioca logo" />
-    <span class="nav-wordmark">tapioca</span>
-  </a>
+<div class="payment-banner" id="payment-banner"><span id="payment-banner-icon">✓</span><span class="payment-banner-msg" id="payment-banner-msg"></span><button class="payment-banner-close" onclick="dismissPaymentBanner()" aria-label="Dismiss">×</button></div>
 
-  <ul class="nav-links">
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#hardware" class="nav-coming-soon">Coming Soon</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer" class="nav-billing">Manage Billing</a></li>
-  </ul>
-
-  <div class="nav-right">
-    <a href="/download/windows" class="nav-cta" id="nav-download-btn">Download</a>
-    <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Menu" onclick="toggleMobileMenu()">☰</button>
+<nav class="site-nav glass" id="navbar">
+  <a class="brand" href="#hero"><img src="assets/tapioca-logo.png" alt="" /><span class="brand-word">tapioca</span></a>
+  <div class="nav-links">
+    <a href="#demo">Try it</a><a href="#why">Why Tapioca</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
   </div>
+  <div class="nav-actions"><a class="nav-download" id="nav-download-btn" href="/download/windows">Download</a><button class="nav-toggle" id="nav-toggle" aria-label="Open menu">☰</button></div>
 </nav>
+<div class="mobile-menu glass" id="mobile-menu"><a href="#demo">Try it</a><a href="#why">Why Tapioca</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing</a></div>
 
-<!-- MOBILE NAV MENU -->
-<div class="nav-mobile-menu" id="nav-mobile-menu">
-  <a href="#how" onclick="closeMobileMenu()">How It Works</a>
-  <a href="#hardware" class="nav-coming-soon" onclick="closeMobileMenu()">Coming Soon</a>
-  <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
-  <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
-  <div class="nav-mobile-menu-divider"></div>
-  <a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer" class="nav-billing" onclick="closeMobileMenu()">Manage Billing</a>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-pearls" id="hero-pearls"></div>
-  <div class="container">
-    <div class="hero-inner">
-        <p class="section-label">iPhone GPS simulation</p>
-        <h1 class="hero-headline">anywhere but here.</h1>
-        <p class="hero-sub">be anywhere. instantly.</p>
-
-        <div class="mobile-msg" id="mobile-msg">
-          Tapioca Beta 7 is available for Windows. Open this page on a Windows PC to download.
-        </div>
-
-        <div class="download-btns" id="download-btns">
-          <a href="/download/windows" class="btn-primary" id="btn-windows">
-            <span>🖥</span> Download for Windows
-          </a>
-          <a href="#hardware" class="btn-secondary btn-disabled" id="btn-mac" aria-disabled="true" tabindex="-1">
-            <span>🍎</span> Mac coming soon
-          </a>
-        </div>
-
-        <p class="download-meta">
-          Windows x64 · Beta 7 · Digitally signed · approximately 108 MB
-          · <a href="/download/windows/sha256">SHA-256 checksum</a>
-        </p>
-
-        <div class="trust-strip">
-          <span class="trust-item">No jailbreak required</span>
-          <span class="trust-item">Supports iOS 17 and later</span>
-          <span class="trust-item">3-day free trial</span>
-        </div>
-
-      </div>
+<header class="hero hero-v2 hero-v3 hero-v4 edge-bubble-zone" id="hero">
+  <div class="edge-orbs hero-edge-orbs" aria-hidden="true">
+    <i class="edge-orb h1"></i><i class="edge-orb h2"></i><i class="edge-orb h3"></i><i class="edge-orb h4"></i>
   </div>
-</section>
+  <div class="container hero-centered">
+    <div class="hero-copy reveal">
+      <p class="section-kicker">IPHONE LOCATION, MADE SIMPLE</p>
+      <h1 class="hero-title"><span>anywhere</span><span>but here.</span></h1>
+      <p class="hero-lead">be anywhere. instantly.</p>
+      <div class="hero-actions" id="hero-actions">
+        <a class="button primary" id="hero-windows" href="/download/windows">Download for Windows</a>
+        <a class="button secondary" href="#demo">Try it here</a>
+      </div>
+      <div class="hero-mobile-note glass" id="hero-mobile-note">Tapioca installs on a computer. Try the demo here, then open this page on Windows to download.</div>
+      <div class="trust-row"><span>No jailbreak required</span><span>Reset anytime</span><span>3-day free trial</span></div>
+      <a class="hero-down glass-soft" href="#demo"><span>tap the map below</span><b aria-hidden="true">↓</b></a>
+    </div>
+  </div>
+</header>
 
-<!-- HOW IT WORKS -->
-<section id="how" class="alt">
+<main>
+<section class="section demo-section demo-v2 demo-v3 demo-v4 edge-bubble-zone" id="demo">
+  <div class="edge-orbs demo-edge-orbs" aria-hidden="true">
+    <i class="edge-orb d1"></i><i class="edge-orb d2"></i><i class="edge-orb d3"></i>
+  </div>
   <div class="container">
-    <p class="section-label reveal">How It Works</p>
-    <h2 class="how-headline reveal reveal-delay-1">it's embarrassingly simple.</h2>
-    <p class="how-sub reveal reveal-delay-2">Open the app, pick a spot, done. Your iPhone thinks you're there.</p>
-
-
-    <div class="steps-grid">
-      <div class="step-card reveal reveal-delay-1">
-        <div class="step-num">01</div>
-        <h3>Open Tapioca on your computer</h3>
-        <p>Install Tapioca on Windows, connect your iPhone, and sign in to start your trial.</p>
-      </div>
-      <div class="step-card reveal reveal-delay-2">
-        <div class="step-num">02</div>
-        <h3>Drop a pin anywhere on the map</h3>
-        <p>Search for a place or tap directly. Paris, Tokyo, your friend's neighbourhood — your call.</p>
-      </div>
-      <div class="step-card reveal reveal-delay-3">
-        <div class="step-num">03</div>
-        <h3>Your iPhone location updates. Instantly.</h3>
-        <p>Every app that reads your GPS — Find My, Life360, Snap — now sees where you told them to.</p>
-      </div>
+    <div class="demo-heading demo-heading-centered reveal">
+      <p class="section-kicker">TRY IT HERE</p>
+      <h2 class="section-title">tap the map.<br/>watch the phone follow.</h2>
+      <p class="section-copy">Choose a place, press Confirm, and watch the same spot appear on the phone after a brief pause.</p>
     </div>
 
-    <div class="works-with reveal reveal-delay-3">
-      <span class="works-with-label">Works with</span>
-      <div class="works-with-apps">
-        <span class="works-with-app">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.42c1.32.07 2.23.73 3.02.78 1.17-.24 2.29-.95 3.55-.84 1.51.15 2.65.77 3.4 1.96-3.11 1.85-2.59 5.93.53 7.07-.62 1.56-1.44 3.1-2.5 3.89zM12.03 7.35c-.15-2.37 1.85-4.35 4.13-4.35.29 2.58-2.34 4.5-4.13 4.35z" fill="currentColor"/></svg>
-          Find My
-        </span>
-        <span class="works-with-app">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          Life360
-        </span>
-        <span class="works-with-app">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor"/></svg>
-          Snapchat
-        </span>
-        <span class="works-with-app">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-          Instagram
-        </span>
-        <span class="works-with-app">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 4a3 3 0 110 6 3 3 0 010-6zm0 12.5a7.5 7.5 0 01-5.74-2.67C7.44 14.38 9.58 13.5 12 13.5s4.56.88 5.74 2.33A7.5 7.5 0 0112 18.5z" fill="currentColor"/></svg>
-          & more
-        </span>
-      </div>
-    </div>
-
-
-  </div>
-</section>
-
-<!-- HARDWARE TEASER + WAITLIST (merged) -->
-<section id="hardware">
-  <div class="container">
-    <div class="hw-inner">
-      <div>
-        <span class="hw-badge hw-badge-desktop reveal">Coming Soon</span>
-        <h2 class="hw-headline reveal reveal-delay-1">leave the laptop at home.</h2>
-        <p class="hw-body reveal reveal-delay-2">We're building a pocket-sized device that connects straight to your iPhone via MagSafe. No computer. No cables. Just snap and go.</p>
-
-        <div class="reveal reveal-delay-3">
-          <p class="section-label" style="margin-bottom:14px;">Hardware Waitlist</p>
-          <p style="font-size:0.9rem;opacity:0.7;margin-bottom:20px;">Drop your info and you'll hear from us first.</p>
-          <div class="waitlist-form" id="waitlist-form">
-            <input type="text" placeholder="Your name" id="wl-name" />
-            <input type="email" placeholder="Email address" id="wl-email" />
-            <select id="wl-source">
-              <option value="" disabled selected>How did you hear about us?</option>
-              <option>TikTok</option>
-              <option>Instagram</option>
-              <option>Reddit</option>
-              <option>Friend / word of mouth</option>
-              <option>Google</option>
-              <option>Other</option>
-            </select>
-            <button class="waitlist-submit" onclick="submitWaitlist()">Join the Waitlist →</button>
+    <div class="demo-shell demo-shell-v2 demo-shell-v3 demo-shell-v4 glass reveal reveal-delay-1" id="demo-shell">
+      <div class="demo-signal" aria-hidden="true"></div>
+      <div class="demo-grid demo-grid-v2 demo-grid-v3">
+        <div class="demo-app" aria-label="Simplified Tapioca app demonstration">
+          <div class="demo-app-chrome">
+            <span class="traffic"><i></i><i></i><i></i></span>
+            <span class="demo-app-title">Tapioca</span>
+            <span></span>
           </div>
-          <div class="waitlist-confirm" id="waitlist-confirm">
-            You're on the list. We'll reach out when it's ready. 🎉
+          <div class="demo-app-stage">
+            <div class="demo-brand-mini glass-soft">
+              <img src="assets/tapioca-logo.png" alt="" />
+              <span><strong>tapioca</strong><small>preview</small></span>
+            </div>
+            <div class="demo-mode-single glass-soft"><span>✦</span> Teleport</div>
+            <div class="demo-account-mini glass-soft"><span class="avatar-mini">♙</span><span><strong>Account & plans</strong><small>Sign in or choose a plan</small></span></div>
+            <div class="demo-search-mini glass-soft"><span>⌕</span><span id="demo-search-copy">Search an address or place</span><button type="button" tabindex="-1">Search</button></div>
+
+            <div class="demo-map-v2" id="demo-map" role="button" tabindex="0" aria-label="Choose a demonstration destination on the map">
+              <svg class="city-map app-map-svg" viewBox="0 0 800 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect class="map-land" width="800" height="460" rx="30" />
+      <path class="map-water" d="M625 -20 C665 50 655 115 692 174 C725 226 711 286 746 338 C774 380 782 422 790 480 L840 480 L840 -20 Z" />
+      <path class="map-park" d="M40 36 L205 22 L229 117 L184 167 L58 151 Z" />
+      <path class="map-park" d="M486 260 L606 232 L672 312 L613 404 L480 381 L442 322 Z" />
+      <path class="map-park small" d="M254 269 L341 251 L368 315 L313 357 L235 327 Z" />
+      <g class="map-minor-roads">
+        <path d="M-20 84 C105 106 196 77 319 103 C438 127 548 103 690 72" />
+        <path d="M-5 147 C96 169 194 148 305 164 C462 187 573 153 809 176" />
+        <path d="M-20 229 C126 205 239 232 343 214 C504 187 641 232 820 219" />
+        <path d="M-18 318 C115 286 212 325 352 301 C495 276 640 324 826 303" />
+        <path d="M22 402 C174 362 290 399 432 374 C535 357 651 389 784 357" />
+        <path d="M96 -12 C118 88 91 163 133 256 C166 329 149 390 176 478" />
+        <path d="M225 -15 C238 78 221 161 252 235 C285 316 267 386 297 480" />
+        <path d="M368 -16 C344 86 386 160 373 248 C362 324 410 390 391 480" />
+        <path d="M493 -15 C468 92 512 155 496 247 C480 331 529 388 512 478" />
+        <path d="M586 -15 C602 70 571 142 603 219 C635 296 613 372 645 480" />
+        <path d="M44 34 L308 350" />
+        <path d="M194 -12 L562 458" />
+        <path d="M430 -8 L739 364" />
+        <path d="M-20 385 L315 41" />
+        <path d="M142 474 L469 90" />
+        <path d="M349 470 L653 112" />
+      </g>
+      <g class="map-major-roads">
+        <path d="M-20 278 C105 253 211 281 336 257 C478 230 594 266 820 246" />
+        <path d="M314 -20 C319 80 307 156 338 229 C370 305 361 382 389 480" />
+        <path d="M18 438 C158 397 277 422 407 397 C540 372 656 401 782 373" />
+      </g>
+      <g class="map-blocks">
+        <rect x="82" y="188" width="72" height="42" rx="8" />
+        <rect x="176" y="190" width="48" height="62" rx="8" />
+        <rect x="410" y="76" width="68" height="52" rx="8" />
+        <rect x="515" y="102" width="53" height="67" rx="8" />
+        <rect x="405" y="326" width="53" height="54" rx="8" />
+        <rect x="682" y="258" width="55" height="75" rx="8" />
+      </g>
+      <g class="map-labels">
+        <text x="92" y="67">Pearl Park</text>
+        <text x="422" y="204">Willow Center</text>
+        <text x="236" y="413">West Garden</text>
+        <text x="568" y="353">Riverside</text>
+        <text x="471" y="112">Central Station</text>
+      </g>
+    </svg>
+              <div class="demo-map-glow" aria-hidden="true"></div>
+              <div class="demo-pearl-v2" id="demo-pearl" aria-hidden="true"><span></span></div>
+              <div class="demo-instruction-v2 glass-soft" id="demo-instruction">Tap anywhere to drop a pearl</div>
+              <div class="device-pill-v2" id="device-pill"><span></span> iPhone connected</div>
+            </div>
+
+            <div class="demo-tray demo-tray-v2">
+              <div class="tray-copy-v2"><span class="tray-pearl-icon"><i></i><i></i><i></i></span><span><strong id="tray-title">Choose a destination</strong><small id="tray-sub">Tap anywhere on the map to drop a pearl.</small></span></div>
+              <div class="tray-actions tray-actions-v2"><button class="demo-button confirm" id="demo-confirm" disabled>Confirm</button><button class="demo-button cancel" id="demo-cancel" disabled>Cancel</button></div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- iPhone 17 Pro MagSafe SVG Illustration -->
-      <div class="hw-visual reveal reveal-delay-2">
-        <span class="hw-badge hw-badge-mobile">Coming Soon</span>
-        <svg viewBox="0 0 340 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:180px;height:auto;filter:drop-shadow(0 16px 32px rgba(61,53,88,0.18))">
-          <!-- iPhone 17 Pro body -->
-          <rect x="30" y="20" width="280" height="480" rx="44" ry="44" fill="#2A2535" />
-          <!-- titanium frame highlight -->
-          <rect x="30" y="20" width="280" height="480" rx="44" ry="44" fill="none" stroke="#6B5F8A" stroke-width="3"/>
-          <!-- screen -->
-          <rect x="48" y="40" width="244" height="440" rx="36" ry="36" fill="#1A1525"/>
-          <!-- dynamic island -->
-          <rect x="130" y="52" width="80" height="28" rx="14" fill="#0D0A14"/>
-          <!-- screen glow / map placeholder -->
-          <rect x="48" y="40" width="244" height="440" rx="36" ry="36" fill="url(#mapGrad)" opacity="0.85"/>
-
-          <!-- map grid lines -->
-          <g stroke="rgba(179,157,219,0.12)" stroke-width="1">
-            <line x1="48" y1="130" x2="292" y2="130"/>
-            <line x1="48" y1="210" x2="292" y2="210"/>
-            <line x1="48" y1="290" x2="292" y2="290"/>
-            <line x1="48" y1="370" x2="292" y2="370"/>
-            <line x1="120" y1="40" x2="120" y2="480"/>
-            <line x1="190" y1="40" x2="190" y2="480"/>
-            <line x1="250" y1="40" x2="250" y2="480"/>
-          </g>
-
-          <!-- map road lines -->
-          <g stroke="rgba(209,196,233,0.25)" stroke-width="2.5" stroke-linecap="round">
-            <path d="M48 180 Q130 175 180 200 Q230 225 292 215"/>
-            <path d="M48 300 Q110 295 160 270 Q210 245 292 260"/>
-            <path d="M155 40 Q160 150 158 250 Q156 350 160 480"/>
-            <path d="M215 40 Q220 140 218 240 Q216 340 220 480"/>
-          </g>
-
-          <!-- location pin -->
-          <g transform="translate(162, 218)">
-            <circle cx="0" cy="0" r="22" fill="rgba(179,157,219,0.2)"/>
-            <circle cx="0" cy="0" r="12" fill="rgba(179,157,219,0.4)"/>
-            <circle cx="0" cy="0" r="6" fill="#B39DDB"/>
-          </g>
-          <!-- pin tail -->
-          <path d="M162 230 L158 248 L162 244 L166 248 Z" fill="#B39DDB"/>
-
-          <!-- tapioca app UI chrome -->
-          <rect x="60" y="420" width="220" height="52" rx="16" fill="rgba(61,53,88,0.75)" style="backdrop-filter:blur(8px)"/>
-          <text x="86" y="443" font-family="sans-serif" font-size="9" fill="rgba(209,196,233,0.6)" font-weight="600" letter-spacing="0.06em">SPOOFING ACTIVE</text>
-          <text x="86" y="459" font-family="sans-serif" font-size="10" fill="#D1C4E9" font-weight="500">Tokyo, Japan</text>
-          <circle cx="255" cy="448" r="10" fill="rgba(179,157,219,0.2)"/>
-          <text x="255" y="452" font-family="sans-serif" font-size="9" fill="#B39DDB" text-anchor="middle">✕</text>
-
-          <!-- dynamic island repaint on top -->
-          <rect x="130" y="52" width="80" height="28" rx="14" fill="#0D0A14"/>
-
-          <!-- volume buttons -->
-          <rect x="27" y="140" width="5" height="36" rx="2.5" fill="#3D3558"/>
-          <rect x="27" y="186" width="5" height="36" rx="2.5" fill="#3D3558"/>
-          <!-- power button -->
-          <rect x="308" y="158" width="5" height="52" rx="2.5" fill="#3D3558"/>
-
-          <!-- MagSafe ring on back — shown peeking as device tilts -->
-          <!-- back camera module -->
-          <rect x="50" y="52" width="100" height="100" rx="20" fill="#211C2E" opacity="0.0"/>
-
-          <!-- MagSafe puck (attaches to back, floating below) -->
-          <g transform="translate(170, 540)">
-            <ellipse cx="0" cy="0" rx="68" ry="12" fill="rgba(61,53,88,0.25)"/>
-          </g>
-
-          <defs>
-            <linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#1E1830"/>
-              <stop offset="100%" stop-color="#2D2445"/>
-            </linearGradient>
-          </defs>
-        </svg>
-
-        <!-- MagSafe puck below the phone -->
-        <div style="display:flex;flex-direction:column;align-items:center;margin-top:-10px;gap:0;">
-          <div style="width:2px;height:32px;background:linear-gradient(to bottom,rgba(179,157,219,0.6),rgba(179,157,219,0));"></div>
-          <svg viewBox="0 0 160 40" style="width:110px;" xmlns="http://www.w3.org/2000/svg">
-            <!-- puck body -->
-            <rect x="10" y="6" width="140" height="28" rx="14" fill="#3D3558"/>
-            <rect x="10" y="6" width="140" height="28" rx="14" fill="none" stroke="#6B5F8A" stroke-width="1.5"/>
-            <!-- magsafe ring indicator -->
-            <circle cx="80" cy="20" r="9" fill="none" stroke="#B39DDB" stroke-width="2" opacity="0.7"/>
-            <circle cx="80" cy="20" r="4" fill="#B39DDB" opacity="0.5"/>
-            <!-- led dot -->
-            <circle cx="130" cy="20" r="3.5" fill="#7CB342" opacity="0.9"/>
-            <!-- label -->
-            <text x="42" y="24" font-family="sans-serif" font-size="8" fill="rgba(209,196,233,0.7)" font-weight="600" letter-spacing="0.08em">TAPIOCA</text>
-          </svg>
-          <p style="font-size:0.7rem;color:var(--accent-deep);opacity:0.5;margin-top:6px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;">Hardware prototype</p>
+        <div class="phone-wrap phone-wrap-v2">
+          <div class="findmy-phone" id="demo-phone" aria-label="Simplified Find My location demonstration">
+            <div class="findmy-screen">
+              <svg class="city-map findmy-map-svg" viewBox="0 0 800 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect class="map-land" width="800" height="460" rx="30" />
+      <path class="map-water" d="M625 -20 C665 50 655 115 692 174 C725 226 711 286 746 338 C774 380 782 422 790 480 L840 480 L840 -20 Z" />
+      <path class="map-park" d="M40 36 L205 22 L229 117 L184 167 L58 151 Z" />
+      <path class="map-park" d="M486 260 L606 232 L672 312 L613 404 L480 381 L442 322 Z" />
+      <path class="map-park small" d="M254 269 L341 251 L368 315 L313 357 L235 327 Z" />
+      <g class="map-minor-roads">
+        <path d="M-20 84 C105 106 196 77 319 103 C438 127 548 103 690 72" />
+        <path d="M-5 147 C96 169 194 148 305 164 C462 187 573 153 809 176" />
+        <path d="M-20 229 C126 205 239 232 343 214 C504 187 641 232 820 219" />
+        <path d="M-18 318 C115 286 212 325 352 301 C495 276 640 324 826 303" />
+        <path d="M22 402 C174 362 290 399 432 374 C535 357 651 389 784 357" />
+        <path d="M96 -12 C118 88 91 163 133 256 C166 329 149 390 176 478" />
+        <path d="M225 -15 C238 78 221 161 252 235 C285 316 267 386 297 480" />
+        <path d="M368 -16 C344 86 386 160 373 248 C362 324 410 390 391 480" />
+        <path d="M493 -15 C468 92 512 155 496 247 C480 331 529 388 512 478" />
+        <path d="M586 -15 C602 70 571 142 603 219 C635 296 613 372 645 480" />
+        <path d="M44 34 L308 350" />
+        <path d="M194 -12 L562 458" />
+        <path d="M430 -8 L739 364" />
+        <path d="M-20 385 L315 41" />
+        <path d="M142 474 L469 90" />
+        <path d="M349 470 L653 112" />
+      </g>
+      <g class="map-major-roads">
+        <path d="M-20 278 C105 253 211 281 336 257 C478 230 594 266 820 246" />
+        <path d="M314 -20 C319 80 307 156 338 229 C370 305 361 382 389 480" />
+        <path d="M18 438 C158 397 277 422 407 397 C540 372 656 401 782 373" />
+      </g>
+      <g class="map-blocks">
+        <rect x="82" y="188" width="72" height="42" rx="8" />
+        <rect x="176" y="190" width="48" height="62" rx="8" />
+        <rect x="410" y="76" width="68" height="52" rx="8" />
+        <rect x="515" y="102" width="53" height="67" rx="8" />
+        <rect x="405" y="326" width="53" height="54" rx="8" />
+        <rect x="682" y="258" width="55" height="75" rx="8" />
+      </g>
+      <g class="map-labels">
+        <text x="92" y="67">Pearl Park</text>
+        <text x="422" y="204">Willow Center</text>
+        <text x="236" y="413">West Garden</text>
+        <text x="568" y="353">Riverside</text>
+        <text x="471" y="112">Central Station</text>
+      </g>
+    </svg>
+              <div class="findmy-statusbar"><span>11:20</span><span class="dynamic-island"></span><span>◉ 39</span></div>
+              <div class="findmy-tools"><span>◇</span><span>➤</span></div>
+              <div class="findmy-dot" aria-hidden="true"><i></i></div>
+              <div class="findmy-location-card" id="phone-status"><strong id="phone-status-title">Current location</strong><span id="phone-status-sub">West Garden</span></div>
+              <div class="findmy-tabs"><span>♙<small>People</small></span><span>▣<small>Devices</small></span><span>✦<small>Items</small></span><span class="active">➤<small>Me</small></span></div>
+            </div>
+          </div>
+          <p class="phone-caption" id="phone-caption">Nothing changes until you confirm.</p>
         </div>
       </div>
     </div>
@@ -1521,585 +869,249 @@
 
 
 
-<!-- PRICING -->
-<section id="pricing" class="alt">
-  <div class="container">
-    <p class="section-label reveal">Pricing</p>
-
-    <div class="social-proof reveal reveal-delay-1">
-      <span class="social-proof-dot"></span>
-      <span>Windows Beta 7 is now available</span>
-    </div>
-    <h2 class="pricing-headline reveal reveal-delay-2">try it free. stay because it works.</h2>
-    <p class="pricing-all-same reveal reveal-delay-2">All plans include every feature — unlimited teleports, route simulation, saved spots, the Windows Beta, and all updates. Mac is coming soon.</p>
-
-    <div class="pricing-grid">
-
-      <div class="price-card price-trial reveal reveal-delay-1">
-        <div class="price-tier">Free Trial</div>
-        <div class="price-amount-trial">$0</div>
-        <div class="price-note">3 days · no card required</div>
-        <button class="price-cta price-cta-trial" onclick="window.location.href='/download/windows'">Download Windows Beta</button>
-      </div>
-
-      <div class="price-card reveal reveal-delay-2">
-        <div class="price-tier">Weekly</div>
-        <div class="price-amount">$3.99</div>
-        <div class="price-week-equiv">$3.99 / week</div>
-        <div class="price-note">billed every week</div>
-        <button class="price-cta" onclick="openAuthModal('weekly')">Choose Weekly</button>
-      </div>
-
-      <div class="price-card reveal reveal-delay-3">
-        <div class="price-tier">Monthly</div>
-        <div class="price-amount">$11.99</div>
-        <div class="price-week-equiv">~$2.77 / week <span class="price-save-badge">save 31%</span></div>
-        <div class="price-note">billed every month</div>
-        <button class="price-cta" onclick="openAuthModal('monthly')">Choose Monthly</button>
-      </div>
-
-      <div class="price-card featured reveal reveal-delay-4">
-        <span class="best-value">Best Value</span>
-        <div class="price-tier">Annual</div>
-        <div class="price-amount">$120</div>
-        <div class="price-week-equiv">~$2.31 / week <span class="price-save-badge">save 42%</span></div>
-        <div class="price-note">billed once per year</div>
-        <button class="price-cta" onclick="openAuthModal('annual')">Choose Annual</button>
-      </div>
-
-    </div>
-
-    <div class="billing-manage reveal">
-      <p>Already a subscriber?</p>
-      <a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer" class="billing-manage-btn">Manage Billing →</a>
-    </div>
-
+<section class="section reassurance reassurance-v2 reassurance-v3 reassurance-v4 edge-bubble-zone" id="why">
+  <div class="edge-orbs why-edge-orbs" aria-hidden="true">
+    <i class="edge-orb w1"></i><i class="edge-orb w2"></i><i class="edge-orb w3"></i>
   </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
   <div class="container">
-    <p class="section-label">FAQ</p>
-    <h2 class="faq-headline">got questions?</h2>
-    <div class="faq-list" id="faq-list">
-
-      <div class="faq-item">
-        <button class="faq-q">Will my parents' tracking apps see my fake location? <span class="chevron">▾</span></button>
-        <div class="faq-a">Yes — that's the whole point. Apps like Find My, Life360, and Snapchat all read from your iPhone's system location, which Tapioca changes at the source. They'll see wherever you tell them to.</div>
+    <div class="reassurance-wrap reassurance-wrap-v2 reassurance-wrap-v3 reassurance-wrap-v4 glass reveal">
+      <div class="reassurance-top-v2">
+        <div><p class="section-kicker">WHY TAPIOCA</p><h2 class="section-title">made for moments<br/>like these.</h2></div>
+        <p class="section-copy">Sometimes a location can get in the way of a moment. Tapioca keeps the experience simple, reversible, and yours to control.</p>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-q">Do I have to keep my phone plugged in the whole time? <span class="chevron">▾</span></button>
-        <div class="faq-a">Yes, while Tapioca is running your iPhone needs to stay connected to your computer via USB. Unplug it and your real location comes right back.</div>
+      <div class="reassurance-cards reassurance-cards-v2">
+        <article class="reassurance-card"><i>✦</i><h3>Quietly simple</h3><p>Pick a place, confirm it, and let Tapioca handle the rest.</p></article>
+        <article class="reassurance-card"><i>↶</i><h3>Easy to undo</h3><p>Cancel or reset whenever you are ready.</p></article>
+        <article class="reassurance-card"><i>◌</i><h3>Made with care</h3><p>Clear states, soft details, and no unnecessary clutter.</p></article>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-q">Does Tapioca work with Find My, Snapchat, Instagram, and Life360? <span class="chevron">▾</span></button>
-        <div class="faq-a">Yes. Tapioca changes your location at the system level, so any app that uses your iPhone's GPS — including Find My, Life360, Snapchat, and Instagram — will show your spoofed location.</div>
+      <div class="compatibility-inline">
+        <p>Tapioca updates the iPhone system location used by compatible apps.</p>
+        <div class="chips"><span class="chip">Location sharing</span><span class="chip">Maps</span><span class="chip">Social experiences</span><span class="chip">Location-based apps</span></div>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-q">Does this require a jailbreak? <span class="chevron">▾</span></button>
-        <div class="faq-a">No. Never. Tapioca uses Apple's own developer pathway to change your location. Your iPhone stays completely stock.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q">Will anything on my iPhone change permanently? <span class="chevron">▾</span></button>
-        <div class="faq-a">No. Tapioca doesn't install anything on your iPhone and doesn't modify any settings. The only thing that changes is your GPS location, and only while it's running.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q">What iPhone models and iOS versions does Tapioca support? <span class="chevron">▾</span></button>
-        <div class="faq-a">Tapioca works with all iPhone models running iOS 17 and above. Support for older iOS versions may vary.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q">Is my real location or personal data ever stored? <span class="chevron">▾</span></button>
-        <div class="faq-a">No. The coordinates you pick never leave your device. Tapioca doesn't log, store, or transmit your GPS data anywhere.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q">What happens when I cancel or reset? <span class="chevron">▾</span></button>
-        <div class="faq-a">Your real GPS location comes back immediately. One tap on Cancel in the app resets everything and your iPhone returns to its actual position.</div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="nav-wordmark">tapioca</div>
-      <p class="footer-tagline">anywhere but here.</p>
-    </div>
 
-    <div class="footer-links-col">
-      <h4>Navigate</h4>
-      <a href="#how">How It Works</a>
-      <a href="#hardware">Hardware</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-    </div>
 
-    <div class="footer-links-col">
-      <h4>Legal & Support</h4>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
-      <a href="mailto:support@usetapioca.com">support@usetapioca.com</a>
-      <a href="https://www.instagram.com/tap.i_oca" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="https://www.tiktok.com/@tap.i_oca" target="_blank" rel="noopener noreferrer">TikTok</a>
-    </div>
+<section class="section pricing-v2 pricing-v3 edge-bubble-zone" id="pricing">
+  <div class="edge-orbs pricing-edge-orbs" aria-hidden="true">
+    <i class="edge-orb p1"></i><i class="edge-orb p2"></i><i class="edge-orb p3"></i>
   </div>
-  <div class="footer-bottom">© 2026 Tapioca. All rights reserved.</div>
-</footer>
+  <div class="container">
+    <div class="pricing-head pricing-head-v2 pricing-head-v3 reveal">
+      <p class="section-kicker">PRICING</p>
+      <h2 class="section-title">try it free.</h2>
+      <p class="section-copy">Three days with every feature. No card required.</p>
+    </div>
 
-<!-- OS MISMATCH MODAL -->
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
-    <h3 id="modal-title">Heads up</h3>
-    <p id="modal-body">Looks like you're on a different OS. Want the right version instead?</p>
-    <div class="modal-btns" id="modal-btns">
-      <button class="modal-yes" onclick="modalYes()">Yes, switch</button>
-      <button class="modal-no" onclick="modalNo()">I'll stick with this</button>
+    <div class="trial-spotlight trial-spotlight-v3 glass reveal">
+      <div class="trial-number"><strong>3</strong><span>days<br/>free</span></div>
+      <div class="trial-message"><span class="no-card-badge">NO CARD REQUIRED</span><h3>start free. choose later.</h3><p>Download the app, connect your iPhone, and use every feature before choosing a plan.</p></div>
+      <a class="button primary" href="/download/windows">Download and try free</a>
     </div>
-    <div class="modal-email-form" id="modal-email-form">
-      <input type="email" placeholder="your@email.com" id="modal-email-input" />
-      <button class="modal-email-send" onclick="modalSendEmail()">Send me the link</button>
+
+    <div class="paid-intro paid-intro-v3 reveal"><p>choose the plan that feels right.</p><span>Every paid plan includes the same Tapioca experience.</span></div>
+
+    <div class="pricing-grid pricing-grid-v2">
+      <article class="price-card price-card-v2 glass reveal"><div class="price-tier">Weekly</div><div class="price-amount">$2.77</div><div class="price-equiv">$2.77 / week</div><div class="price-note">billed every week</div><button class="button secondary" onclick="openAuthModal('weekly')">Choose Weekly</button></article>
+      <article class="price-card price-card-v2 glass reveal reveal-delay-1"><div class="price-tier">Monthly</div><div class="price-amount">$6.77</div><div class="price-equiv">about $1.56 / week · save 44%</div><div class="price-note">billed every month</div><button class="button secondary" onclick="openAuthModal('monthly')">Choose Monthly</button></article>
+      <article class="price-card price-card-v2 featured glass reveal reveal-delay-2"><span class="best-value">Best Value</span><div class="price-tier">Annual</div><div class="price-amount">$67</div><div class="price-equiv">about $1.29 / week · save 53%</div><div class="price-note">billed once per year</div><button class="button primary" onclick="openAuthModal('annual')">Choose Annual</button></article>
     </div>
+    <div class="billing-row reveal"><span>Already a subscriber?</span><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing →</a></div>
+  </div>
+</section>
+
+<section class="section faq-v3 edge-bubble-zone" id="faq">
+  <div class="edge-orbs faq-edge-orbs" aria-hidden="true"><i class="edge-orb f1"></i><i class="edge-orb f2"></i></div>
+  <div class="container faq-wrap"><div class="reveal"><p class="section-kicker">FAQ</p><h2 class="section-title">got questions?</h2><p class="section-copy">The important parts, without making you hunt for them.</p></div><div class="faq-list">
+    <article class="faq-item glass reveal"><button class="faq-q">What changes while Tapioca is active?<span>+</span></button><div class="faq-a">Compatible apps that use your iPhone's system location will generally reflect the place selected in Tapioca.</div></article>
+    <article class="faq-item glass reveal"><button class="faq-q">How quickly does the location update?<span>+</span></button><div class="faq-a">Usually within a moment. A brief delay while the location is applied is normal.</div></article>
+    <article class="faq-item glass reveal"><button class="faq-q">Can I return to my real location?<span>+</span></button><div class="faq-a">Yes. Use Cancel or GPS Reset in Tapioca whenever you are ready.</div></article>
+    <article class="faq-item glass reveal"><button class="faq-q">Do I need to jailbreak my iPhone?<span>+</span></button><div class="faq-a">No. Tapioca works without jailbreaking your iPhone.</div></article>
+    <article class="faq-item glass reveal"><button class="faq-q">Does it work on Windows and Mac?<span>+</span></button><div class="faq-a">The signed Windows beta is available now. The Apple Silicon Mac release is being prepared for signed, notarized distribution.</div></article>
+    <article class="faq-item glass reveal"><button class="faq-q">How does the free trial work?<span>+</span></button><div class="faq-a">The free trial gives you three days to use Tapioca before choosing a paid plan. No card is required to start.</div></article>
+  </div></div>
+</section>
+
+<section class="section download-v3 edge-bubble-zone" id="download"><div class="edge-orbs download-edge-orbs" aria-hidden="true"><i class="edge-orb x1"></i><i class="edge-orb x2"></i><i class="edge-orb x3"></i></div><div class="container"><div class="download-panel glass reveal"><div class="download-panel-inner"><p class="section-kicker">READY WHEN YOU ARE</p><h2 class="section-title">everything is mixed<br/>and ready.</h2><p class="section-copy">Download Tapioca, connect your iPhone, and choose your first place.</p><div class="download-actions"><a class="button primary" href="/download/windows">Download for Windows</a><span class="button secondary disabled" aria-disabled="true">Mac coming soon</span></div><div class="download-meta">Windows x64 · digitally signed · iPhone required · <a href="/download/windows/sha256">SHA-256 checksum</a></div></div></div></div></section>
+</main>
+
+<footer><div class="container"><div class="footer-grid"><div><div class="footer-brand">tapioca</div><div class="footer-tag">made with care for anywhere but here.</div></div><div class="footer-links"><h4>Product</h4><a href="#demo">Try it</a><a href="#pricing">Pricing</a><a href="/download/windows">Download for Windows</a></div><div class="footer-links"><h4>Support</h4><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing</a><a href="mailto:support@usetapioca.com">Email Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="footer-bottom">© 2026 Tapioca. Use only on devices you own or are authorized to test.</div></div></footer>
+
+<div class="auth-overlay" id="auth-overlay">
+  <div class="auth-modal glass" role="dialog" aria-modal="true" aria-labelledby="auth-headline">
+    <button class="auth-close" onclick="closeAuthModal()" aria-label="Close">×</button>
+    <div class="auth-plan" id="auth-plan-badge"></div>
+    <h2 id="auth-headline">Sign in to subscribe</h2>
+    <p id="auth-sub">Enter your email and we will send a 6-digit Tapioca code.</p>
+    <div class="auth-error" id="auth-error" role="alert"></div>
+
+    <div class="otp-step" id="auth-email-step">
+      <label class="auth-label" for="auth-email">Email address</label>
+      <input class="auth-field" type="email" id="auth-email" placeholder="you@example.com" autocomplete="email" inputmode="email" />
+      <button class="auth-submit" id="auth-send-btn" onclick="sendAuthOtp()">Send sign-in code</button>
+      <p class="auth-footnote">New here? Your Tapioca account is created automatically.</p>
+    </div>
+
+    <div class="otp-step" id="auth-otp-step" hidden>
+      <div class="otp-sent-card"><span>Code sent to</span><strong id="auth-email-display"></strong></div>
+      <label class="auth-label" for="auth-otp">6-digit code</label>
+      <input class="auth-field auth-code" type="text" id="auth-otp" placeholder="000000" autocomplete="one-time-code" inputmode="numeric" maxlength="6" />
+      <button class="auth-submit" id="auth-verify-btn" onclick="verifyAuthOtp()">Verify & continue</button>
+      <div class="otp-links"><button type="button" id="auth-resend" onclick="resendAuthOtp()">Resend code</button><button type="button" onclick="changeAuthEmail()">Change email</button></div>
+    </div>
+
+    <div class="auth-success" id="auth-success" aria-live="polite"><span class="auth-loading large"></span><div id="auth-success-msg">Redirecting…</div></div>
   </div>
 </div>
 
 <script>
-  /* ── CONSTANTS ── */
-  const AUTH_SERVER   = 'https://tapioca-auth.onrender.com';
-  const STRIPE_PORTAL = 'https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400';
-  const PLAN_LABELS   = {
-    weekly:  'Weekly — $3.99/week',
-    monthly: 'Monthly — $11.99/mo (~$2.77/wk)',
-    annual:  'Annual — $120/yr (~$2.31/wk)',
-  };
-  let _selectedPlan  = null;
-  let _authTab       = 'login';
-  let _selectedVersion = 'windows';
+const AUTH_SERVER='https://tapioca-auth.onrender.com';
+const SUPABASE_URL='https://atiwcqfpxxbwigmeabjm.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_URJej8-owIQe1h7Zrp380w_1HMPmWi8';
+const STRIPE_PORTAL='https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400';
+const PLAN_LABELS={weekly:'Weekly — $2.77/week',monthly:'Monthly — $6.77/month',annual:'Annual — $67/year'};
+let selectedPlan=null,authEmail='',authBusy=false,resendTimer=null,resendRemaining=0;
 
-  /* ── PAYMENT BANNER ── */
-  (function() {
-    const params = new URLSearchParams(window.location.search);
-    const payment = params.get('payment');
-    if (!payment) return;
+// payment banner
+(function(){const payment=new URLSearchParams(location.search).get('payment');if(!payment)return;const b=document.getElementById('payment-banner'),i=document.getElementById('payment-banner-icon'),m=document.getElementById('payment-banner-msg');if(payment==='success'){b.classList.add('success');i.textContent='✓';m.textContent='Payment received. Return to Tapioca and check your payment status; activation may take a few seconds.'}else if(payment==='cancelled'){b.classList.add('cancelled');i.textContent='↩';m.textContent='No new payment was completed. You can choose a plan whenever you are ready.'}else return;history.replaceState({},'',location.pathname);requestAnimationFrame(()=>requestAnimationFrame(()=>b.classList.add('visible')));setTimeout(dismissPaymentBanner,8000)})();
+function dismissPaymentBanner(){document.getElementById('payment-banner').classList.remove('visible')}
 
-    const banner  = document.getElementById('payment-banner');
-    const icon    = document.getElementById('payment-banner-icon');
-    const msg     = document.getElementById('payment-banner-msg');
+// nav
+const nav=document.getElementById('navbar'),menu=document.getElementById('mobile-menu'),toggle=document.getElementById('nav-toggle');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>12),{passive:true});
+toggle.addEventListener('click',()=>{menu.classList.toggle('open');toggle.textContent=menu.classList.contains('open')?'×':'☰'});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.textContent='☰'}));
 
-    if (payment === 'success') {
-      banner.classList.add('success');
-      icon.textContent = '🎉';
-      msg.textContent  = 'Payment received. Return to Tapioca and check your payment status; activation may take a few seconds.';
-    } else if (payment === 'cancelled') {
-      banner.classList.add('cancelled');
-      icon.textContent = '↩️';
-      msg.textContent  = 'No worries — you can subscribe anytime from the pricing section.';
-    } else {
-      return;
-    }
+// reveal once — no scroll-up replay
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduced)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('revealed'));
+else{const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');observer.unobserve(entry.target)}}),{threshold:.13,rootMargin:'0px 0px -42px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}
 
-    // Clean up URL without reloading
-    const cleanUrl = window.location.pathname;
-    window.history.replaceState({}, '', cleanUrl);
+// mobile download behavior
+const isMobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+if(isMobile){document.getElementById('hero-actions').style.display='none';document.getElementById('hero-mobile-note').style.display='block';document.getElementById('nav-download-btn').textContent='Try it';document.getElementById('nav-download-btn').href='#demo'}
 
-    // Show banner
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => banner.classList.add('visible'));
-    });
+// interactive demo
+const demoShell=document.getElementById('demo-shell');
+const demoMap=document.getElementById('demo-map');
+const phone=document.getElementById('demo-phone');
+const phoneStatus=document.getElementById('phone-status');
+const phoneTitle=document.getElementById('phone-status-title');
+const phoneSub=document.getElementById('phone-status-sub');
+const phoneCaption=document.getElementById('phone-caption');
+const trayTitle=document.getElementById('tray-title');
+const traySub=document.getElementById('tray-sub');
+const confirmBtn=document.getElementById('demo-confirm');
+const cancelBtn=document.getElementById('demo-cancel');
+const instruction=document.getElementById('demo-instruction');
+const searchCopy=document.getElementById('demo-search-copy');
+let demoState='ready',demoTimer=null;
+function clearDemoTimer(){if(demoTimer)clearTimeout(demoTimer);demoTimer=null}
+function renderDemo(){
+  demoShell.dataset.state=demoState;
+  phone.dataset.state=demoState;
+  demoShell.classList.toggle('transmitting',demoState==='updating');
+  confirmBtn.disabled=demoState!=='selected';
+  cancelBtn.disabled=!['selected','active'].includes(demoState);
 
-    // Auto-dismiss after 8s
-    setTimeout(dismissPaymentBanner, 8000);
-  })();
-
-  function dismissPaymentBanner() {
-    const banner = document.getElementById('payment-banner');
-    banner.classList.remove('visible');
+  if(demoState==='ready'){
+    trayTitle.textContent='Choose a destination';
+    traySub.textContent='Tap anywhere on the map to drop a pearl.';
+    instruction.textContent='Tap anywhere to drop a pearl';
+    searchCopy.textContent='Search an address or place';
+    phoneTitle.textContent='Current location';
+    phoneSub.textContent='West Garden';
+    phoneCaption.textContent='Nothing changes until you confirm.';
   }
-
-  /* ── MOBILE NAV MENU ── */
-  function toggleMobileMenu() {
-    const menu   = document.getElementById('nav-mobile-menu');
-    const toggle = document.getElementById('nav-mobile-toggle');
-    const isOpen = menu.classList.contains('open');
-    menu.classList.toggle('open');
-    toggle.textContent = isOpen ? '☰' : '✕';
+  if(demoState==='selected'){
+    trayTitle.textContent='Pearl Park';
+    traySub.textContent='Willow City';
+    instruction.textContent='Destination ready';
+    searchCopy.textContent='Pearl Park, Willow City';
+    phoneCaption.textContent='Nothing changes until you confirm.';
   }
-  function closeMobileMenu() {
-    document.getElementById('nav-mobile-menu').classList.remove('open');
-    document.getElementById('nav-mobile-toggle').textContent = '☰';
+  if(demoState==='updating'){
+    trayTitle.textContent='Updating location…';
+    traySub.textContent='A brief pause is normal.';
+    instruction.textContent='Sending location…';
+    phoneTitle.textContent='Updating…';
+    phoneSub.textContent='One moment';
+    phoneCaption.textContent='Sending the selected place…';
   }
-  document.addEventListener('click', function(e) {
-    const menu   = document.getElementById('nav-mobile-menu');
-    const toggle = document.getElementById('nav-mobile-toggle');
-    if (menu.classList.contains('open') && !menu.contains(e.target) && !toggle.contains(e.target)) {
-      closeMobileMenu();
-    }
-  });
-
-  /* ── NAV SCROLL SHADOW ── */
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY > 10;
-    navbar.classList.toggle('scrolled', scrolled);
-  });
-
-  /* ── FLOATING PEARLS ── */
-  const pearlContainer = document.getElementById('hero-pearls');
-  const pearlData = [
-    { w: 90, top: '10%', left: '75%', delay: '0s', dur: '7s' },
-    { w: 55, top: '65%', left: '85%', delay: '1.5s', dur: '5.5s' },
-    { w: 35, top: '80%', left: '60%', delay: '0.8s', dur: '6s' },
-    { w: 70, top: '25%', left: '90%', delay: '2s', dur: '8s' },
-    { w: 40, top: '50%', left: '70%', delay: '3s', dur: '5s' },
-    { w: 22, top: '15%', left: '55%', delay: '1s', dur: '7.5s' },
-    { w: 60, top: '90%', left: '40%', delay: '0.3s', dur: '6.5s' },
-  ];
-  pearlData.forEach(p => {
-    const el = document.createElement('div');
-    el.className = 'pearl';
-    el.style.cssText = `width:${p.w}px;height:${p.w}px;top:${p.top};left:${p.left};animation-delay:${p.delay};animation-duration:${p.dur};`;
-    pearlContainer.appendChild(el);
-  });
-
-  /* ── SCROLL REVEAL (C — site-wide, bidirectional) ── */
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-      } else {
-        entry.target.classList.remove('revealed');
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  /* ── OS DETECTION + DOWNLOADS ── */
-  const WINDOWS_DOWNLOAD_URL = '/download/windows';
-
-  function detectOS() {
-    const ua = navigator.userAgent;
-
-    if (/Android|iPhone|iPad|iPod/i.test(ua)) {
-      return 'mobile';
-    }
-
-    if (/Mac/i.test(ua)) {
-      return 'mac';
-    }
-
-    return 'windows';
+  if(demoState==='active'){
+    trayTitle.textContent='Your iPhone is there.';
+    traySub.textContent='Pearl Park · Willow City';
+    instruction.textContent='Location active';
+    phoneTitle.textContent='Location updated';
+    phoneSub.textContent='Pearl Park';
+    phoneCaption.textContent='The phone now shows Pearl Park.';
   }
-
-  const detectedOS = detectOS();
-  const btnWin = document.getElementById('btn-windows');
-  const navDownloadBtn = document.getElementById('nav-download-btn');
-  const mobileMsgEl = document.getElementById('mobile-msg');
-  const downloadBtnsEl = document.getElementById('download-btns');
-
-  if (detectedOS === 'mobile') {
-    downloadBtnsEl.style.display = 'none';
-    mobileMsgEl.style.display = 'block';
-    navDownloadBtn.textContent = 'Open on Windows';
-    navDownloadBtn.href = '#hero';
-  } else if (detectedOS === 'mac') {
-    btnWin.classList.remove('btn-primary');
-    btnWin.classList.add('btn-secondary');
-    navDownloadBtn.textContent = 'Windows Beta';
-    navDownloadBtn.href = WINDOWS_DOWNLOAD_URL;
-  } else {
-    navDownloadBtn.href = WINDOWS_DOWNLOAD_URL;
+  if(demoState==='resetting'){
+    trayTitle.textContent='Resetting location…';
+    traySub.textContent='Bringing everything back.';
+    instruction.textContent='Resetting…';
+    phoneTitle.textContent='Returning…';
+    phoneSub.textContent='Back to normal';
+    phoneCaption.textContent='Resetting takes a brief moment.';
   }
+}
+function selectDestination(){if(['updating','resetting','active'].includes(demoState))return;demoState='selected';renderDemo()}
+demoMap.addEventListener('click',selectDestination);
+demoMap.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDestination()}});
+confirmBtn.addEventListener('click',()=>{if(demoState!=='selected')return;clearDemoTimer();demoState='updating';renderDemo();demoTimer=setTimeout(()=>{demoState='active';renderDemo()},1100)});
+cancelBtn.addEventListener('click',()=>{clearDemoTimer();if(demoState==='selected'){demoState='ready';renderDemo();return}if(demoState==='active'){demoState='resetting';renderDemo();demoTimer=setTimeout(()=>{demoState='ready';renderDemo()},900)}});
+renderDemo();
 
-  /* ── FAQ ACCORDION ── */
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.parentElement;
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    });
-  });
+// FAQ
+for(const button of document.querySelectorAll('.faq-q'))button.addEventListener('click',()=>{const item=button.closest('.faq-item'),opening=!item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(opening)item.classList.add('open')});
 
-  /* ── WAITLIST FORM ── */
-  function submitWaitlist() {
-    const name = document.getElementById('wl-name').value.trim();
-    const email = document.getElementById('wl-email').value.trim();
-    if (!name || !email) { alert("Please fill in your name and email."); return; }
-    document.getElementById('waitlist-form').style.display = 'none';
-    document.getElementById('waitlist-confirm').style.display = 'block';
+// auth modal / checkout — passwordless Supabase OTP
+function authEl(id){return document.getElementById(id)}
+function clearAuthError(){authEl('auth-error').classList.remove('visible');authEl('auth-error').textContent=''}
+function showAuthError(message){const el=authEl('auth-error');el.textContent=message;el.classList.add('visible')}
+function authErrorMessage(data,fallback){if(!data||typeof data!=='object')return fallback;const detail=data.detail;if(detail&&typeof detail==='object')return detail.message||detail.msg||fallback;return data.msg||data.message||data.error_description||data.error||detail||fallback}
+function setAuthButton(button,loading,normalText){button.disabled=loading;button.innerHTML=loading?'<span class="auth-loading"></span>Please wait…':normalText}
+function stopResendTimer(){if(resendTimer)clearInterval(resendTimer);resendTimer=null;resendRemaining=0}
+function updateResendButton(){const button=authEl('auth-resend');button.disabled=resendRemaining>0;button.textContent=resendRemaining>0?`Resend in ${resendRemaining}s`:'Resend code'}
+function startResendTimer(){stopResendTimer();resendRemaining=60;updateResendButton();resendTimer=setInterval(()=>{resendRemaining-=1;updateResendButton();if(resendRemaining<=0)stopResendTimer()},1000)}
+function showAuthStep(step){authEl('auth-email-step').hidden=step!=='email';authEl('auth-otp-step').hidden=step!=='otp';authEl('auth-success').classList.toggle('visible',step==='success')}
+function openAuthModal(plan){selectedPlan=plan;authEmail='';authBusy=false;stopResendTimer();authEl('auth-plan-badge').textContent=PLAN_LABELS[plan];authEl('auth-headline').textContent='Sign in to subscribe';authEl('auth-sub').textContent='Enter your email and we will send a 6-digit Tapioca code.';authEl('auth-email').value='';authEl('auth-otp').value='';clearAuthError();showAuthStep('email');authEl('auth-overlay').classList.add('open');setTimeout(()=>authEl('auth-email').focus(),100)}
+function closeAuthModal(){if(authBusy)return;authEl('auth-overlay').classList.remove('open');stopResendTimer()}
+authEl('auth-overlay').addEventListener('click',event=>{if(event.target===event.currentTarget)closeAuthModal()});
+async function sendOtpRequest(email){const response=await fetch(`${SUPABASE_URL}/auth/v1/otp`,{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({email,create_user:true})});let data={};try{data=await response.json()}catch(_){data={}}if(!response.ok)throw new Error(authErrorMessage(data,'Could not send the code. Please try again.'));return data}
+async function sendAuthOtp(){if(authBusy)return;const email=authEl('auth-email').value.trim().toLowerCase();clearAuthError();if(!email||!email.includes('@')){showAuthError('Enter a valid email address.');return}authBusy=true;setAuthButton(authEl('auth-send-btn'),true,'Send sign-in code');try{await sendOtpRequest(email);authEmail=email;authEl('auth-email-display').textContent=email;authEl('auth-otp').value='';showAuthStep('otp');startResendTimer();setTimeout(()=>authEl('auth-otp').focus(),80)}catch(error){showAuthError(error.message||'Could not send the code. Please try again.')}finally{authBusy=false;setAuthButton(authEl('auth-send-btn'),false,'Send sign-in code')}}
+async function resendAuthOtp(){if(authBusy||resendRemaining>0||!authEmail)return;clearAuthError();authBusy=true;try{await sendOtpRequest(authEmail);startResendTimer();authEl('auth-otp').focus()}catch(error){showAuthError(error.message||'Could not resend the code.')}finally{authBusy=false}}
+function changeAuthEmail(){if(authBusy)return;stopResendTimer();clearAuthError();showAuthStep('email');setTimeout(()=>authEl('auth-email').focus(),80)}
+async function continueToCheckout(accessToken){
+  const statusResponse=await fetch(AUTH_SERVER+'/subscription-status',{headers:{Authorization:'Bearer '+accessToken}});
+  let status={};try{status=await statusResponse.json()}catch(_){status={}}
+  if(!statusResponse.ok)throw new Error(authErrorMessage(status,'Could not check your Tapioca subscription.'));
+  const activePlan=status.plan||status.plan_key||(status.subscription&&status.subscription.plan_key);
+  const activeStatus=status.status||(status.subscription&&status.subscription.status);
+  if(['weekly','monthly','annual'].includes(activePlan)&&activeStatus!=='canceled'){
+    authEl('auth-success-msg').textContent='You already have an active subscription. Taking you to billing…';
+    setTimeout(()=>{window.open(STRIPE_PORTAL,'_blank','noopener');authBusy=false;authEl('auth-overlay').classList.remove('open')},1000);
+    return;
   }
-
-  /* ── REDUCED MOTION ── */
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
-  }
-  /* ── AUTH MODAL ── */
-  function handleGetStarted() {
-    if (detectedOS === 'mobile') {
-      window.location.hash = 'hero';
-      return;
-    }
-
-    window.location.href = WINDOWS_DOWNLOAD_URL;
-  }
-
-  /* ── MOBILE DOWNLOAD MODAL ── */
-  function openMobileDownloadModal() {
-    _selectedVersion = 'windows';
-    selectVersion('windows');
-    document.getElementById('mobile-dl-email').value = '';
-    document.getElementById('mobile-dl-error').classList.remove('visible');
-    document.getElementById('mobile-dl-form-area').style.display = 'block';
-    document.getElementById('mobile-dl-success').style.display = 'none';
-    document.getElementById('mobile-dl-submit').disabled = false;
-    document.getElementById('mobile-dl-submit').textContent = 'Send Me the Link →';
-    document.getElementById('mobile-dl-overlay').classList.add('open');
-    setTimeout(() => document.getElementById('mobile-dl-email').focus(), 300);
-  }
-
-  function closeMobileDownloadModal() {
-    document.getElementById('mobile-dl-overlay').classList.remove('open');
-  }
-
-  document.getElementById('mobile-dl-overlay').addEventListener('click', function(e) {
-    if (e.target === this) closeMobileDownloadModal();
-  });
-
-  function selectVersion(v) {
-    _selectedVersion = v;
-    document.getElementById('ver-windows').classList.toggle('selected', v === 'windows');
-    document.getElementById('ver-mac').classList.toggle('selected', v === 'mac');
-  }
-
-  async function submitMobileDownload() {
-    const email = document.getElementById('mobile-dl-email').value.trim();
-    const errorEl = document.getElementById('mobile-dl-error');
-    errorEl.classList.remove('visible');
-
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      errorEl.textContent = 'Please enter a valid email address.';
-      errorEl.classList.add('visible');
-      return;
-    }
-
-    const btn = document.getElementById('mobile-dl-submit');
-    btn.disabled = true;
-    btn.innerHTML = '<span class="auth-loading"></span>Sending...';
-
-    // TODO: wire to /send-download-link endpoint once Resend + download URLs are ready
-    // For now, simulate success after short delay
-    await new Promise(r => setTimeout(r, 900));
-
-    document.getElementById('mobile-dl-form-area').style.display = 'none';
-    document.getElementById('mobile-dl-success').style.display = 'block';
-    setTimeout(closeMobileDownloadModal, 4000);
-  }
-
-
-
-  function openAuthModal(plan) {
-    _selectedPlan = plan;
-    _authTab = 'login';
-    document.getElementById('auth-plan-badge').textContent = '🎯 ' + PLAN_LABELS[plan];
-    document.getElementById('auth-headline').textContent = 'Sign in to subscribe';
-    document.getElementById('auth-sub').textContent = 'Log in or create an account to continue.';
-    document.getElementById('auth-email').value = '';
-    document.getElementById('auth-password').value = '';
-    document.getElementById('auth-error').classList.remove('visible');
-    document.getElementById('auth-form-area').style.display = 'block';
-    document.getElementById('auth-success').style.display = 'none';
-    document.getElementById('auth-submit-btn').disabled = false;
-    document.getElementById('auth-submit-btn').textContent = 'Continue';
-    switchTab('login');
-    document.getElementById('auth-overlay').classList.add('open');
-    setTimeout(() => document.getElementById('auth-email').focus(), 100);
-  }
-
-  function closeAuthModal() {
-    document.getElementById('auth-overlay').classList.remove('open');
-  }
-
-  document.getElementById('auth-overlay').addEventListener('click', function(e) {
-    if (e.target === this) closeAuthModal();
-  });
-
-  function switchTab(tab) {
-    _authTab = tab;
-    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
-    document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
-    document.getElementById('auth-submit-btn').textContent = tab === 'login' ? 'Continue' : 'Create Account & Continue';
-    document.getElementById('auth-error').classList.remove('visible');
-    const pwInput = document.getElementById('auth-password');
-    pwInput.placeholder = tab === 'login' ? 'Password' : 'Create a password (min. 6 chars)';
-    pwInput.autocomplete = tab === 'login' ? 'current-password' : 'new-password';
-  }
-
-  function showAuthError(msg) {
-    const el = document.getElementById('auth-error');
-    el.textContent = msg;
-    el.classList.add('visible');
-  }
-
-  function setAuthLoading(loading) {
-    const btn = document.getElementById('auth-submit-btn');
-    btn.disabled = loading;
-    btn.innerHTML = loading
-      ? '<span class="auth-loading"></span>Please wait...'
-      : (_authTab === 'login' ? 'Continue' : 'Create Account & Continue');
-  }
-
-  async function handleAuthSubmit() {
-    const email    = document.getElementById('auth-email').value.trim();
-    const password = document.getElementById('auth-password').value;
-    document.getElementById('auth-error').classList.remove('visible');
-
-    if (!email || !password) { showAuthError('Please fill in all fields.'); return; }
-    if (_authTab === 'signup' && password.length < 6) { showAuthError('Password must be at least 6 characters.'); return; }
-
-    setAuthLoading(true);
-
-    try {
-      const endpoint = _authTab === 'login' ? '/login' : '/register';
-      const res = await fetch(AUTH_SERVER + endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-
-      if (!res.ok) {
-        showAuthError(data.detail || 'Something went wrong. Please try again.');
-        setAuthLoading(false);
-        return;
-      }
-
-      const token = data.token;
-      // Check subscription status
-      const statusRes = await fetch(AUTH_SERVER + '/subscription-status', {
-        headers: { 'Authorization': 'Bearer ' + token }
-      });
-      const status = await statusRes.json();
-      const activePlans = ['weekly', 'monthly', 'annual'];
-
-      if (activePlans.includes(status.plan)) {
-        // Already subscribed — send to portal to manage
-        document.getElementById('auth-form-area').style.display = 'none';
-        document.getElementById('auth-success').style.display = 'block';
-        document.getElementById('auth-success-msg').textContent = 'You already have an active subscription. Taking you to billing...';
-        setTimeout(() => { window.open(STRIPE_PORTAL, '_blank'); closeAuthModal(); }, 1500);
-      } else {
-        // No active sub — create checkout session for chosen plan
-        const checkoutRes = await fetch(AUTH_SERVER + '/create-checkout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token,
-          },
-          body: JSON.stringify({ plan: _selectedPlan }),
-        });
-        const checkoutData = await checkoutRes.json();
-        if (!checkoutRes.ok || !checkoutData.url) {
-          showAuthError('Could not start checkout. Please try again.');
-          setAuthLoading(false);
-          return;
-        }
-        document.getElementById('auth-form-area').style.display = 'none';
-        document.getElementById('auth-success').style.display = 'block';
-        document.getElementById('auth-success-msg').textContent = 'Redirecting you to checkout...';
-        setTimeout(() => { window.location.href = checkoutData.url; }, 800);
-      }
-    } catch (err) {
-      showAuthError('Network error. Please check your connection.');
-      setAuthLoading(false);
-    }
-  }
-
-  // Allow Enter key to submit
-  ['auth-email','auth-password'].forEach(id => {
-    document.getElementById(id).addEventListener('keydown', e => {
-      if (e.key === 'Enter') handleAuthSubmit();
-    });
-  });
+  const checkoutResponse=await fetch(AUTH_SERVER+'/create-checkout',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+accessToken},body:JSON.stringify({plan:selectedPlan})});
+  let checkout={};try{checkout=await checkoutResponse.json()}catch(_){checkout={}}
+  const checkoutUrl=checkout.url||checkout.checkout_url;
+  if(!checkoutResponse.ok||!checkoutUrl)throw new Error(authErrorMessage(checkout,'Could not start checkout. Please try again.'));
+  authEl('auth-success-msg').textContent='Redirecting you to secure checkout…';
+  setTimeout(()=>location.assign(checkoutUrl),500);
+}
+async function verifyAuthOtp(){if(authBusy)return;const token=authEl('auth-otp').value.replace(/\D/g,'');clearAuthError();if(token.length<6){showAuthError('Enter the 6-digit code from your email.');return}authBusy=true;setAuthButton(authEl('auth-verify-btn'),true,'Verify & continue');try{
+  const response=await fetch(`${SUPABASE_URL}/auth/v1/verify`,{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({email:authEmail,token,type:'email'})});
+  let data={};try{data=await response.json()}catch(_){data={}}
+  if(!response.ok||!data.access_token)throw new Error(authErrorMessage(data,'That code could not be verified.'));
+  showAuthStep('success');authEl('auth-success-msg').textContent='Signed in. Preparing checkout…';
+  await continueToCheckout(data.access_token);
+}catch(error){showAuthStep('otp');showAuthError(error.message||'Could not finish signing in. Please try again.');authBusy=false;setAuthButton(authEl('auth-verify-btn'),false,'Verify & continue')}}
+authEl('auth-email').addEventListener('keydown',event=>{if(event.key==='Enter')sendAuthOtp()});
+authEl('auth-otp').addEventListener('input',event=>{event.target.value=event.target.value.replace(/\D/g,'').slice(0,6)});
+authEl('auth-otp').addEventListener('keydown',event=>{if(event.key==='Enter')verifyAuthOtp()});
 </script>
-
-<!-- MOBILE DOWNLOAD MODAL -->
-<div class="mobile-dl-overlay" id="mobile-dl-overlay">
-  <div class="mobile-dl-sheet">
-    <div class="mobile-dl-handle"></div>
-
-    <div id="mobile-dl-form-area">
-      <div class="mobile-dl-icon">💻</div>
-      <h2 class="mobile-dl-headline">Get the download link</h2>
-      <p class="mobile-dl-sub">Tapioca runs on Windows and Mac. Enter your email and we'll send you the right version.</p>
-
-      <div class="mobile-dl-version">
-        <button class="mobile-dl-version-btn selected" id="ver-windows" onclick="selectVersion('windows')">🖥 Windows</button>
-        <button class="mobile-dl-version-btn" id="ver-mac" onclick="selectVersion('mac')">🍎 Mac</button>
-      </div>
-
-      <div class="mobile-dl-error" id="mobile-dl-error"></div>
-
-      <div class="mobile-dl-field">
-        <input type="email" id="mobile-dl-email" placeholder="your@email.com" autocomplete="email" />
-      </div>
-
-      <button class="mobile-dl-submit" id="mobile-dl-submit" onclick="submitMobileDownload()">Send Me the Link →</button>
-    </div>
-
-    <div class="mobile-dl-success" id="mobile-dl-success">
-      <div class="mobile-dl-success-icon">📬</div>
-      <p>Check your inbox! We'll send the download link as soon as the app is ready for your platform.</p>
-    </div>
-  </div>
-</div>
-
-
-<div class="auth-overlay" id="auth-overlay">
-  <div class="auth-modal">
-    <button class="auth-close" onclick="closeAuthModal()">✕</button>
-
-    <div class="auth-logo">
-      <img src="data:image/png;base64,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" alt="tapioca" />
-      <span>tapioca</span>
-    </div>
-
-    <div class="auth-plan-badge" id="auth-plan-badge">🎯 Weekly — $3.99/week</div>
-
-    <h2 class="auth-headline" id="auth-headline">Sign in to subscribe</h2>
-    <p class="auth-sub" id="auth-sub">Log in or create an account to continue.</p>
-
-    <div class="auth-error" id="auth-error"></div>
-
-    <div id="auth-form-area">
-      <div class="auth-tabs">
-        <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Log In</button>
-        <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Create Account</button>
-      </div>
-
-      <div class="auth-field">
-        <input type="email" id="auth-email" placeholder="Email address" autocomplete="email" />
-        <input type="password" id="auth-password" placeholder="Password" autocomplete="current-password" />
-      </div>
-
-      <button class="auth-submit" id="auth-submit-btn" onclick="handleAuthSubmit()">Continue</button>
-    </div>
-
-    <div class="auth-success" id="auth-success">
-      <div class="auth-success-icon">✅</div>
-      <p id="auth-success-msg">Redirecting you to checkout...</p>
-    </div>
-  </div>
-</div>
-
 </body>
 </html>
