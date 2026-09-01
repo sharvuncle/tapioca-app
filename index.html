@@ -1302,7 +1302,7 @@ body.modal-open{overflow:hidden}
 }
 
 </style>
-  <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v2-ui" />
+  <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v5-production-api" />
 </head>
 <body>
 
@@ -1667,7 +1667,7 @@ body.modal-open{overflow:hidden}
 </div>
 
 <script>
-const AUTH_SERVER='https://tapioca-auth.onrender.com';
+const AUTH_SERVER='https://api.usetapioca.com';
 const SUPABASE_URL='https://atiwcqfpxxbwigmeabjm.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_URJej8-owIQe1h7Zrp380w_1HMPmWi8';
 const STRIPE_PORTAL='https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400';
@@ -1899,21 +1899,24 @@ async function sendAuthOtp(){if(authBusy)return;const email=authEl('auth-email')
 async function resendAuthOtp(){if(authBusy||resendRemaining>0||!authEmail)return;clearAuthError();authCancelled=false;authBusy=true;try{await sendOtpRequest(authEmail);startResendTimer();authEl('auth-otp').focus()}catch(error){if(!authCancelled)showAuthError(error.message||'Could not resend the code.')}finally{authBusy=false}}
 function changeAuthEmail(){if(authBusy)return;stopResendTimer();clearAuthError();showAuthStep('email');setTimeout(()=>authEl('auth-email').focus(),80)}
 async function continueToCheckout(accessToken){
-  const statusResult=await backendJson('/subscription-status',{headers:{Authorization:'Bearer '+accessToken}});
-  const statusResponse=statusResult.response,status=statusResult.data;
-  if(!statusResponse.ok){if([502,503,504].includes(statusResponse.status))throw new Error('The checkout service is temporarily unavailable. Please retry in a moment.');throw new Error(authErrorMessage(status,'Could not check your Tapioca subscription.'))}
-  const subscription=status.subscription&&typeof status.subscription==='object'?status.subscription:{};
-  const activePlan=status.plan||status.plan_key||subscription.plan_key;
-  const activeStatus=status.status||subscription.status;
-  const paidAllowed=Boolean(status.paid_access_allowed||subscription.paid_access_allowed);
-  if(paidAllowed||(['weekly','monthly','annual'].includes(activePlan)&&activeStatus!=='canceled')){
-    authEl('auth-success-msg').textContent='You already have an active subscription. Opening billing…';authEl('auth-success-spinner').hidden=true;
-    location.assign(STRIPE_PORTAL);return
+  const checkoutResult=await backendJson('/v1/billing/checkout',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      Authorization:'Bearer '+accessToken
+    },
+    body:JSON.stringify({plan:selectedPlan})
+  });
+  const checkoutResponse=checkoutResult.response,checkout=checkoutResult.data;
+  const checkoutUrl=checkout.checkout_url||checkout.url;
+  if(!checkoutResponse.ok||!checkoutUrl){
+    if([502,503,504].includes(checkoutResponse.status)){
+      throw new Error('The checkout service is temporarily unavailable. Please retry in a moment.');
+    }
+    throw new Error(authErrorMessage(checkout,'Could not start checkout. Please try again.'));
   }
-  const checkoutResult=await backendJson('/create-checkout',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+accessToken},body:JSON.stringify({plan:selectedPlan})});
-  const checkoutResponse=checkoutResult.response,checkout=checkoutResult.data;const checkoutUrl=checkout.url||checkout.checkout_url;
-  if(!checkoutResponse.ok||!checkoutUrl){if([502,503,504].includes(checkoutResponse.status))throw new Error('The checkout service is temporarily unavailable. Please retry in a moment.');throw new Error(authErrorMessage(checkout,'Could not start checkout. Please try again.'))}
-  authEl('auth-success-msg').textContent='Opening secure checkout…';location.assign(checkoutUrl)
+  authEl('auth-success-msg').textContent='Opening secure checkout…';
+  location.assign(checkoutUrl)
 }
 async function startCheckoutAfterAuth(){
   if(!authAccessToken||authBusy)return;
