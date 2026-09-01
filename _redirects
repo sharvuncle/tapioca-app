@@ -2,3 +2,5 @@
 /download/windows/sha256 https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.7/TapiocaSetup.exe.sha256 302
 /privacy /privacy.html 200
 /terms /terms.html 200
+/download/mac https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.8/Tapioca-0.1.0-beta.8-macOS-arm64.dmg 302
+/download/mac/sha256 https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.8/Tapioca-0.1.0-beta.8-macOS-arm64.dmg.sha256 302
