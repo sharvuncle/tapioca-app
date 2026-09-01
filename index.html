@@ -1302,7 +1302,7 @@ body.modal-open{overflow:hidden}
 }
 
 </style>
-  <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v5-production-api" />
+  <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v6-web-checkout" />
 </head>
 <body>
 
@@ -1899,7 +1899,7 @@ async function sendAuthOtp(){if(authBusy)return;const email=authEl('auth-email')
 async function resendAuthOtp(){if(authBusy||resendRemaining>0||!authEmail)return;clearAuthError();authCancelled=false;authBusy=true;try{await sendOtpRequest(authEmail);startResendTimer();authEl('auth-otp').focus()}catch(error){if(!authCancelled)showAuthError(error.message||'Could not resend the code.')}finally{authBusy=false}}
 function changeAuthEmail(){if(authBusy)return;stopResendTimer();clearAuthError();showAuthStep('email');setTimeout(()=>authEl('auth-email').focus(),80)}
 async function continueToCheckout(accessToken){
-  const checkoutResult=await backendJson('/v1/billing/checkout',{
+  const checkoutResult=await backendJson('/v1/billing/web-checkout',{
     method:'POST',
     headers:{
       'Content-Type':'application/json',
