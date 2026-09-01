@@ -1220,6 +1220,14 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(c
 }
 .auth-retry:hover{border-color:rgba(149,117,205,.72);transform:translateY(-1px)}
 .auth-retry[hidden]{display:none!important}
+.auth-success-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:15px}
+.auth-manage{
+  border:0;background:linear-gradient(135deg,#b59cdc,#9472c9);color:#fff;
+  border-radius:999px;min-height:44px;padding:0 20px;font:800 .78rem 'DM Sans',sans-serif;
+  cursor:pointer;box-shadow:0 10px 24px rgba(111,78,170,.16)
+}
+.auth-manage:hover{transform:translateY(-1px)}
+.auth-manage[hidden]{display:none!important}
 .auth-success .auth-loading[hidden]{display:none!important}
 
 
@@ -1302,7 +1310,7 @@ body.modal-open{overflow:hidden}
 }
 
 </style>
-  <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v6-web-checkout" />
+  <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v8-billing-return" />
 </head>
 <body>
 
@@ -1661,7 +1669,10 @@ body.modal-open{overflow:hidden}
     <div class="auth-success" id="auth-success" aria-live="polite">
       <span class="auth-loading large" id="auth-success-spinner"></span>
       <div id="auth-success-msg">Redirecting…</div>
-      <button type="button" class="auth-retry" id="auth-checkout-retry" hidden onclick="startCheckoutAfterAuth()">Retry checkout</button>
+      <div class="auth-success-actions">
+        <button type="button" class="auth-manage" id="auth-billing-manage" hidden onclick="openWebBillingPortal()">Manage billing</button>
+        <button type="button" class="auth-retry" id="auth-checkout-retry" hidden onclick="startCheckoutAfterAuth()">Retry checkout</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1848,12 +1859,14 @@ let authAccessToken='',authRequestController=null,authCancelled=false,authProgre
 function clearAuthError(){authEl('auth-error').classList.remove('visible');authEl('auth-error').textContent=''}
 function showAuthError(message){const el=authEl('auth-error');el.textContent=message;el.classList.add('visible')}
 function authErrorMessage(data,fallback){if(!data||typeof data!=='object')return fallback;const detail=data.detail;if(detail&&typeof detail==='object')return detail.message||detail.msg||fallback;return data.msg||data.message||data.error_description||data.error||detail||fallback}
+function authErrorCode(data){if(!data||typeof data!=='object')return '';const detail=data.detail;return String((detail&&typeof detail==='object'&&detail.code)||data.code||'')}
+function setCheckoutAction(mode='retry'){const button=authEl('auth-checkout-retry');if(mode==='done'){button.textContent='Got it';button.onclick=closeAuthModal}else{button.textContent='Retry checkout';button.onclick=startCheckoutAfterAuth}}
 function setAuthButton(button,loading,normalText){button.disabled=loading;button.innerHTML=loading?'<span class="auth-loading"></span>Please wait…':normalText}
 function stopResendTimer(){if(resendTimer)clearInterval(resendTimer);resendTimer=null;resendRemaining=0}
 function stopAuthProgressTimer(){if(authProgressTimer)clearTimeout(authProgressTimer);authProgressTimer=null}
 function updateResendButton(){const button=authEl('auth-resend');button.disabled=resendRemaining>0;button.textContent=resendRemaining>0?`Resend in ${resendRemaining}s`:'Resend code'}
 function startResendTimer(){stopResendTimer();resendRemaining=60;updateResendButton();resendTimer=setInterval(()=>{resendRemaining-=1;updateResendButton();if(resendRemaining<=0)stopResendTimer()},1000)}
-function showAuthStep(step){authEl('auth-email-step').hidden=step!=='email';authEl('auth-otp-step').hidden=step!=='otp';authEl('auth-success').classList.toggle('visible',step==='success');if(step!=='success'){authEl('auth-checkout-retry').hidden=true;authEl('auth-success-spinner').hidden=false}}
+function showAuthStep(step){authEl('auth-email-step').hidden=step!=='email';authEl('auth-otp-step').hidden=step!=='otp';authEl('auth-success').classList.toggle('visible',step==='success');if(step!=='success'){authEl('auth-checkout-retry').hidden=true;authEl('auth-billing-manage').hidden=true;authEl('auth-success-spinner').hidden=false}}
 function warmAuthServer(){fetch(AUTH_SERVER+'/',{method:'GET',mode:'no-cors',cache:'no-store'}).catch(()=>{})}
 function cancelAuthRequest(){if(authRequestController){authRequestController.abort();authRequestController=null}}
 async function authFetch(url,options={},timeoutMs=35000){
@@ -1884,8 +1897,8 @@ async function backendJson(path,options={},attempts=2){
   throw lastError||new Error('Could not reach Tapioca checkout.');
 }
 function openAuthModal(plan){
-  selectedPlan=plan;authEmail='';authBusy=false;authCancelled=false;authAccessToken='';cancelAuthRequest();stopAuthProgressTimer();stopResendTimer();warmAuthServer();
-  authEl('auth-plan-badge').textContent=PLAN_LABELS[plan];authEl('auth-headline').textContent='Sign in to subscribe';authEl('auth-sub').textContent='Enter your email and we will send a 6-digit Tapioca code.';authEl('auth-email').value='';authEl('auth-otp').value='';clearAuthError();showAuthStep('email');authEl('auth-overlay').classList.add('open');document.body.classList.add('modal-open');setTimeout(()=>authEl('auth-email').focus(),100)
+  selectedPlan=plan;authEmail='';authBusy=false;authCancelled=false;authAccessToken='';cancelAuthRequest();stopAuthProgressTimer();stopResendTimer();warmAuthServer();setCheckoutAction('retry');
+  authEl('auth-plan-badge').hidden=false;authEl('auth-plan-badge').textContent=PLAN_LABELS[plan];authEl('auth-headline').textContent='Sign in to subscribe';authEl('auth-sub').textContent='Enter your email and we will send a 6-digit Tapioca code.';authEl('auth-email').value='';authEl('auth-otp').value='';clearAuthError();showAuthStep('email');authEl('auth-overlay').classList.add('open');document.body.classList.add('modal-open');setTimeout(()=>authEl('auth-email').focus(),100)
 }
 function closeAuthModal(){
   authCancelled=true;authBusy=false;cancelAuthRequest();stopAuthProgressTimer();stopResendTimer();authEl('auth-overlay').classList.remove('open');document.body.classList.remove('modal-open');authEl('auth-checkout-retry').hidden=true
@@ -1913,17 +1926,57 @@ async function continueToCheckout(accessToken){
     if([502,503,504].includes(checkoutResponse.status)){
       throw new Error('The checkout service is temporarily unavailable. Please retry in a moment.');
     }
-    throw new Error(authErrorMessage(checkout,'Could not start checkout. Please try again.'));
+    const checkoutError=new Error(authErrorMessage(checkout,'Could not start checkout. Please try again.'));
+    checkoutError.code=authErrorCode(checkout);
+    throw checkoutError;
   }
   authEl('auth-success-msg').textContent='Opening secure checkout…';
   location.assign(checkoutUrl)
 }
+async function openWebBillingPortal(){
+  if(!authAccessToken)return;
+  const button=authEl('auth-billing-manage');
+  const original=button.textContent;
+  button.disabled=true;button.textContent='Opening billing…';
+  try{
+    const result=await backendJson('/v1/billing/web-portal',{
+      method:'POST',
+      headers:{Authorization:'Bearer '+authAccessToken}
+    });
+    const response=result.response,data=result.data||{};
+    const portalUrl=data.portal_url;
+    if(!response.ok||!portalUrl||!portalUrl.startsWith('https://billing.stripe.com/')){
+      throw new Error(authErrorMessage(data,'Could not open billing management.'));
+    }
+    location.assign(portalUrl);
+  }catch(error){
+    authEl('auth-success-msg').textContent=error.message||'Could not open billing management. Opening Stripe billing login instead…';
+    setTimeout(()=>location.assign(STRIPE_PORTAL),650);
+    button.disabled=false;button.textContent=original;
+  }
+}
 async function startCheckoutAfterAuth(){
   if(!authAccessToken||authBusy)return;
-  authCancelled=false;authBusy=true;clearAuthError();authEl('auth-checkout-retry').hidden=true;authEl('auth-success-spinner').hidden=false;authEl('auth-success-msg').textContent='Signed in. Preparing checkout…';warmAuthServer();stopAuthProgressTimer();
+  authCancelled=false;authBusy=true;clearAuthError();setCheckoutAction('retry');authEl('auth-checkout-retry').hidden=true;authEl('auth-billing-manage').hidden=true;authEl('auth-success-spinner').hidden=false;authEl('auth-success-msg').textContent='Signed in. Preparing checkout…';warmAuthServer();stopAuthProgressTimer();
   authProgressTimer=setTimeout(()=>{if(authBusy&&!authCancelled)authEl('auth-success-msg').textContent='Still working — secure checkout may take a moment to wake up.'},7000);
   try{await continueToCheckout(authAccessToken)}
-  catch(error){if(authCancelled||error.code==='AUTH_CANCELLED')return;stopAuthProgressTimer();authBusy=false;authEl('auth-success-spinner').hidden=true;authEl('auth-success-msg').textContent=error.message||'Could not open checkout. Please retry.';authEl('auth-checkout-retry').hidden=false}
+  catch(error){
+    if(authCancelled||error.code==='AUTH_CANCELLED')return;
+    stopAuthProgressTimer();authBusy=false;authEl('auth-success-spinner').hidden=true;
+    if(error.code==='SUBSCRIPTION_ALREADY_EXISTS'){
+      authEl('auth-plan-badge').hidden=true;
+      authEl('auth-headline').textContent="You're already subscribed";
+      authEl('auth-sub').textContent='This Tapioca account already has an active subscription.';
+      authEl('auth-success-msg').textContent='Manage your plan, payment method, or cancellation securely in Stripe.';
+      authEl('auth-billing-manage').hidden=false;
+      setCheckoutAction('done');
+      authEl('auth-checkout-retry').hidden=false;
+      return;
+    }
+    authEl('auth-success-msg').textContent=error.message||'Could not open checkout. Please retry.';
+    setCheckoutAction('retry');
+    authEl('auth-checkout-retry').hidden=false;
+  }
 }
 async function verifyAuthOtp(){
   if(authBusy)return;const token=authEl('auth-otp').value.replace(/\D/g,'');clearAuthError();if(token.length<6){showAuthError('Enter the 6-digit code from your email.');return}
