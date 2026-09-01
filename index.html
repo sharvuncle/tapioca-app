@@ -1222,6 +1222,49 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(c
 .auth-retry[hidden]{display:none!important}
 .auth-success .auth-loading[hidden]{display:none!important}
 
+
+/* final hero cue polish */
+.hero-down{
+  color:#6f4eaa;
+  font-weight:900;
+  border-color:rgba(149,117,205,.34);
+  background:rgba(255,255,255,.62);
+  box-shadow:0 10px 28px rgba(111,78,170,.10), inset 0 1px 0 rgba(255,255,255,.90);
+}
+.hero-down b{
+  background:rgba(149,117,205,.14);
+  box-shadow:0 0 0 6px rgba(149,117,205,.055);
+}
+
+/* simplified successful download state */
+.download-guide-modal.download-started .download-guide-kicker,
+.download-guide-modal.download-started > h2,
+.download-guide-modal.download-started > .download-guide-copy,
+.download-guide-modal.download-started .download-guide-choice,
+.download-guide-modal.download-started .download-guide-steps,
+.download-guide-modal.download-started .download-guide-note{
+  display:none !important;
+}
+.download-guide-modal.download-started{
+  width:min(500px,100%);
+  padding:34px 28px 26px;
+}
+.download-guide-modal.download-started .download-guide-status{
+  margin:18px 42px 26px 0;
+  font-size:1.05rem;
+}
+.download-guide-modal.download-started .download-guide-actions{
+  margin-top:0;
+}
+@media(max-width:620px){
+  .download-guide-modal.download-started{
+    padding:30px 20px 22px;
+  }
+  .download-guide-modal.download-started .download-guide-status{
+    margin:18px 38px 24px 0;
+  }
+}
+
 .download-guide-overlay{
   display:none;position:fixed;inset:0;z-index:240;align-items:center;justify-content:center;padding:24px;
   background:rgba(46,38,68,.36);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)
@@ -1259,7 +1302,7 @@ body.modal-open{overflow:hidden}
 }
 
 </style>
-  <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v1" />
+  <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v2-ui" />
 </head>
 <body>
 
@@ -1336,7 +1379,6 @@ body.modal-open{overflow:hidden}
       <div class="hero-actions" id="hero-actions">
         <a class="button primary" id="hero-windows" href="/download/windows" data-os-download="windows">Download for Windows</a>
         <a class="button secondary" id="hero-mac" href="/download/mac" data-os-download="mac">Download for Mac</a>
-        <a class="button secondary" href="#demo">Try it here</a>
       </div>
       <div class="hero-mobile-note glass" id="hero-mobile-note">Try the demo here. Open this page on Windows or an Apple Silicon Mac to download.</div>
       <div class="trust-row"><span>No jailbreak required</span><span>Reset anytime</span><span>3-day free trial</span></div>
@@ -1570,7 +1612,7 @@ body.modal-open{overflow:hidden}
 
 
 <div class="download-guide-overlay" id="download-guide-overlay">
-  <div class="download-guide-modal glass" role="dialog" aria-modal="true" aria-labelledby="download-guide-title">
+  <div class="download-guide-modal glass" id="download-guide-modal" role="dialog" aria-modal="true" aria-labelledby="download-guide-title">
     <button class="download-guide-close" type="button" onclick="closeDownloadGuide()" aria-label="Close">×</button>
     <p class="download-guide-kicker" id="download-guide-kicker">DOWNLOAD TAPIOCA</p>
     <h2 id="download-guide-title">Choose your computer</h2>
@@ -1665,6 +1707,7 @@ function openDownloadGuide(os=null){
 }
 function closeDownloadGuide(){document.getElementById('download-guide-overlay').classList.remove('open');document.body.classList.remove('modal-open')}
 function renderDownloadChoice(){
+  document.getElementById('download-guide-modal').classList.remove('download-started');
   currentDownloadOs=null;
   document.getElementById('download-guide-kicker').textContent='DOWNLOAD TAPIOCA';
   document.getElementById('download-guide-title').textContent='Choose your computer';
@@ -1685,6 +1728,7 @@ function platformGuide(os){
   };
 }
 function renderDownloadGuide(os){
+  document.getElementById('download-guide-modal').classList.add('download-started');
   currentDownloadOs=os;
   const guide=platformGuide(os);
   document.getElementById('download-guide-kicker').textContent=os==='mac'?'APPLE SILICON MAC':'WINDOWS';
