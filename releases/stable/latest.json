@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "channel": "stable",
+  "latest_version": "0.1.0-beta.9",
+  "minimum_supported_version": "0.1.0-beta.8",
+  "required": false,
+  "platforms": {
+    "macos-arm64": {
+      "url": "https://downloads.usetapioca.com/releases/stable/TapiocaSetup.zip",
+      "sha256": "0e351eef16ce640ba414a84fd4ed9c7512c4175151fb533e2cc45e990d867f3a",
+      "size_bytes": 56637960,
+
+      "installer_url": "https://downloads.usetapioca.com/releases/stable/TapiocaSetup.zip",
+      "installer_sha256": "0e351eef16ce640ba414a84fd4ed9c7512c4175151fb533e2cc45e990d867f3a",
+      "installer_size_bytes": 56637960,
+
+      "payload_url": "https://downloads.usetapioca.com/releases/stable/Tapioca-0.1.0-beta.9-macOS-arm64.zip",
+      "payload_sha256": "4d756e4c95813f897919ddf78a409883a37dacfc89eaf40db1a536c4745b3dab",
+      "payload_size_bytes": 51661990
+    }
+  }
+}
