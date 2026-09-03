@@ -1,0 +1,11 @@
+{
+  "name": "tapioca-release-router",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-03",
+  "routes": [
+    {
+      "pattern": "downloads.usetapioca.com/releases/stable/*",
+      "zone_name": "usetapioca.com"
+    }
+  ]
+}
