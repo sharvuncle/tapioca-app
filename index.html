@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>tapioca — anywhere but here.</title>
-  <meta name="description" content="Be anywhere. Instantly. Try the interactive Tapioca preview and download Tapioca for Windows or Apple Silicon Mac." />
+  <meta name="description" content="Teleport and Route are free with a Tapioca account. Download Tapioca for Windows or Apple Silicon Mac and connect your iPhone." />
   <meta property="og:title" content="tapioca — anywhere but here." />
-  <meta property="og:description" content="A calm, polished way to change your iPhone's reported location." />
+  <meta property="og:description" content="Free iPhone Teleport and Route with a Tapioca account. Available for Windows and Apple Silicon Mac." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://usetapioca.com/" />
   <link rel="icon" href="assets/tapioca-logo.png" type="image/png" />
@@ -1309,8 +1309,18 @@ body.modal-open{overflow:hidden}
   .download-guide-copy{font-size:.88rem}
 }
 
+
+/* BETA11 WEBSITE P7: launch preview; reuse the existing glass design. */
+.beta11-account-steps { margin-top: 22px; }
+.beta11-account-steps .price-card-v2 { min-height: 194px; }
+.beta11-account-steps .price-tier { margin-bottom: 13px; }
+.beta11-account-steps p { margin: 0; color: var(--ink-soft); line-height: 1.6; font-size: .94rem; }
+@media (max-width: 780px) {
+  .beta11-account-steps .price-card-v2 { min-height: 0; }
+}
 </style>
   <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v8-billing-return" />
+  <meta name="tapioca-beta11-website" content="free-account-launch-preview-v1" />
 </head>
 <body>
 
@@ -1369,11 +1379,11 @@ body.modal-open{overflow:hidden}
 <nav class="site-nav glass" id="navbar">
   <a class="brand" href="#hero"><img src="assets/tapioca-logo.png" alt="" /><span class="brand-word">tapioca</span></a>
   <div class="nav-links">
-    <a href="#demo">Try it</a><a href="#why">Why Tapioca</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+    <a href="#demo">Try it</a><a href="#why">Why Tapioca</a><a href="#pricing">Free access</a><a href="#faq">FAQ</a>
   </div>
   <div class="nav-actions"><a class="nav-download" id="nav-download-btn" href="/download/windows" data-smart-download="true">Download</a><button class="nav-toggle" id="nav-toggle" aria-label="Open menu">☰</button></div>
 </nav>
-<div class="mobile-menu glass" id="mobile-menu"><a href="#demo">Try it</a><a href="#why">Why Tapioca</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing</a></div>
+<div class="mobile-menu glass" id="mobile-menu"><a href="#demo">Try it</a><a href="#why">Why Tapioca</a><a href="#pricing">Free access</a><a href="#faq">FAQ</a><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing</a></div>
 
 <header class="hero hero-v2 hero-v3 hero-v4 edge-bubble-zone" id="hero">
   <div class="edge-orbs hero-edge-orbs" aria-hidden="true">
@@ -1389,7 +1399,7 @@ body.modal-open{overflow:hidden}
         <a class="button secondary" id="hero-mac" href="/download/mac" data-os-download="mac">Download for Mac</a>
       </div>
       <div class="hero-mobile-note glass" id="hero-mobile-note">Try the demo here. Open this page on Windows or an Apple Silicon Mac to download.</div>
-      <div class="trust-row"><span>No jailbreak required</span><span>Reset anytime</span><span>3-day free trial</span></div>
+      <div class="trust-row"><span>No jailbreak required</span><span>Reset anytime</span><span>Free Teleport &amp; Route</span></div>
       <a class="hero-down glass-soft" href="#demo"><span>tap the map below</span><b aria-hidden="true">↓</b></a>
     </div>
   </div>
@@ -1422,7 +1432,7 @@ body.modal-open{overflow:hidden}
               <span><strong>tapioca</strong><small>preview</small></span>
             </div>
             <div class="demo-mode-single glass-soft"><span>✦</span> Teleport</div>
-            <div class="demo-account-mini glass-soft"><span class="avatar-mini">♙</span><span><strong>Account & plans</strong><small>Sign in or choose a plan</small></span></div>
+            <div class="demo-account-mini glass-soft"><span class="avatar-mini">♙</span><span><strong>Your account</strong><small>Verified account</small></span></div>
             <div class="demo-search-mini glass-soft"><span>⌕</span><span id="demo-search-copy">Search an address or place</span><button type="button" tabindex="-1">Search</button></div>
 
             <div class="demo-map-v2" id="demo-map" role="button" tabindex="0" aria-label="Choose a demonstration destination on the map">
@@ -1579,25 +1589,32 @@ body.modal-open{overflow:hidden}
   </div>
   <div class="container">
     <div class="pricing-head pricing-head-v2 pricing-head-v3 reveal">
-      <p class="section-kicker">PRICING</p>
-      <h2 class="section-title">try it free.</h2>
-      <p class="section-copy">Three days with every feature. No card required.</p>
+      <p class="section-kicker">FREE ACCOUNT</p>
+      <h2 class="section-title">go anywhere. for free.</h2>
+      <p class="section-copy">Teleport and Route are free with a Tapioca account. No card, no expiring trial, no subscription required.</p>
     </div>
 
     <div class="trial-spotlight trial-spotlight-v3 glass reveal">
-      <div class="trial-number"><strong>3</strong><span>days<br/>free</span></div>
-      <div class="trial-message"><span class="no-card-badge">NO CARD REQUIRED</span><h3>start free. choose later.</h3><p>Download the app, connect your iPhone, and use every feature before choosing a plan.</p></div>
-      <a class="button primary" id="trial-download" href="/download/windows" data-smart-download="true">Download and try free</a>
+      <div class="trial-number"><strong>$0</strong><span>for Teleport<br/>and Route</span></div>
+      <div class="trial-message"><span class="no-card-badge">NO CARD REQUIRED</span><h3>your next place is waiting.</h3><p>Download Tapioca, connect your iPhone, and sign in using a one-time email code. If you start without internet, create a local account and verify it once you reconnect.</p></div>
+      <a class="button primary" id="trial-download" href="/download/windows" data-smart-download="true">Download Tapioca free</a>
     </div>
 
-    <div class="paid-intro paid-intro-v3 reveal"><p>choose the plan that feels right.</p><span>Every paid plan includes the same Tapioca experience.</span></div>
-
-    <div class="pricing-grid pricing-grid-v2">
-      <article class="price-card price-card-v2 glass reveal"><div class="price-tier">Weekly</div><div class="price-amount">$2.77</div><div class="price-equiv">$2.77 / week</div><div class="price-note">billed every week</div><button class="button secondary" onclick="openAuthModal('weekly')">Choose Weekly</button></article>
-      <article class="price-card price-card-v2 glass reveal reveal-delay-1"><div class="price-tier">Monthly</div><div class="price-amount">$6.77</div><div class="price-equiv">about $1.56 / week · save 44%</div><div class="price-note">billed every month</div><button class="button secondary" onclick="openAuthModal('monthly')">Choose Monthly</button></article>
-      <article class="price-card price-card-v2 featured glass reveal reveal-delay-2"><span class="best-value">Best Value</span><div class="price-tier">Annual</div><div class="price-amount">$67</div><div class="price-equiv">about $1.29 / week · save 53%</div><div class="price-note">billed once per year</div><button class="button primary" onclick="openAuthModal('annual')">Choose Annual</button></article>
+    <div class="pricing-grid pricing-grid-v2 beta11-account-steps">
+      <article class="price-card price-card-v2 glass reveal">
+        <div class="price-tier">1. Download</div>
+        <p>Install Tapioca on your Windows PC or Apple Silicon Mac, then connect and unlock your iPhone.</p>
+      </article>
+      <article class="price-card price-card-v2 glass reveal reveal-delay-1">
+        <div class="price-tier">2. Make your account</div>
+        <p>Verify your email when online. Starting offline? Save a local account first, then verify on reconnecting.</p>
+      </article>
+      <article class="price-card price-card-v2 glass reveal reveal-delay-2">
+        <div class="price-tier">3. Teleport or Route</div>
+        <p>Use either feature without a paid plan. A verified account can stay active offline on its current computer.</p>
+      </article>
     </div>
-    <div class="billing-row reveal"><span>Already a subscriber?</span><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing →</a></div>
+    <div class="billing-row reveal"><span>Subscribed to an earlier Tapioca release?</span><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing →</a></div>
   </div>
 </section>
 
@@ -1609,14 +1626,17 @@ body.modal-open{overflow:hidden}
     <article class="faq-item glass reveal"><button class="faq-q">Can I return to my real location?<span>+</span></button><div class="faq-a">Yes. Use Cancel or GPS Reset in Tapioca whenever you are ready.</div></article>
     <article class="faq-item glass reveal"><button class="faq-q">Do I need to jailbreak my iPhone?<span>+</span></button><div class="faq-a">No. Tapioca works without jailbreaking your iPhone.</div></article>
     <article class="faq-item glass reveal"><button class="faq-q">Does it work on Windows and Mac?<span>+</span></button><div class="faq-a">The signed Windows beta and notarized Apple Silicon Mac beta are available now.</div></article>
-    <article class="faq-item glass reveal"><button class="faq-q">How does the free trial work?<span>+</span></button><div class="faq-a">The free trial gives you three days to use Tapioca before choosing a paid plan. No card is required to start.</div></article>
+    <article class="faq-item glass reveal"><button class="faq-q">Is Tapioca really free?<span>+</span></button><div class="faq-a">Yes. Teleport and Route are free with a Tapioca account, with no trial countdown or subscription required.</div></article>
+    <article class="faq-item glass reveal"><button class="faq-q">Can I use Tapioca without internet?<span>+</span></button><div class="faq-a">Yes. If you are new and offline, save a local account first, then verify your email when you reconnect before starting new operations. Once verified, your account can work offline on that computer. Offline road routing requires a saved route or an installed regional routing pack.</div></article>
+    <article class="faq-item glass reveal"><button class="faq-q">Can I use the same account on two computers?<span>+</span></button><div class="faq-a">One verified computer is active at a time. Signing in on another computer replaces the previous session. A Route already in progress on the old computer can continue, but it cannot start a new operation once it detects the change.</div></article>
+    <article class="faq-item glass reveal"><button class="faq-q">What if I subscribed before Tapioca became free?<span>+</span></button><div class="faq-a">You can still use Manage Billing to review your existing subscription. If you have questions about a past charge, contact support@usetapioca.com.</div></article>
   </div></div>
 </section>
 
 <section class="section download-v3 edge-bubble-zone" id="download"><div class="edge-orbs download-edge-orbs" aria-hidden="true"><i class="edge-orb x1"></i><i class="edge-orb x2"></i><i class="edge-orb x3"></i></div><div class="container"><div class="download-panel glass reveal"><div class="download-panel-inner"><p class="section-kicker">READY WHEN YOU ARE</p><h2 class="section-title">everything is mixed<br/>and ready.</h2><p class="section-copy">Download Tapioca, connect your iPhone, and choose your first place.</p><div class="download-actions"><a class="button primary" id="download-windows" href="/download/windows" data-os-download="windows">Download for Windows</a><a class="button secondary" id="download-mac" href="/download/mac" data-os-download="mac">Download for Mac</a></div><div class="download-meta">Windows x64 &middot; Apple Silicon Mac &middot; signed &amp; notarized &middot; iPhone required &middot; <a href="/download/windows/sha256">Windows checksum</a> &middot; <a href="/download/mac/sha256">Mac checksum</a></div></div></div></div></section>
 </main>
 
-<footer><div class="container"><div class="footer-grid"><div><div class="footer-brand">tapioca</div><div class="footer-tag">made with care for anywhere but here.</div></div><div class="footer-links"><h4>Product</h4><a href="#demo">Try it</a><a href="#pricing">Pricing</a><a href="/download/windows" data-os-download="windows">Download for Windows</a><a href="/download/mac" data-os-download="mac">Download for Mac</a></div><div class="footer-links"><h4>Support</h4><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing</a><a href="mailto:support@usetapioca.com">Email Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="footer-bottom">© 2026 Tapioca. Use only on devices you own or are authorized to test.</div></div></footer>
+<footer><div class="container"><div class="footer-grid"><div><div class="footer-brand">tapioca</div><div class="footer-tag">made with care for anywhere but here.</div></div><div class="footer-links"><h4>Product</h4><a href="#demo">Try it</a><a href="#pricing">Free access</a><a href="/download/windows" data-os-download="windows">Download for Windows</a><a href="/download/mac" data-os-download="mac">Download for Mac</a></div><div class="footer-links"><h4>Support</h4><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing</a><a href="mailto:support@usetapioca.com">Email Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="footer-bottom">© 2026 Tapioca. Use only on devices you own or are authorized to test.</div></div></footer>
 
 
 <div class="download-guide-overlay" id="download-guide-overlay">
@@ -1643,50 +1663,10 @@ body.modal-open{overflow:hidden}
   </div>
 </div>
 
-<div class="auth-overlay" id="auth-overlay">
-  <div class="auth-modal glass" role="dialog" aria-modal="true" aria-labelledby="auth-headline">
-    <button class="auth-close" onclick="closeAuthModal()" aria-label="Close">×</button>
-    <div class="auth-plan" id="auth-plan-badge"></div>
-    <h2 id="auth-headline">Sign in to subscribe</h2>
-    <p id="auth-sub">Enter your email and we will send a 6-digit Tapioca code.</p>
-    <div class="auth-error" id="auth-error" role="alert"></div>
-
-    <div class="otp-step" id="auth-email-step">
-      <label class="auth-label" for="auth-email">Email address</label>
-      <input class="auth-field" type="email" id="auth-email" placeholder="you@example.com" autocomplete="email" inputmode="email" />
-      <button class="auth-submit" id="auth-send-btn" onclick="sendAuthOtp()">Send sign-in code</button>
-      <p class="auth-footnote">New here? Your Tapioca account is created automatically.</p>
-    </div>
-
-    <div class="otp-step" id="auth-otp-step" hidden>
-      <div class="otp-sent-card"><span>Code sent to</span><strong id="auth-email-display"></strong></div>
-      <label class="auth-label" for="auth-otp">6-digit code</label>
-      <input class="auth-field auth-code" type="text" id="auth-otp" placeholder="000000" autocomplete="one-time-code" inputmode="numeric" maxlength="6" />
-      <button class="auth-submit" id="auth-verify-btn" onclick="verifyAuthOtp()">Verify & continue</button>
-      <div class="otp-links"><button type="button" id="auth-resend" onclick="resendAuthOtp()">Resend code</button><button type="button" onclick="changeAuthEmail()">Change email</button></div>
-    </div>
-
-    <div class="auth-success" id="auth-success" aria-live="polite">
-      <span class="auth-loading large" id="auth-success-spinner"></span>
-      <div id="auth-success-msg">Redirecting…</div>
-      <div class="auth-success-actions">
-        <button type="button" class="auth-manage" id="auth-billing-manage" hidden onclick="openWebBillingPortal()">Manage billing</button>
-        <button type="button" class="auth-retry" id="auth-checkout-retry" hidden onclick="startCheckoutAfterAuth()">Retry checkout</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
-const AUTH_SERVER='https://api.usetapioca.com';
-const SUPABASE_URL='https://atiwcqfpxxbwigmeabjm.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY='sb_publishable_URJej8-owIQe1h7Zrp380w_1HMPmWi8';
-const STRIPE_PORTAL='https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400';
-const PLAN_LABELS={weekly:'Weekly — $2.77/week',monthly:'Monthly — $6.77/month',annual:'Annual — $67/year'};
-let selectedPlan=null,authEmail='',authBusy=false,resendTimer=null,resendRemaining=0;
-
+// Beta 11: billing management remains available through the Stripe Customer Portal.
 // payment banner
-(function(){const payment=new URLSearchParams(location.search).get('payment');if(!payment)return;const b=document.getElementById('payment-banner'),i=document.getElementById('payment-banner-icon'),m=document.getElementById('payment-banner-msg');if(payment==='success'){b.classList.add('success');i.textContent='✓';m.textContent='Payment received. Return to Tapioca and check your payment status; activation may take a few seconds.'}else if(payment==='cancelled'){b.classList.add('cancelled');i.textContent='↩';m.textContent='No new payment was completed. You can choose a plan whenever you are ready.'}else return;history.replaceState({},'',location.pathname);requestAnimationFrame(()=>requestAnimationFrame(()=>b.classList.add('visible')));setTimeout(dismissPaymentBanner,8000)})();
+(function(){const payment=new URLSearchParams(location.search).get('payment');if(!payment)return;const b=document.getElementById('payment-banner'),i=document.getElementById('payment-banner-icon'),m=document.getElementById('payment-banner-msg');if(payment==='success'){b.classList.add('success');i.textContent='✓';m.textContent='Payment received. Return to Tapioca and check your payment status; activation may take a few seconds.'}else if(payment==='cancelled'){b.classList.add('cancelled');i.textContent='↩';m.textContent='No new payment was completed. Tapioca now uses free accounts.'}else return;history.replaceState({},'',location.pathname);requestAnimationFrame(()=>requestAnimationFrame(()=>b.classList.add('visible')));setTimeout(dismissPaymentBanner,8000)})();
 function dismissPaymentBanner(){document.getElementById('payment-banner').classList.remove('visible')}
 
 // nav
@@ -1730,12 +1710,12 @@ function platformGuide(os){
   if(os==='mac')return {
     title:'Your Mac download is starting.',
     copy:'You are downloading the signed and notarized Tapioca Setup installer for Apple Silicon Mac.',
-    steps:['Open TapiocaSetup.zip from your Downloads folder.','Open the extracted Tapioca Setup app.','Follow the setup prompts. When setup finishes, open Tapioca from Applications.','Connect and unlock your iPhone with a USB cable, then follow Tapioca\'s connection prompt.']
+    steps:['Open TapiocaSetup.zip from your Downloads folder.','Open the extracted Tapioca Setup app.','Follow the setup prompts. When setup finishes, open Tapioca from Applications.','Connect and unlock your iPhone with a USB cable, then follow Tapioca\'s connection prompt.','Sign in with an email code when online, or create a local account if you are offline.']
   };
   return {
     title:'Your Windows download is starting.',
     copy:'You are downloading the digitally signed Windows version of Tapioca.',
-    steps:['Open TapiocaSetup.exe from your Downloads folder.','Choose Install and approve the Windows permission prompt if it appears.','Launch Tapioca after setup finishes.','Connect and unlock your iPhone with a USB cable, then follow Tapioca\'s connection prompt.']
+    steps:['Open TapiocaSetup.exe from your Downloads folder.','Choose Install and approve the Windows permission prompt if it appears.','Launch Tapioca after setup finishes.','Connect and unlock your iPhone with a USB cable, then follow Tapioca\'s connection prompt.','Sign in with an email code when online, or create a local account if you are offline.']
   };
 }
 function renderDownloadGuide(os){
@@ -1770,7 +1750,7 @@ function stylePlatformButtons(){
   }
   const heroTry=document.querySelector('#hero-actions a[href="#demo"]');if(heroTry)heroTry.style.order='2';
   const trial=document.getElementById('trial-download');
-  if(trial)trial.textContent=os?'Download and try free':'Choose computer & download';
+  if(trial)trial.textContent=os?'Download Tapioca free':'Choose computer & download';
 }
 document.querySelectorAll('[data-smart-download]').forEach(el=>el.addEventListener('click',handleSmartDownload));
 document.querySelectorAll('[data-os-download]').forEach(el=>el.addEventListener('click',event=>handleExplicitDownload(event,el.dataset.osDownload)));
@@ -1853,146 +1833,7 @@ renderDemo();
 // FAQ
 for(const button of document.querySelectorAll('.faq-q'))button.addEventListener('click',()=>{const item=button.closest('.faq-item'),opening=!item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(opening)item.classList.add('open')});
 
-// auth modal / checkout — resilient passwordless Supabase OTP
-function authEl(id){return document.getElementById(id)}
-let authAccessToken='',authRequestController=null,authCancelled=false,authProgressTimer=null;
-function clearAuthError(){authEl('auth-error').classList.remove('visible');authEl('auth-error').textContent=''}
-function showAuthError(message){const el=authEl('auth-error');el.textContent=message;el.classList.add('visible')}
-function authErrorMessage(data,fallback){if(!data||typeof data!=='object')return fallback;const detail=data.detail;if(detail&&typeof detail==='object')return detail.message||detail.msg||fallback;return data.msg||data.message||data.error_description||data.error||detail||fallback}
-function authErrorCode(data){if(!data||typeof data!=='object')return '';const detail=data.detail;return String((detail&&typeof detail==='object'&&detail.code)||data.code||'')}
-function setCheckoutAction(mode='retry'){const button=authEl('auth-checkout-retry');if(mode==='done'){button.textContent='Got it';button.onclick=closeAuthModal}else{button.textContent='Retry checkout';button.onclick=startCheckoutAfterAuth}}
-function setAuthButton(button,loading,normalText){button.disabled=loading;button.innerHTML=loading?'<span class="auth-loading"></span>Please wait…':normalText}
-function stopResendTimer(){if(resendTimer)clearInterval(resendTimer);resendTimer=null;resendRemaining=0}
-function stopAuthProgressTimer(){if(authProgressTimer)clearTimeout(authProgressTimer);authProgressTimer=null}
-function updateResendButton(){const button=authEl('auth-resend');button.disabled=resendRemaining>0;button.textContent=resendRemaining>0?`Resend in ${resendRemaining}s`:'Resend code'}
-function startResendTimer(){stopResendTimer();resendRemaining=60;updateResendButton();resendTimer=setInterval(()=>{resendRemaining-=1;updateResendButton();if(resendRemaining<=0)stopResendTimer()},1000)}
-function showAuthStep(step){authEl('auth-email-step').hidden=step!=='email';authEl('auth-otp-step').hidden=step!=='otp';authEl('auth-success').classList.toggle('visible',step==='success');if(step!=='success'){authEl('auth-checkout-retry').hidden=true;authEl('auth-billing-manage').hidden=true;authEl('auth-success-spinner').hidden=false}}
-function warmAuthServer(){fetch(AUTH_SERVER+'/',{method:'GET',mode:'no-cors',cache:'no-store'}).catch(()=>{})}
-function cancelAuthRequest(){if(authRequestController){authRequestController.abort();authRequestController=null}}
-async function authFetch(url,options={},timeoutMs=35000){
-  cancelAuthRequest();
-  const controller=new AbortController();authRequestController=controller;let timedOut=false;
-  const timer=setTimeout(()=>{timedOut=true;controller.abort()},timeoutMs);
-  try{return await fetch(url,{...options,signal:controller.signal})}
-  catch(error){if(timedOut){const timeoutError=new Error('Tapioca checkout is taking longer than expected. Please retry.');timeoutError.code='AUTH_TIMEOUT';throw timeoutError}throw error}
-  finally{clearTimeout(timer);if(authRequestController===controller)authRequestController=null}
-}
-function authAbortError(){const error=new Error('Checkout cancelled.');error.code='AUTH_CANCELLED';return error}
-async function backendJson(path,options={},attempts=2){
-  let lastError=null;
-  for(let attempt=0;attempt<attempts;attempt+=1){
-    if(authCancelled)throw authAbortError();
-    try{
-      const response=await authFetch(AUTH_SERVER+path,options,32000);
-      let data={};try{data=await response.json()}catch(_){data={}}
-      if([502,503,504].includes(response.status)&&attempt<attempts-1){await new Promise(resolve=>setTimeout(resolve,1400));continue}
-      return {response,data};
-    }catch(error){
-      lastError=error;if(authCancelled)throw authAbortError();
-      const retryable=error&&((error.code==='AUTH_TIMEOUT')||error.name==='TypeError');
-      if(retryable&&attempt<attempts-1){await new Promise(resolve=>setTimeout(resolve,1400));continue}
-      throw error;
-    }
-  }
-  throw lastError||new Error('Could not reach Tapioca checkout.');
-}
-function openAuthModal(plan){
-  selectedPlan=plan;authEmail='';authBusy=false;authCancelled=false;authAccessToken='';cancelAuthRequest();stopAuthProgressTimer();stopResendTimer();warmAuthServer();setCheckoutAction('retry');
-  authEl('auth-plan-badge').hidden=false;authEl('auth-plan-badge').textContent=PLAN_LABELS[plan];authEl('auth-headline').textContent='Sign in to subscribe';authEl('auth-sub').textContent='Enter your email and we will send a 6-digit Tapioca code.';authEl('auth-email').value='';authEl('auth-otp').value='';clearAuthError();showAuthStep('email');authEl('auth-overlay').classList.add('open');document.body.classList.add('modal-open');setTimeout(()=>authEl('auth-email').focus(),100)
-}
-function closeAuthModal(){
-  authCancelled=true;authBusy=false;cancelAuthRequest();stopAuthProgressTimer();stopResendTimer();authEl('auth-overlay').classList.remove('open');document.body.classList.remove('modal-open');authEl('auth-checkout-retry').hidden=true
-}
-authEl('auth-overlay').addEventListener('click',event=>{if(event.target===event.currentTarget)closeAuthModal()});
-async function sendOtpRequest(email){
-  const response=await authFetch(`${SUPABASE_URL}/auth/v1/otp`,{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({email,create_user:true})},25000);
-  let data={};try{data=await response.json()}catch(_){data={}}if(!response.ok)throw new Error(authErrorMessage(data,'Could not send the code. Please try again.'));return data
-}
-async function sendAuthOtp(){if(authBusy)return;const email=authEl('auth-email').value.trim().toLowerCase();clearAuthError();if(!email||!email.includes('@')){showAuthError('Enter a valid email address.');return}authCancelled=false;authBusy=true;warmAuthServer();setAuthButton(authEl('auth-send-btn'),true,'Send sign-in code');try{await sendOtpRequest(email);authEmail=email;authEl('auth-email-display').textContent=email;authEl('auth-otp').value='';showAuthStep('otp');startResendTimer();setTimeout(()=>authEl('auth-otp').focus(),80)}catch(error){if(!authCancelled)showAuthError(error.message||'Could not send the code. Please try again.')}finally{authBusy=false;setAuthButton(authEl('auth-send-btn'),false,'Send sign-in code')}}
-async function resendAuthOtp(){if(authBusy||resendRemaining>0||!authEmail)return;clearAuthError();authCancelled=false;authBusy=true;try{await sendOtpRequest(authEmail);startResendTimer();authEl('auth-otp').focus()}catch(error){if(!authCancelled)showAuthError(error.message||'Could not resend the code.')}finally{authBusy=false}}
-function changeAuthEmail(){if(authBusy)return;stopResendTimer();clearAuthError();showAuthStep('email');setTimeout(()=>authEl('auth-email').focus(),80)}
-async function continueToCheckout(accessToken){
-  const checkoutResult=await backendJson('/v1/billing/web-checkout',{
-    method:'POST',
-    headers:{
-      'Content-Type':'application/json',
-      Authorization:'Bearer '+accessToken
-    },
-    body:JSON.stringify({plan:selectedPlan})
-  });
-  const checkoutResponse=checkoutResult.response,checkout=checkoutResult.data;
-  const checkoutUrl=checkout.checkout_url||checkout.url;
-  if(!checkoutResponse.ok||!checkoutUrl){
-    if([502,503,504].includes(checkoutResponse.status)){
-      throw new Error('The checkout service is temporarily unavailable. Please retry in a moment.');
-    }
-    const checkoutError=new Error(authErrorMessage(checkout,'Could not start checkout. Please try again.'));
-    checkoutError.code=authErrorCode(checkout);
-    throw checkoutError;
-  }
-  authEl('auth-success-msg').textContent='Opening secure checkout…';
-  location.assign(checkoutUrl)
-}
-async function openWebBillingPortal(){
-  if(!authAccessToken)return;
-  const button=authEl('auth-billing-manage');
-  const original=button.textContent;
-  button.disabled=true;button.textContent='Opening billing…';
-  try{
-    const result=await backendJson('/v1/billing/web-portal',{
-      method:'POST',
-      headers:{Authorization:'Bearer '+authAccessToken}
-    });
-    const response=result.response,data=result.data||{};
-    const portalUrl=data.portal_url;
-    if(!response.ok||!portalUrl||!portalUrl.startsWith('https://billing.stripe.com/')){
-      throw new Error(authErrorMessage(data,'Could not open billing management.'));
-    }
-    location.assign(portalUrl);
-  }catch(error){
-    authEl('auth-success-msg').textContent=error.message||'Could not open billing management. Opening Stripe billing login instead…';
-    setTimeout(()=>location.assign(STRIPE_PORTAL),650);
-    button.disabled=false;button.textContent=original;
-  }
-}
-async function startCheckoutAfterAuth(){
-  if(!authAccessToken||authBusy)return;
-  authCancelled=false;authBusy=true;clearAuthError();setCheckoutAction('retry');authEl('auth-checkout-retry').hidden=true;authEl('auth-billing-manage').hidden=true;authEl('auth-success-spinner').hidden=false;authEl('auth-success-msg').textContent='Signed in. Preparing checkout…';warmAuthServer();stopAuthProgressTimer();
-  authProgressTimer=setTimeout(()=>{if(authBusy&&!authCancelled)authEl('auth-success-msg').textContent='Still working — secure checkout may take a moment to wake up.'},7000);
-  try{await continueToCheckout(authAccessToken)}
-  catch(error){
-    if(authCancelled||error.code==='AUTH_CANCELLED')return;
-    stopAuthProgressTimer();authBusy=false;authEl('auth-success-spinner').hidden=true;
-    if(error.code==='SUBSCRIPTION_ALREADY_EXISTS'){
-      authEl('auth-plan-badge').hidden=true;
-      authEl('auth-headline').textContent="You're already subscribed";
-      authEl('auth-sub').textContent='This Tapioca account already has an active subscription.';
-      authEl('auth-success-msg').textContent='Manage your plan, payment method, or cancellation securely in Stripe.';
-      authEl('auth-billing-manage').hidden=false;
-      setCheckoutAction('done');
-      authEl('auth-checkout-retry').hidden=false;
-      return;
-    }
-    authEl('auth-success-msg').textContent=error.message||'Could not open checkout. Please retry.';
-    setCheckoutAction('retry');
-    authEl('auth-checkout-retry').hidden=false;
-  }
-}
-async function verifyAuthOtp(){
-  if(authBusy)return;const token=authEl('auth-otp').value.replace(/\D/g,'');clearAuthError();if(token.length<6){showAuthError('Enter the 6-digit code from your email.');return}
-  authCancelled=false;authBusy=true;setAuthButton(authEl('auth-verify-btn'),true,'Verify & continue');
-  try{
-    const response=await authFetch(`${SUPABASE_URL}/auth/v1/verify`,{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({email:authEmail,token,type:'email'})},25000);
-    let data={};try{data=await response.json()}catch(_){data={}}
-    if(!response.ok||!data.access_token)throw new Error(authErrorMessage(data,'That code could not be verified.'));
-    authAccessToken=data.access_token;authBusy=false;setAuthButton(authEl('auth-verify-btn'),false,'Verify & continue');showAuthStep('success');await startCheckoutAfterAuth();
-  }catch(error){if(authCancelled)return;showAuthStep('otp');showAuthError(error.message||'Could not finish signing in. Please try again.');authBusy=false;setAuthButton(authEl('auth-verify-btn'),false,'Verify & continue')}
-}
-authEl('auth-email').addEventListener('keydown',event=>{if(event.key==='Enter')sendAuthOtp()});
-authEl('auth-otp').addEventListener('input',event=>{event.target.value=event.target.value.replace(/\D/g,'').slice(0,6)});
-authEl('auth-otp').addEventListener('keydown',event=>{if(event.key==='Enter')verifyAuthOtp()});
-document.addEventListener('keydown',event=>{if(event.key==='Escape'){if(authEl('auth-overlay').classList.contains('open'))closeAuthModal();else if(document.getElementById('download-guide-overlay').classList.contains('open'))closeDownloadGuide()}});
-warmAuthServer();
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.getElementById('download-guide-overlay')?.classList.contains('open'))closeDownloadGuide()});
 
 // Mobile-only expandable Why Tapioca cards.
 const whyMobileQuery = window.matchMedia('(max-width: 620px)');
