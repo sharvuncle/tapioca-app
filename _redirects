@@ -21,11 +21,11 @@
 # Stable release infrastructure
 # ------------------------------------------------------------
 
-/releases/stable/TapiocaSetup.exe https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.10/TapiocaSetup.exe 302
-/releases/stable/TapiocaSetup.exe.sha256 https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.10/TapiocaSetup.exe.sha256 302
+/releases/stable/TapiocaSetup.exe https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.11/TapiocaSetup.exe 302
+/releases/stable/TapiocaSetup.exe.sha256 https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.11/TapiocaSetup.exe.sha256 302
 
-/releases/stable/TapiocaSetup.zip https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.10/TapiocaSetup.zip 302
-/releases/stable/TapiocaSetup.zip.sha256 https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.10/TapiocaSetup.zip.sha256 302
+/releases/stable/TapiocaSetup.zip https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.11/TapiocaSetup.zip 302
+/releases/stable/TapiocaSetup.zip.sha256 https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.11/TapiocaSetup.zip.sha256 302
 
 /releases/stable/Tapioca-0.1.0-beta.10-macOS-arm64.zip https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.10/Tapioca-0.1.0-beta.10-macOS-arm64.zip 302
 /releases/stable/Tapioca-0.1.0-beta.10-macOS-arm64.zip.sha256 https://github.com/sharvuncle/tapioca-releases/releases/download/v0.1.0-beta.10/Tapioca-0.1.0-beta.10-macOS-arm64.zip.sha256 302
