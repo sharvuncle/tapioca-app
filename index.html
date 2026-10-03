@@ -349,8 +349,8 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(c
   html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .reveal{opacity:1;transform:none;filter:none}
 }
-  
-/* ──────────────────────────────────────────────────────────────────────────
+
+/* ───────────────────────────────────────────────────────────────────────â”€â”€â”€
    REDESIGN PREVIEW V2 — compact hero, purpose-built demo, OTP checkout
    ─────────────────────────────────────────────────────────────────────── */
 .map-defs{position:absolute;width:0;height:0;overflow:hidden}
@@ -440,7 +440,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(c
 
 
 
-/* ──────────────────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────────────â”€â”€â”€
    REDESIGN PREVIEW V3 — compact cards, edge bubbles, approved pricing copy
    ─────────────────────────────────────────────────────────────────────── */
 .edge-bubble-zone{position:relative;isolation:isolate;overflow:clip}
@@ -572,7 +572,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(c
 
 
 
-/* ──────────────────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────────────â”€â”€â”€
    REDESIGN PREVIEW V4 — hero clearance, stable demo caption, legal links
    ─────────────────────────────────────────────────────────────────────── */
 
@@ -632,7 +632,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(c
 }
 
 
-/* ──────────────────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────────────â”€â”€â”€
    REDESIGN PREVIEW V5 — mobile-only polish
    Desktop and laptop layouts above 620px are intentionally unchanged.
    ─────────────────────────────────────────────────────────────────────── */
@@ -1311,6 +1311,48 @@ body.modal-open{overflow:hidden}
 
 </style>
   <meta name="tapioca-launch-polish" content="final-smart-download-checkout-v8-billing-return" />
+  <link rel="stylesheet" href="assets/pricing-stickers.css" />
+  <link rel="stylesheet" href="assets/decorative-stickers.css" />
+  <script src="assets/decorative-sticker-shine.js" defer></script>
+<style id="tapioca-lightweight-scroll">
+/* Show large panels and cards immediately. */
+.reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+
+/* Animate only small section headings. */
+.demo-heading.reveal,
+.pricing-head.reveal,
+#faq .faq-wrap > .reveal {
+    opacity: 0;
+    transform: translateY(7px);
+    filter: none;
+    transition:
+        opacity .28s ease,
+        transform .28s ease;
+}
+
+/* Finish the subtle heading animation. */
+.demo-heading.reveal.revealed,
+.pricing-head.reveal.revealed,
+#faq .faq-wrap > .reveal.revealed {
+    opacity: 1;
+    transform: none;
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+    .demo-heading.reveal,
+    .pricing-head.reveal,
+    #faq .faq-wrap > .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+</style>
 </head>
 <body>
 
@@ -1369,7 +1411,7 @@ body.modal-open{overflow:hidden}
 <nav class="site-nav glass" id="navbar">
   <a class="brand" href="#hero"><img src="assets/tapioca-logo.png" alt="" /><span class="brand-word">tapioca</span></a>
   <div class="nav-links">
-    <a href="#demo">Try it</a><a href="#why">Why Tapioca</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+    <a href="#demo">Try it</a><a href="#why">Why Tapioca</a><a href="#pricing" class="nav-pricing-link">Pricing<span class="nav-free-sticker" aria-hidden="true">FREE!</span></a><a href="#faq">FAQ</a>
   </div>
   <div class="nav-actions"><a class="nav-download" id="nav-download-btn" href="/download/windows" data-smart-download="true">Download</a><button class="nav-toggle" id="nav-toggle" aria-label="Open menu">☰</button></div>
 </nav>
@@ -1408,6 +1450,15 @@ body.modal-open{overflow:hidden}
     </div>
 
     <div class="demo-shell demo-shell-v2 demo-shell-v3 demo-shell-v4 glass reveal reveal-delay-1" id="demo-shell">
+<img
+    class="campaign-sticker sticker-demo-try-free"
+    data-free-sticker="demo-try-free"
+    src="assets/free-campaign-stickers/try-free-mascot.webp"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+  />
       <div class="demo-signal" aria-hidden="true"></div>
       <div class="demo-grid demo-grid-v2 demo-grid-v3">
         <div class="demo-app" aria-label="Simplified Tapioca app demonstration">
@@ -1554,6 +1605,15 @@ body.modal-open{overflow:hidden}
   </div>
   <div class="container">
     <div class="reassurance-wrap reassurance-wrap-v2 reassurance-wrap-v3 reassurance-wrap-v4 glass reveal">
+<img
+    class="campaign-sticker sticker-why-no-card"
+    data-free-sticker="why-no-card"
+    src="assets/free-campaign-stickers/no-card.webp"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+/>
       <div class="reassurance-top-v2">
         <div><p class="section-kicker">WHY TAPIOCA</p><h2 class="section-title">made for moments<br/><span class="why-title-tail">like these.</span></h2></div>
         <p class="section-copy">Sometimes a location can get in the way of a moment. Tapioca keeps the experience simple, reversible, and yours to control.</p>
@@ -1578,6 +1638,15 @@ body.modal-open{overflow:hidden}
     <i class="edge-orb p1"></i><i class="edge-orb p2"></i><i class="edge-orb p3"></i>
   </div>
   <div class="container">
+    <div class="pricing-diecut-sticker" id="pricing-diecut-sticker"
+     role="img" aria-label="Now free">
+  <span class="diecut-word word-now" data-text="NOW">
+    <span class="diecut-ink">NOW</span>
+  </span>
+  <span class="diecut-word word-free" data-text="FREE">
+    <span class="diecut-ink">FREE</span>
+  </span>
+</div>
     <div class="pricing-head pricing-head-v2 pricing-head-v3 reveal">
       <p class="section-kicker">PRICING</p>
       <h2 class="section-title">try it free.</h2>
@@ -1590,12 +1659,12 @@ body.modal-open{overflow:hidden}
       <a class="button primary" id="trial-download" href="/download/windows" data-smart-download="true">Download and try free</a>
     </div>
 
-    <div class="paid-intro paid-intro-v3 reveal"><p>choose the plan that feels right.</p><span>Every paid plan includes the same Tapioca experience.</span></div>
+
 
     <div class="pricing-grid pricing-grid-v2">
-      <article class="price-card price-card-v2 glass reveal"><div class="price-tier">Weekly</div><div class="price-amount">$2.77</div><div class="price-equiv">$2.77 / week</div><div class="price-note">billed every week</div><button class="button secondary" onclick="openAuthModal('weekly')">Choose Weekly</button></article>
-      <article class="price-card price-card-v2 glass reveal reveal-delay-1"><div class="price-tier">Monthly</div><div class="price-amount">$6.77</div><div class="price-equiv">about $1.56 / week · save 44%</div><div class="price-note">billed every month</div><button class="button secondary" onclick="openAuthModal('monthly')">Choose Monthly</button></article>
-      <article class="price-card price-card-v2 featured glass reveal reveal-delay-2"><span class="best-value">Best Value</span><div class="price-tier">Annual</div><div class="price-amount">$67</div><div class="price-equiv">about $1.29 / week · save 53%</div><div class="price-note">billed once per year</div><button class="button primary" onclick="openAuthModal('annual')">Choose Annual</button></article>
+      <article class="price-card price-card-v2 glass reveal"><div class="price-tier">Weekly</div><div class="price-amount">$2.77</div><div class="price-equiv">$2.77 / week</div><div class="price-note">billed every week</div><button class="button secondary" type="button" aria-label="Choose Weekly plan">Choose</button></article>
+      <article class="price-card price-card-v2 glass reveal reveal-delay-1"><div class="price-tier">Monthly</div><div class="price-amount">$6.77</div><div class="price-equiv">about $1.56 / week · save 44%</div><div class="price-note">billed every month</div><button class="button secondary" type="button" aria-label="Choose Monthly plan">Choose</button></article>
+      <article class="price-card price-card-v2 featured glass reveal reveal-delay-2"><span class="best-value">Best Value</span><div class="price-tier">Annual</div><div class="price-amount">$67</div><div class="price-equiv">about $1.29 / week · save 53%</div><div class="price-note">billed once per year</div><button class="button primary" type="button" aria-label="Choose Annual plan">Choose</button></article>
     </div>
     <div class="billing-row reveal"><span>Already a subscriber?</span><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing →</a></div>
   </div>
@@ -1603,7 +1672,17 @@ body.modal-open{overflow:hidden}
 
 <section class="section faq-v3 edge-bubble-zone" id="faq">
   <div class="edge-orbs faq-edge-orbs" aria-hidden="true"><i class="edge-orb f1"></i><i class="edge-orb f2"></i></div>
-  <div class="container faq-wrap"><div class="reveal"><p class="section-kicker">FAQ</p><h2 class="section-title">got questions?</h2><p class="section-copy">The important parts, without making you hunt for them.</p></div><div class="faq-list">
+  <div class="container faq-wrap"><div class="reveal"><p class="section-kicker">FAQ</p><h2 class="section-title">got questions?
+<img
+    class="campaign-sticker sticker-faq-mascot"
+    data-free-sticker="faq-mascot"
+    src="assets/free-campaign-stickers/mascot-thumbs-up.webp"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+  />
+</h2><p class="section-copy">The important parts, without making you hunt for them.</p></div><div class="faq-list">
     <article class="faq-item glass reveal"><button class="faq-q">What changes while Tapioca is active?<span>+</span></button><div class="faq-a">Compatible apps that use your iPhone's system location will generally reflect the place selected in Tapioca.</div></article>
     <article class="faq-item glass reveal"><button class="faq-q">How quickly does the location update?<span>+</span></button><div class="faq-a">Usually within a moment. A brief delay while the location is applied is normal.</div></article>
     <article class="faq-item glass reveal"><button class="faq-q">Can I return to my real location?<span>+</span></button><div class="faq-a">Yes. Use Cancel or GPS Reset in Tapioca whenever you are ready.</div></article>
@@ -1613,10 +1692,29 @@ body.modal-open{overflow:hidden}
   </div></div>
 </section>
 
-<section class="section download-v3 edge-bubble-zone" id="download"><div class="edge-orbs download-edge-orbs" aria-hidden="true"><i class="edge-orb x1"></i><i class="edge-orb x2"></i><i class="edge-orb x3"></i></div><div class="container"><div class="download-panel glass reveal"><div class="download-panel-inner"><p class="section-kicker">READY WHEN YOU ARE</p><h2 class="section-title">everything is mixed<br/>and ready.</h2><p class="section-copy">Download Tapioca, connect your iPhone, and choose your first place.</p><div class="download-actions"><a class="button primary" id="download-windows" href="/download/windows" data-os-download="windows">Download for Windows</a><a class="button secondary" id="download-mac" href="/download/mac" data-os-download="mac">Download for Mac</a></div><div class="download-meta">Windows x64 &middot; Apple Silicon Mac &middot; signed &amp; notarized &middot; iPhone required &middot; <a href="/download/windows/sha256">Windows checksum</a> &middot; <a href="/download/mac/sha256">Mac checksum</a></div></div></div></div></section>
+<section class="section download-v3 edge-bubble-zone" id="download"><div class="edge-orbs download-edge-orbs" aria-hidden="true"><i class="edge-orb x1"></i><i class="edge-orb x2"></i><i class="edge-orb x3"></i></div><div class="container"><img
+    class="campaign-sticker sticker-download-free-now"
+    data-free-sticker="download-free-now"
+    src="assets/free-campaign-stickers/free-now-mascot.webp"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+  />
+<div class="download-panel glass reveal"><div class="download-panel-inner"><p class="section-kicker">READY WHEN YOU ARE</p><h2 class="section-title">everything is mixed<br/>and ready.</h2><p class="section-copy">Download Tapioca, connect your iPhone, and choose your first place.</p><div class="download-actions"><a class="button primary" id="download-windows" href="/download/windows" data-os-download="windows">Download for Windows</a><a class="button secondary" id="download-mac" href="/download/mac" data-os-download="mac">Download for Mac</a></div><div class="download-meta">Windows x64 &middot; Apple Silicon Mac &middot; signed &amp; notarized &middot; iPhone required &middot; <a href="/download/windows/sha256">Windows checksum</a> &middot; <a href="/download/mac/sha256">Mac checksum</a></div></div></div></div></section>
 </main>
 
-<footer><div class="container"><div class="footer-grid"><div><div class="footer-brand">tapioca</div><div class="footer-tag">made with care for anywhere but here.</div></div><div class="footer-links"><h4>Product</h4><a href="#demo">Try it</a><a href="#pricing">Pricing</a><a href="/download/windows" data-os-download="windows">Download for Windows</a><a href="/download/mac" data-os-download="mac">Download for Mac</a></div><div class="footer-links"><h4>Support</h4><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing</a><a href="mailto:support@usetapioca.com">Email Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="footer-bottom">© 2026 Tapioca. Use only on devices you own or are authorized to test.</div></div></footer>
+<footer>
+  <img
+    class="campaign-sticker sticker-footer-mascot"
+    data-free-sticker="footer-mascot"
+    src="assets/free-campaign-stickers/mascot-waving.webp"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="container"><div class="footer-grid"><div><div class="footer-brand">tapioca</div><div class="footer-tag">made with care for anywhere but here.</div></div><div class="footer-links"><h4>Product</h4><a href="#demo">Try it</a><a href="#pricing">Pricing</a><a href="/download/windows" data-os-download="windows">Download for Windows</a><a href="/download/mac" data-os-download="mac">Download for Mac</a></div><div class="footer-links"><h4>Support</h4><a href="https://billing.stripe.com/p/login/eVq7sL0KS5GQazrbLV5c400" target="_blank" rel="noopener noreferrer">Manage Billing</a><a href="mailto:support@usetapioca.com">Email Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="footer-bottom">© 2026 Tapioca. Use only on devices you own or are authorized to test.</div></div></footer>
 
 
 <div class="download-guide-overlay" id="download-guide-overlay">
@@ -1698,7 +1796,7 @@ menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.class
 // reveal once — no scroll-up replay
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(reduced)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('revealed'));
-else{const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');observer.unobserve(entry.target)}}),{threshold:.13,rootMargin:'0px 0px -42px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}
+else{const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');observer.unobserve(entry.target)}}),{threshold:.13,rootMargin:'0px 0px -42px'});document.querySelectorAll('.demo-heading.reveal, .pricing-head.reveal, #faq .faq-wrap > .reveal').forEach(el=>observer.observe(el))}
 
 // smart platform downloads
 const DOWNLOAD_PATHS={windows:'/download/windows',mac:'/download/mac'};
@@ -2044,6 +2142,39 @@ if(whyMobileQuery.addEventListener)whyMobileQuery.addEventListener('change',sync
 else if(whyMobileQuery.addListener)whyMobileQuery.addListener(syncWhyCardMode);
 syncWhyCardMode();
 
+</script>
+<script id="pricing-diecut-glare-script">
+(function () {
+  const sticker = document.getElementById("pricing-diecut-sticker");
+  if (!sticker ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let scheduled = false;
+
+  function updateLight() {
+    const rect = sticker.getBoundingClientRect();
+    const progress = Math.max(0, Math.min(1,
+      (window.innerHeight - rect.top) /
+      (window.innerHeight + rect.height)
+    ));
+
+    sticker.style.setProperty(
+      "--shine-position",
+      Math.min(100, progress * 100 + 39) + "%"
+    );
+
+    scheduled = false;
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(updateLight);
+    }
+  }, { passive: true });
+
+  updateLight();
+})();
 </script>
 </body>
 </html>
